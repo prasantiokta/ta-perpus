@@ -1,6 +1,6 @@
 <div class="footer">
       <br/>
-      <p style="color: white; text-align: right; margin-right: 40px;"><strong>@avphntm</strong></p>
+      <p style="color: white; text-align: right; margin-right: 40px;"><strong>@Able</strong></p>
   <style type="text/css">
     .footer{
       width: 100%;
