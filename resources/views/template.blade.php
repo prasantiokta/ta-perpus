@@ -87,7 +87,7 @@
 		<div id="content">
 
 			<!-- nav -->
-			<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+			<nav class="navbar navbar-expand-md navbar-light bg-red-gradient shadow-sm">
             	<div class="container">
                 	<a class="navbar-brand">
                 		Perpustakaan

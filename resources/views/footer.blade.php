@@ -1,4 +1,4 @@
-<div class="footer">
+<div class="footer bg-red-gradient">
       <br/>
       <p style="color: white; text-align: right; margin-right: 40px;"><strong>@Able</strong></p>
   <style type="text/css">

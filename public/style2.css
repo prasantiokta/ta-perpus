@@ -24,6 +24,16 @@ a:focus {
     transition: all 0.3s;
 }
 
+.bg-red-gradient {
+    background: #FA8072 !important;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #FA8072), color-stop(1, #FFA07A)) !important;
+    background: -ms-linear-gradient(bottom, #FA8072, #FFA07A) !important;
+    background: -moz-linear-gradient(center bottom, #FA8072 0%, #FFA07A 100%) !important;
+    background: -o-linear-gradient(#FFA07A, #FA8072) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFA07A', endColorstr='#FA8072', GradientType=0) !important;
+    color: #fff;
+}
+
 .navbar {
     padding: 15px 10px;
     background: #fff;

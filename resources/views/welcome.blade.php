@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Welcome</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -61,9 +61,20 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .bg-red-gradient {
+                background: #FA8072 !important;
+                background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #FA8072), color-stop(1, #FFA07A)) !important;
+                background: -ms-linear-gradient(bottom, #FA8072, #FFA07A) !important;
+                background: -moz-linear-gradient(center bottom, #FA8072 0%, #FFA07A 100%) !important;
+                background: -o-linear-gradient(#FFA07A, #FA8072) !important;
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFA07A', endColorstr='#FA8072', GradientType=0) !important;
+                color: #fff;
+            }
         </style>
     </head>
     <body>
+        <div class="bg-red-gradient">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -80,19 +91,10 @@
             @endif
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    Perpustakaan
                 </div>
             </div>
+        </div>
         </div>
     </body>
 </html>
