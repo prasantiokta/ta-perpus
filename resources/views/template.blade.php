@@ -41,20 +41,20 @@
 				<ul class="list-unstyled">
 					<div class="sidebar-header">
 
-						<h3 class="mt-3"><i class="fas fa-school fa-fw"></i><span>E - Library School</span></h3>
+						<h3 class="mt-3"><i class="fas fa-school fa-fw"></i>&nbsp;<span>E - Library</span></h3>
 
 					</div>
 					<li>
 						<br>
 					</li>
 					<li class="active">
-						<a href="#"><i class="fas fa-tachometer-alt fa-fw"></i>Dashboard</a>
+						<a href="#"><i class="fas fa-home fa-fw"></i>&nbsp;Dashboard</a>
 					</li>
 					<li>
 						<br>
 					</li>
 					<li class="list-unstyled components">
-						<a href="#subMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-table"></i>Master</a>
+						<a href="#subMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-table"></i>&nbsp;Master</a>
 						<ul class="collapse list-unstyled" id="subMenu">
 							<li>
 								<a href="#">Koleksi Buku</a>
@@ -71,7 +71,7 @@
 						<br>
 					</li>
 					<li>
-						<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-wrench"></i>Transaksi</a>
+						<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-wrench"></i>&nbsp;Transaksi</a>
 						<ul class="collapse list-unstyled" id="pageSubmenu">
 							<li>
 								<a href="#">Peminjaman</a>
@@ -96,7 +96,7 @@
 		<nav class="navbar navbar-expand-md navbar-light bg-red-gradient shadow-sm">
 			<div class="container">
 				<a class="navbar-brand">
-					Home
+				    <i class="fas fa-school"></i>
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 					<span class="navbar-toggler-icon"></span>
@@ -122,8 +122,8 @@
 						@endif
 						@else
 						<li class="nav-item dropdown">
-							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-								{{ Auth::user()->name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+								<i class="fas fa-user"></i>&nbsp;{{ Auth::user()->name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="caret"></span>
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
