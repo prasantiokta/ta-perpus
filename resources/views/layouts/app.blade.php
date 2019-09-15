@@ -12,7 +12,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('style2.css') }}">
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
