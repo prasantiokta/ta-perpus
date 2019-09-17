@@ -24,3 +24,7 @@ Route::get('/', function () {
 Route::get('/template', function () {
     return view('template');
 });
+
+Route::get('/koleksi', 'bukuController@index')->name('vbuku');
+
+Route::post('post', 'bukuController@insert');

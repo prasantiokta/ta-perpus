@@ -57,7 +57,7 @@
 						<a href="#subMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-table"></i>&nbsp;Master</a>
 						<ul class="collapse list-unstyled" id="subMenu">
 							<li>
-								<a href="#">Koleksi Buku</a>
+								<a href="{{ url('/koleksi') }}">Koleksi Buku</a>
 							</li>
 							<li>
 								<a href="#">Pustakawan</a>
@@ -96,7 +96,7 @@
 		<nav class="navbar navbar-expand-md navbar-light bg-red-gradient shadow-sm">
 			<div class="container">
 				<a class="navbar-brand">
-				    <i class="fas fa-school"></i>
+					<i class="fas fa-school"></i>
 				</a>
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">

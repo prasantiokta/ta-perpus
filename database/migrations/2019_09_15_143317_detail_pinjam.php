@@ -26,7 +26,6 @@ class DetailPinjam extends Migration
             $table->foreign('buku_id')->references('id')->on('buku')->onDelete('cascade')->onUpdate('cascade');
         });
     }
-    }
 
     /**
      * Reverse the migrations.
