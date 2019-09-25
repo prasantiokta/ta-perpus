@@ -8,15 +8,41 @@ use App\Buku;
 
 class bukuController extends Controller
 {
-    public function index()
+
+    public function __construct()
     {
-        $bukux = Buku::all();
-        return view('isi.vbuku', compact('bukux'));
+        # code...
+        $this->middleware('auth');
     }
 
-    public function insert(Request $request)
+    public function index()
     {
-        Buku::create($request->all());
-        return redirect()->back();
+        $bukux = DB::table('buku')->orderBy('judul')
+        ->join('kategori','kategori.id','=','buku.jenis_id')
+        ->get();
+        $category = DB::table('kategori')->get();
+        $last = DB::table('buku')->get()->count();
+        if ($last = 0) {
+            # code...
+            $idnya = 1;
+        } else {
+            $idnya = DB::table('buku')->find(\DB::table('buku')->max('id'));
+        }
+
+        return view('isi.viewBuku', compact('bukux','category','idnya'));
+    }
+
+    public function insert()
+    {
+        $param =  json_decode(request()->getContent(), true);
+        $input = array(
+                'kodebuku' => $param['kode'],
+                'jenis_id' => $param['jenis_id'],
+                'judul' => $param['judul'],
+                'penulis' => $param['penulis'],
+                'penerbit' => $param['penerbit']
+            );
+
+        $result = DB::table('buku')->insert($input);
     }
 }

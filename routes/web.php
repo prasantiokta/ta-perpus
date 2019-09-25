@@ -25,6 +25,5 @@ Route::get('/template', function () {
     return view('template');
 });
 
-Route::get('/koleksi', 'bukuController@index')->name('vbuku');
-
-Route::post('post', 'bukuController@insert');
+Route::get('/viewBuku', 'bukuController@index')->name('viewBuku');
+Route::post('/inserBuku', 'bukuController@insert')->name('inserBuku');
