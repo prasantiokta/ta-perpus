@@ -22,13 +22,14 @@ class bukuController extends Controller
         ->get();
         $category = DB::table('kategori')->get();
         $last = DB::table('buku')->get()->count();
-        if ($last = 0) {
+        $idnya = 0;
+        if ($last == 0) {
             # code...
             $idnya = 1;
         } else {
-            $idnya = DB::table('buku')->find(\DB::table('buku')->max('id'));
+            $idnya = DB::table('buku')->orderBy('id', 'desc')->value('id');
         }
-
+        //dd($idnya);
         return view('isi.viewBuku', compact('bukux','category','idnya'));
     }
 
@@ -45,4 +46,5 @@ class bukuController extends Controller
 
         $result = DB::table('buku')->insert($input);
     }
+    
 }

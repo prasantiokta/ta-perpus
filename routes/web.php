@@ -26,4 +26,4 @@ Route::get('/template', function () {
 });
 
 Route::get('/viewBuku', 'bukuController@index')->name('viewBuku');
-Route::post('/inserBuku', 'bukuController@insert')->name('inserBuku');
+Route::post('/inserBuku', 'bukuController@insert')->name('inserBuku');		//tetep dipake http.post
