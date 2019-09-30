@@ -59,7 +59,27 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< Updated upstream:resources/views/isi/viewBuku.blade.php
                         <button class="btn btn-success" ng-click="simpan()">Simpan</button>
+=======
+                        <div class="form-group">
+                            <label for="">Kode Buku</label>
+                            <input type="number" class="form-control" id="" name="kode">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Judul</label>
+                            <input type="text" class="form-control" id="" name="judul">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Penerbit</label>
+                            <input type="text" class="form-control" id="" name="penerbit">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Penulis</label>
+                            <input type="text" class="form-control" id="" name="penulis">
+                        </div>
+                        <button type="submit" class="btn btn-success">Simpan</button>
+>>>>>>> Stashed changes:resources/views/isi/vbuku.blade.php
                     </form>
                 </div>
                 <div class="modal-footer">
