@@ -47,6 +47,19 @@ class bukuController extends Controller
         $result = DB::table('buku')->insert($input);
     }
 
+    public function editBuku(Buku $id)
+    {
+        return view('isi.editBuku', ['data' => $id]);
+    }
+
+    public function update(Request $request,Buku $id)
+    {
+        # code...
+        $id->update($request->only('kodebuku','jenis_id','judul','penulis','penerbit'));        
+        return redirect('viewBuku');
+
+    }
+
     public function delete($id)
     {
         $bukux = Buku::find($id);

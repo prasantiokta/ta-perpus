@@ -30,3 +30,7 @@ Route::get('/viewBuku', 'bukuController@index')->name('viewBuku');
 Route::post('/inserBuku', 'bukuController@insert')->name('inserBuku');        //tetep dipake http.post
 
 Route::get('/delete/{id}', 'bukuController@delete');
+
+Route::get('/editBuku/{id}', 'bukuController@edit')->name('editBuku');
+
+Route::post('/updBuku/{id}', 'bukuController@update')->name('updBuku');
