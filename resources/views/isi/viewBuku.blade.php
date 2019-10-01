@@ -31,9 +31,9 @@
                                         <div class="form-group">
                                             <label for="">Kategori</label>
                                             <select id="jenis_id" ng-model="jenis_id" name="jenis_id" class="form-control" required>
-                                                                @foreach($category as $c)
+                                                @foreach($category as $c)
                                                 <option value="{{$c->id}}">{{$c->category}}</option>
-                                                                @endforeach
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -154,7 +154,7 @@
                     <a href="" class="btn btn-primary" data-toggle="modal" data-target="#Modaledit">
                         <i class="fas fa-pencil-alt fa-fw"></i>
                     </a>
-                    <a href="" class="btn btn-danger">Hapus</a>
+                    <a href="delete/{{$b->id}}" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></a>
                 </td>
             </tr>
             @endforeach
@@ -180,7 +180,8 @@
             $scope.kode = $scope.judul.substring(0, 4).toUpperCase() + "-" + $scope.idbuku;
             console.log($scope.idny);
             //saving
-            $http.post('{{url('inserBuku')}}', {
+            $http.post('{{url('
+                inserBuku ')}}', {
                     kode: $scope.kode,
                     jenis_id: $scope.jenis_id,
                     judul: $scope.judul,

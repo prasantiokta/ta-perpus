@@ -18,8 +18,8 @@ class bukuController extends Controller
     public function index()
     {
         $bukux = DB::table('buku')->orderBy('judul')
-        ->join('kategori','kategori.id','=','buku.jenis_id')
-        ->get();
+            ->join('kategori', 'kategori.id', '=', 'buku.jenis_id')
+            ->get();
         $category = DB::table('kategori')->get();
         $last = DB::table('buku')->get()->count();
         $idnya = 0;
@@ -30,21 +30,27 @@ class bukuController extends Controller
             $idnya = DB::table('buku')->orderBy('id', 'desc')->value('id');
         }
         //dd($idnya);
-        return view('isi.viewBuku', compact('bukux','category','idnya'));
+        return view('isi.viewBuku', compact('bukux', 'category', 'idnya'));
     }
 
     public function insert()
     {
         $param =  json_decode(request()->getContent(), true);
         $input = array(
-                'kodebuku' => $param['kode'],
-                'jenis_id' => $param['jenis_id'],
-                'judul' => $param['judul'],
-                'penulis' => $param['penulis'],
-                'penerbit' => $param['penerbit']
-            );
+            'kodebuku' => $param['kode'],
+            'jenis_id' => $param['jenis_id'],
+            'judul' => $param['judul'],
+            'penulis' => $param['penulis'],
+            'penerbit' => $param['penerbit']
+        );
 
         $result = DB::table('buku')->insert($input);
     }
 
+    public function delete($id)
+    {
+        $bukux = Buku::find($id);
+        $bukux->delete();
+        return back();
+    }
 }
