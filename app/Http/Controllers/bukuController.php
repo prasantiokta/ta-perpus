@@ -46,5 +46,5 @@ class bukuController extends Controller
 
         $result = DB::table('buku')->insert($input);
     }
-    
+
 }
