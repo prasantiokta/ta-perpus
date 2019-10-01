@@ -60,7 +60,7 @@
 						<a href="#subMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-table"></i>&nbsp;Master</a>
 						<ul class="collapse list-unstyled" id="subMenu">
 							<li>
-								<a href="{{ url('/koleksi') }}">Koleksi Buku</a>
+								<a href="{{ url('/viewBuku') }}">Koleksi Buku</a>
 							</li>
 							<li>
 								<a href="#">Pustakawan</a>
