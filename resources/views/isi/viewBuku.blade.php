@@ -120,8 +120,7 @@
             $scope.kode = $scope.judul.substring(0, 4).toUpperCase() + "-" + $scope.idbuku;
             console.log($scope.idny);
             //saving
-            $http.post('{{url('
-                inserBuku ')}}', {
+            $http.post('{{url('inserBuku')}}', {
                     kode: $scope.kode,
                     jenis_id: $scope.jenis_id,
                     judul: $scope.judul,
