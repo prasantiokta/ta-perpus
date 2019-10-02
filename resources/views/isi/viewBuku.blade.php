@@ -69,41 +69,49 @@
 
             </div>
         </div>
-
-        <table class="table table-striped mt-5">
-            <tr>
-                <th>No</th>
-                <th>Kategori</th>
-                <th>Kode Buku</th>
-                <th>Judul</th>
-                <th>Penerbit</th>
-                <th>Penulis</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-            @foreach($bukux as $key => $b)
-            <tr>
-                <td>{{$key+1}}</td>
-                <td>{{$b->category}}</td>
-                <td>{{$b->kodebuku}}</td>
-                <td>{{$b->judul}}</td>
-                <td>{{$b->penerbit}}</td>
-                <td>{{$b->penulis}}</td>
-                <td>{{$b->status}}</td>
-                <td>
-                    <a href="editBuku/{{$b->id_buku}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
-                    </a>
-
-                    <a href="delete/{{$b->id_buku}}" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></a>
-                </td>
-            </tr>
+        <table class="table table-striped mt-5" id="myTable">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Kategori</th>
+                    <th>Kode Buku</th>
+                    <th>Judul</th>
+                    <th>Penerbit</th>
+                    <th>Penulis</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($bukux as $key => $b)
+                <tr>
+                    <td>{{$key+1}}</td>
+                    <td>{{$b->category}}</td>
+                    <td>{{$b->kodebuku}}</td>
+                    <td>{{$b->judul}}</td>
+                    <td>{{$b->penerbit}}</td>
+                    <td>{{$b->penulis}}</td>
+                    <td>{{$b->status}}</td>
+                    <td>
+                        <a href="editBuku/{{$b->id}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
+                        </a>
+                           
+                        <a href="delete/{{$b->id}}" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></a>
+                    </td>
+                </tr>
             @endforeach
+            </tbody>
         </table>
     </div>
     <br><br>
 </div>
 <!-- App ctrl angular -->
 <script type="text/javascript">
+
+    $(document).ready(function(){
+        $('#myTable').DataTable({});
+    });
+
     var app = angular.module('tesApp', []);
     app.controller('tesCtrl', function($scope, $http, $window) {
         //vars 
