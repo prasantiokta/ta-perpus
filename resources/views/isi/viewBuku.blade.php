@@ -32,7 +32,7 @@
                                             <label for="">Kategori</label>
                                             <select id="jenis_id" ng-model="jenis_id" name="jenis_id" class="form-control" required>
                                                 @foreach($category as $c)
-                                                <option value="{{$c->id}}">{{$c->category}}</option>
+                                                <option value="{{$c->id_category}}" nama="{{$c->category}}">{{$c->category}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -69,7 +69,6 @@
 
             </div>
         </div>
-
         <table class="table table-striped mt-5" id="myTable">
             <thead>
                 <tr>
@@ -115,6 +114,9 @@
 
     var app = angular.module('tesApp', []);
     app.controller('tesCtrl', function($scope, $http, $window) {
+        //vars 
+        var allb = document.getElementById("jenis_id");
+
         // vars input
         $scope.idbuku; //var addens kodebuku
         $scope.kode;
@@ -128,13 +130,17 @@
             $scope.idbuku = idbk + 1;
             $scope.kode = $scope.judul.substring(0, 4).toUpperCase() + "-" + $scope.idbuku;
             console.log($scope.idny);
+            //nmcat
+            $scope.nmcat = allb.options[allb.selectedIndex].getAttribute("nama");
             //saving
-            $http.post('{{url('inserBuku')}}', {
+            $http.post('{{url('
+                inserBuku ')}}', {
                     kode: $scope.kode,
                     jenis_id: $scope.jenis_id,
                     judul: $scope.judul,
                     penulis: $scope.penulis,
                     penerbit: $scope.penerbit,
+                    nmcat: $scope.nmcat,
                     _token: '{{csrf_token()}}'
 
                 }).then(function(reply) {

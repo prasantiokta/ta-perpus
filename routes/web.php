@@ -31,6 +31,6 @@ Route::post('/inserBuku', 'bukuController@insert')->name('inserBuku');        //
 
 Route::get('/delete/{id}', 'bukuController@delete');
 
-Route::get('/editBuku/{id}', 'bukuController@edit')->name('editBuku');
+Route::get('/editBuku/{id}', 'bukuController@editBuku')->name('editBuku');
 
 Route::post('/updBuku/{id}', 'bukuController@update')->name('updBuku');
