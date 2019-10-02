@@ -41,23 +41,26 @@ class bukuController extends Controller
             'jenis_id' => $param['jenis_id'],
             'judul' => $param['judul'],
             'penulis' => $param['penulis'],
-            'penerbit' => $param['penerbit']
+            'penerbit' => $param['penerbit'],
+            'nmcat' => $param['nmcat']
         );
 
         $result = DB::table('buku')->insert($input);
     }
 
-    public function editBuku(Buku $id)
+    public function editBuku($id)
     {
-        return view('isi.editBuku', ['data' => $id]);
+        $result = Buku::find($id);
+        $cat = DB::table('kategori')->get();
+
+        return view('isi.editBuku', compact('cat', 'result'));
     }
 
-    public function update(Request $request,Buku $id)
+    public function update(Request $request, Buku $id)
     {
         # code...
-        $id->update($request->only('kodebuku','jenis_id','judul','penulis','penerbit'));        
+        $id->update($request->only('kodebuku', 'jenis_id', 'judul', 'penulis', 'penerbit'));
         return redirect('viewBuku');
-
     }
 
     public function delete($id)
