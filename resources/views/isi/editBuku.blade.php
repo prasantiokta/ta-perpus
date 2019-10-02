@@ -13,7 +13,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            <form action="{{route('updBuku',$result->id)}}" method="post">
+            <form action="{{route('updBuku',$result->id_buku)}}" method="post">
                 @csrf
                 <div class="wrap">
                     <div class="row">

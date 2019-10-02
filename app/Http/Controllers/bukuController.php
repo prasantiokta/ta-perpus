@@ -18,7 +18,7 @@ class bukuController extends Controller
     public function index()
     {
         $bukux = DB::table('buku')->orderBy('judul')
-            ->join('kategori', 'kategori.id', '=', 'buku.jenis_id')
+            ->join('kategori', 'kategori.id_category', '=', 'buku.jenis_id')
             ->get();
         $category = DB::table('kategori')->get();
         $last = DB::table('buku')->get()->count();
@@ -27,7 +27,7 @@ class bukuController extends Controller
             # code...
             $idnya = 1;
         } else {
-            $idnya = DB::table('buku')->orderBy('id', 'desc')->value('id');
+            $idnya = DB::table('buku')->orderBy('id_buku', 'desc')->value('id_buku');
         }
         //dd($idnya);
         return view('isi.viewBuku', compact('bukux', 'category', 'idnya'));

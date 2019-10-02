@@ -32,7 +32,7 @@
                                             <label for="">Kategori</label>
                                             <select id="jenis_id" ng-model="jenis_id" name="jenis_id" class="form-control" required>
                                                 @foreach($category as $c)
-                                                <option value="{{$c->id}}" nama="{{$c->category}}">{{$c->category}}</option>
+                                                <option value="{{$c->id_category}}" nama="{{$c->category}}">{{$c->category}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -91,10 +91,10 @@
                 <td>{{$b->penulis}}</td>
                 <td>{{$b->status}}</td>
                 <td>
-                    <a href="editBuku/{{$b->id}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
+                    <a href="editBuku/{{$b->id_buku}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
                     </a>
 
-                    <a href="delete/{{$b->id}}" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></a>
+                    <a href="delete/{{$b->id_buku}}" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></a>
                 </td>
             </tr>
             @endforeach
