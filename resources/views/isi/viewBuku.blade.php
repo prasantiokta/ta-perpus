@@ -92,7 +92,8 @@
                     <td>{{$b->judul}}</td>
                     <td>{{$b->penerbit}}</td>
                     <td>{{$b->penulis}}</td>
-                    <td>{{$b->status}}</td>
+                    <td ng-if="{{$b->status == 0}}">Tersedia</td>
+                    <td ng-if="{{$b->status == 1}}">Dipinjam</td>
                     <td>
                         <a href="editBuku/{{$b->id_buku}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
                         </a>
@@ -132,8 +133,9 @@
             $scope.kode = $scope.judul.substring(0, 4).toUpperCase() + "-" + $scope.idbuku;
             //nmcat
             $scope.nmcat = allb.options[allb.selectedIndex].getAttribute("nama");
+            console.log($scope.nmcat);
             //saving
-            $http.post('{{url('inserBuku ')}}', {
+            $http.post('{{url('inserBuku')}}', {
                     kode: $scope.kode,
                     jenis_id: $scope.jenis_id,
                     judul: $scope.judul,
