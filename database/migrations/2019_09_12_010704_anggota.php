@@ -15,7 +15,7 @@ class Anggota extends Migration
     {
         //
         Schema::create('anggota', function (Blueprint $table) {
-            $table->bigincrements('id');
+            $table->bigincrements('id_angg');
             $table->string('kodeangg');
             $table->string('nmangg');
             $table->string('notelp');

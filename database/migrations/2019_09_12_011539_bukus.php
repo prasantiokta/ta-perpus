@@ -14,7 +14,7 @@ class Bukus extends Migration
     public function up()
     {
         Schema::create('buku', function (Blueprint $table) {
-            $table->bigincrements('id');
+            $table->bigincrements('id_buku');
             $table->unsignedbigInteger('jenis_id');
             $table->string('kodebuku');
             $table->string('judul');

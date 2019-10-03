@@ -56,10 +56,37 @@ class bukuController extends Controller
         return view('isi.editBuku', compact('cat', 'result'));
     }
 
-    public function update(Request $request, Buku $id)
+    public function update(Request $request, $id_buku)
     {
-        # code...
-        $id->update($request->only('kodebuku', 'jenis_id', 'judul', 'penulis', 'penerbit'));
+        # js
+        // $updatenya = array(
+        //     'kodebuku' => $param['master']['kode'],
+        //     'jenis_id' => $param['master']['jenis_id'],
+        //     'judul' => $param['master']['judul'],
+        //     'penulis' => $param['master']['penulis'],
+        //     'penerbit' => $param['master']['penerbit'],
+        //     'nmcat' => $param['master']['nmcat']
+        // );
+        // dd($updatenya);
+        // DB::table('tb_karyawan')->where('id_karyawan','=',$param['master']['id'])->update($updatenya);
+        #
+
+        # php
+        //kode & nmcat generate
+        $nmc = DB::table('kategori')->where('id_category',$request->jenis_id)->value('category');
+        $kode = substr($request->judul, 0, 4);
+        $kode = strtoupper($kode);
+        $kodenya = $kode."-".$id_buku;
+
+        DB::table('buku')->where('id_buku',$id_buku)->update([
+            'jenis_id' => $request->jenis_id,
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'nmcat' => $nmc,
+            'kodebuku' => $kodenya
+        ]);
+
         return redirect('viewBuku');
     }
 

@@ -69,6 +69,7 @@
 
             </div>
         </div>
+        <br><br><br>
         <table class="table table-striped mt-5" id="myTable">
             <thead>
                 <tr>
@@ -93,10 +94,10 @@
                     <td>{{$b->penulis}}</td>
                     <td>{{$b->status}}</td>
                     <td>
-                        <a href="editBuku/{{$b->id}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
+                        <a href="editBuku/{{$b->id_buku}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
                         </a>
                            
-                        <a href="delete/{{$b->id}}" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></a>
+                        <a href="delete/{{$b->id_buku}}" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></a>
                     </td>
                 </tr>
             @endforeach
@@ -129,12 +130,10 @@
             var idbk = JSON.parse($scope.idny);
             $scope.idbuku = idbk + 1;
             $scope.kode = $scope.judul.substring(0, 4).toUpperCase() + "-" + $scope.idbuku;
-            console.log($scope.idny);
             //nmcat
             $scope.nmcat = allb.options[allb.selectedIndex].getAttribute("nama");
             //saving
-            $http.post('{{url('
-                inserBuku ')}}', {
+            $http.post('{{url('inserBuku ')}}', {
                     kode: $scope.kode,
                     jenis_id: $scope.jenis_id,
                     judul: $scope.judul,
