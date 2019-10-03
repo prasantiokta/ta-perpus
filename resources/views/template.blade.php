@@ -5,24 +5,30 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-	<link rel="stylesheet" href="{{ asset('jquery.growl.css') }}">
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 	<!-- Custom CSS -->
 	<link rel="stylesheet" href="{{ asset('style.css') }}">
 	<!-- Datatables -->
+	<!-- <link rel="stylesheet" href="{!! asset('DataTables/datatables.min.css') !!}" media="screen">
+	<script type="text/javascript" src="{{ asset('DataTables/datatables.min.js') }}"></script> -->
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-	<link rel="stylesheet" href="{!! asset('DataTables/datatables.min.css') !!}" media="screen">
-	<script type="text/javascript" src="{{ asset('DataTables/datatables.min.js') }}"></script>
-	<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+	{{-- <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script> --}}
 	<script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
+
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
 	<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" defer></script>
 	<!-- Scrollbar Custom CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+	<link rel="stylesheet" href="{{ asset('jquery.growl.css') }}">
+
 	<!-- Font Awesome JS -->
 	<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+	<!-- jQuery Custom Scroller CDN -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script> -->
+	<!-- uwu -->
 	<script type="text/javascript" src="{{ asset('angular.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('jquery.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('jqprint.js') }}"></script>

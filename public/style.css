@@ -14,7 +14,9 @@ p {
     color: #999;
 }
 
-a,
+a{
+  color: inherit;
+}
 a:hover,
 a:focus {
     color: inherit;

@@ -3,9 +3,9 @@
 @section('title','Koleksi Buku')
 @section('page')
 <div ng-app="tesApp" ng-controller="tesCtrl" class="container shadow-lg">
-    <br><br>
+    <br>
     <div ng-init="idny='{{$idnya}}'" style="padding: 8px;">
-        <h4 class="mt-3">Koleksi Buku</h4>
+        <h3 class="mt-3">Koleksi Buku</h3>
 
         <!-- Trigger the modal with a button -->
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modalinsert"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;Tambah</button>
