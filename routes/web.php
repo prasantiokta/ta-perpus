@@ -34,3 +34,5 @@ Route::get('/delete/{id}', 'bukuController@delete');
 Route::get('/editBuku/{id}', 'bukuController@editBuku')->name('editBuku');
 
 Route::post('/updBuku/{id}', 'bukuController@update')->name('updBuku');
+
+Route::get('/viewAnggota', 'anggotaController@index')->name('viewAnggota');
