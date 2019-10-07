@@ -145,8 +145,8 @@
                     _token: '{{csrf_token()}}'
 
                 }).then(function(reply) {
-                alert("Data Buku sudah disimpan");
-                //$.growl.notice({title: "[INFO]", message: "Data Buku Berhasil Disimpan"});
+                //alert("Data Buku sudah disimpan");
+                $.growl.notice({ message: "Data Buku sudah disimpan!" });
                 $window.location.replace("viewBuku");
             });
         }

@@ -2,44 +2,48 @@
 <html>
 
 <head>
+	<!-- template -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-	<!-- Fonts -->
+	<!--   -->
+
+	<!-- fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="{{ asset('style.css') }}">
-	<!-- Datatables -->
-	<!-- <link rel="stylesheet" href="{!! asset('DataTables/datatables.min.css') !!}" media="screen">
-	<script type="text/javascript" src="{{ asset('DataTables/datatables.min.js') }}"></script> -->
-	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-	{{-- <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script> --}}
-	<script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
-
-	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
-	<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js" defer></script>
-	<!-- Scrollbar Custom CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-
-	<link rel="stylesheet" href="{{ asset('jquery.growl.css') }}">
-
-	<!-- Font Awesome JS -->
-	<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-	<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-	<!-- jQuery Custom Scroller CDN -->
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script> -->
+	
 	<!-- uwu -->
-	<script type="text/javascript" src="{{ asset('angular.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('jquery.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('jqprint.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('jquery.growl.js') }}"></script>
-	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-animate.min.js"></script>
+	<!-- jquery -->
+	<script type="text/javascript" src="{{ asset('addens/jquery.min.js') }}"></script>
+	<!-- angular -->
+	<script type="text/javascript" src="{{ asset('addens/angularjs/angular.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('addens/angularjs/angular-animate.min.js') }}"></script>
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="{{ asset('addens/bootstrap/bootstrap.min.css') }}">
+	<script type="text/javascript" src="{{ asset('addens/bootstrap/bootstrap.min.js') }}"></script>
+	<!-- datatables -->
+	<link rel="stylesheet" href="{{ asset('addens/DataTables/datatables.min.css') }}">
+	<script type="text/javascript" src="{{ asset('addens/DataTables/datatables.min.js') }}" defer="screen"></script>
+	<!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" defer="screen"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script> -->
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="{{ asset('addens/fontawesome/all.min.css') }}">
+	<script type="text/javascript" src="{{ asset('addens/fontawesome/all.min.js') }}"></script>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- jquery growl -->
+	<link rel="stylesheet" href="{{ asset('addens/growl/jquery.growl.css') }}">
+	<script type="text/javascript" src="{{ asset('addens/growl/jquery.growl.js') }}"></script>
+	<!-- sidebar style -->
+	<link rel="stylesheet" href="{{ asset('addens/sidebar-style.css') }}">
+
+
+	<!-- uwu -->
+
+	<!-- template -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jQuery.print/1.6.0/jQuery.print.js"></script>
-	<!-- uwu -->
+	<!--   -->
+	
 	<title>@yield('title')</title>
 
 
