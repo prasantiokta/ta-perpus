@@ -151,7 +151,7 @@
 
                 }).then(function(reply) {
                 //alert("Data Buku sudah disimpan");
-                $.growl.notice({ message: "Data Buku sudah disimpan!" });
+                $.growl.notice({ message: "Data Buku sudah disimpan" });
                 $window.location.replace("viewBuku");
             });
         }
@@ -164,7 +164,7 @@
                     id: $scope.delid
                 }).then(function(reply) {
                 //alert("Data Buku sudah disimpan");
-                $.growl.notice({ message: "Data Buku sudah dihapus!" });
+                $.growl.notice({ message: "Data Buku sudah dihapus" });
                 $window.location.replace("viewBuku");
             });
         }

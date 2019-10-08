@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-success">Simpan</button>
+                <button class="btn btn-success" ng-click="simpan()">Simpan</button>
             </form>
         </div>
         <div class="modal-footer">
@@ -55,44 +55,9 @@
 <script type="text/javascript">
     var app = angular.module('tesApp', []);
     app.controller('tesCtrl', function($scope, $http, $window) {
-        //vars 
-        // $scope.data;
-
-        var allb = document.getElementById("opt");
-        //$scope.data = $result;
-        // console.log($scope.data);
-
-        // // vars input
-        // $scope.kode = $scope.data.kodebuku;
-        // $scope.judul = $scope.data.judul;
-        // $scope.penulis = $scope.data.penulis;
-        // $scope.penerbit = $scope.data.penulis;
 
         $scope.simpan = function() {
-            //generate kode
-            //$scope.kode = $scope.judul.substring(0, 4).toUpperCase() + "-" + $scope.data.id_buku;
-            //nmcat
-            $scope.nmcat = allb.options[allb.selectedIndex].getAttribute("nama");
-            console.log($scope.nmcat);
-            //data
-            // var data = {
-            //     kode: $scope.kode,
-            //     jenis_id: $scope.jenis_id,
-            //     judul: $scope.judul,
-            //     penulis: $scope.penulis,
-            //     penerbit: $scope.penerbit,
-            //     nmcat: $scope.nmcat
-            // }
-            //saving
-            $http.post('{{url('updBuku')}}', {
-                    nmcat: $scope.nmcat,
-                    _token: '{{csrf_token()}}'
-
-                }).then(function(reply) {
-                alert("Data Buku sudah diubah");
-                //$.growl.notice({title: "[INFO]", message: "Data Buku Berhasil Disimpan"});
-                // $window.location.replace("viewBuku");
-                });
+            $.growl.notice({ message: "Data Buku sudah diedit" });
         }
 
         //
