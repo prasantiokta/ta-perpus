@@ -98,7 +98,7 @@
                         <a href="editBuku/{{$b->id_buku}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
                         </a>
                            
-                        <a href="delete/{{$b->id_buku}}" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></a>
+                        <button ng-click="hapus({{$b->id_buku}})" idnya="{{$b->id_buku}}" id="delbtn" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></button><!-- href="delete/{{$b->id_buku}}" -->
                     </td>
                 </tr>
             @endforeach
@@ -108,13 +108,6 @@
     <br><br>
 </div>
 <!-- App ctrl angular -->
-<script src = "https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js" defer ></script>
-<script src = "https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js" defer ></script>
-<script src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" defer ></script>
-<script src = "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" defer ></script>
-<script src = "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" defer ></script>
-<script src = "https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js" defer ></script>
-<script src = "https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js" defer ></script>
 <script type="text/javascript">
 
     $(document).ready(function(){
@@ -130,6 +123,7 @@
     app.controller('tesCtrl', function($scope, $http, $window) {
         //vars 
         var allb = document.getElementById("jenis_id");
+        var delbtn = document.getElementById("delbtn");
 
         // vars input
         $scope.idbuku; //var addens kodebuku
@@ -145,9 +139,8 @@
             $scope.kode = $scope.judul.substring(0, 4).toUpperCase() + "-" + $scope.idbuku;
             //nmcat
             $scope.nmcat = allb.options[allb.selectedIndex].getAttribute("nama");
-            console.log($scope.nmcat);
             //saving
-            $http.post('{{url('inserBuku')}}', {
+            $http.post('{{url("inserBuku")}}', {
                     kode: $scope.kode,
                     jenis_id: $scope.jenis_id,
                     judul: $scope.judul,
@@ -159,6 +152,19 @@
                 }).then(function(reply) {
                 //alert("Data Buku sudah disimpan");
                 $.growl.notice({ message: "Data Buku sudah disimpan!" });
+                $window.location.replace("viewBuku");
+            });
+        }
+
+        $scope.hapus = function(id) {
+            $scope.delid = id;
+            console.log(id);
+            //deleting
+            $http.post('{{url("deleteBuku")}}', {
+                    id: $scope.delid
+                }).then(function(reply) {
+                //alert("Data Buku sudah disimpan");
+                $.growl.notice({ message: "Data Buku sudah dihapus!" });
                 $window.location.replace("viewBuku");
             });
         }

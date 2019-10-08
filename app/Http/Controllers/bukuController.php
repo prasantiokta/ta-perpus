@@ -90,10 +90,11 @@ class bukuController extends Controller
         return redirect('viewBuku');
     }
 
-    public function delete($id)
+    public function delete()
     {
+        $param =  json_decode(request()->getContent(), true);
+        $id = $param['id'];
         $bukux = Buku::find($id);
         $bukux->delete();
-        return back();
     }
 }
