@@ -36,3 +36,11 @@ Route::get('/editBuku/{id}', 'bukuController@editBuku')->name('editBuku');
 Route::post('/updBuku/{id}', 'bukuController@update')->name('updBuku');
 
 Route::get('/viewAnggota', 'anggotaController@index')->name('viewAnggota');
+
+Route::post('/inserAgt', 'anggotaController@insert')->name('inserAgt');
+
+Route::post('/deleteAgt', 'anggotaController@delete');
+
+Route::get('/editAnggt/{id}', 'anggotaController@editAnggt')->name('editAnggt');
+
+Route::post('/updAgt/{id}', 'anggotaController@update')->name('updAgt');

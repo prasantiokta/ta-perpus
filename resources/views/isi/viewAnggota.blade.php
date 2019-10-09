@@ -77,8 +77,9 @@
                 <td>{{$a->notelp}}</td>
                 <td>{{$a->alamat}}</td>
                 <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                    <a href="" class="btn btn-danger">Hapus</a>
+                    <a href="editAnggt/{{$a->id}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
+                    </a>
+                    <button ng-click="hapus({{$a->id}})" idnya="{{$a->id}}" id="delbtn" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></button>
                 </td>
             </tr>
             @endforeach
@@ -96,6 +97,44 @@
         $scope.nmangg = "";
         $scope.notelp;
         $scope.alamat;
+
+        $scope.simpan = function() {
+            //generate kode
+            var id = JSON.parse($scope.idny);
+            $scope.id = id + 1;
+            //nmcat
+            $scope.nmangg = allb.options[allb.selectedIndex].getAttribute("nmangg");
+            //saving
+            $http.post('{{url("inserAgt")}}', {
+                kodeangg: $scope.kodeangg,
+                nmangg: $scope.nmangg,
+                notelp: $scope.notelp,
+                alamat: $scope.alamat,
+                _token: '{{csrf_token()}}'
+
+            }).then(function(reply) {
+                //alert("Data Buku sudah disimpan");
+                $.growl.notice({
+                    message: "Anggota berhasil ditambahkan!"
+                });
+                $window.location.replace("viewAnggota");
+            });
+        }
+
+        $scope.hapus = function(id) {
+            $scope.delid = id;
+            console.log(id);
+            //deleting
+            $http.post('{{url("deleteAgt")}}', {
+                id: $scope.delid
+            }).then(function(reply) {
+                //alert("Data Buku sudah disimpan");
+                $.growl.notice({
+                    message: "Anggota berhasil dihapus!"
+                });
+                $window.location.replace("viewAnggota");
+            });
+        }
 
 
         //
