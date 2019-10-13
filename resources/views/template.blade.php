@@ -71,7 +71,7 @@
 						<br>
 					</li>
 					<li class="active">
-						<a href="#"><i class="fas fa-home fa-fw"></i>&nbsp;Dashboard</a>
+						<a href="{{ url('/home') }}"><i class="fas fa-home fa-fw"></i>&nbsp;Dashboard</a>
 					</li>
 					<li>
 						<br>
@@ -82,9 +82,9 @@
 							<li>
 								<a href="{{ url('/viewBuku') }}">Koleksi Buku</a>
 							</li>
-							<li>
+							<!-- <li>
 								<a href="#">Pustakawan</a>
-							</li>
+							</li> -->
 							<li>
 								<a href="{{ url('/viewAnggota') }}">Anggota</a>
 							</li>
@@ -97,14 +97,14 @@
 						<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-wrench"></i>&nbsp;Transaksi</a>
 						<ul class="collapse list-unstyled" id="pageSubmenu">
 							<li>
-								<a href="#">Peminjaman</a>
+								<a href="{{ url('/vPinjam') }}">Peminjaman</a>
 							</li>
 							<li>
-								<a href="#">Pengembalian</a>
+								<a href="{{ url('/vKembali') }}">Pengembalian</a>
 							</li>
-							<li>
-								<a href="#">Denda</a>
-							</li>
+							<!-- <li>
+								<a href="{{ url('/viewBuku') }}">Denda</a>
+							</li> -->
 						</ul>
 					</li>
 				</ul>

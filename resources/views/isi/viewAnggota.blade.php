@@ -87,18 +87,21 @@
 
             </div>
         </div>
-
-        <table class="table table-striped mt-5">
-            <tr>
-                <th>No</th>
-                <th>Kode Anggota</th>
-                <th>Nama Lengkap</th>
-                <th>Kelas</th>
-                <th>Jurusan</th>
-                <th>No. Telp</th>
-                <th>Alamat</th>
-                <th>Action</th>
-            </tr>
+        <br><br><br>
+        <table class="table table-striped mt-5" id="myTable">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Kode Anggota</th>
+                    <th>Nama Lengkap</th>
+                    <th>Kelas</th>
+                    <th>Jurusan</th>
+                    <th>No. Telp</th>
+                    <th>Alamat</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
             @foreach($agt as $key => $a)
             <tr>
                 <td>{{$key+1}}</td>
@@ -115,12 +118,23 @@
                 </td>
             </tr>
             @endforeach
+            </tbody>
         </table>
     </div>
     <br><br>
 </div>
 <!-- App ctrl angular -->
 <script type="text/javascript">
+
+    $(document).ready(function(){
+        $('#myTable').DataTable({
+            // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            // dom: 'Blfrtip',
+            // buttons: ['excel','print'],
+            // "lengthChange": true
+        });
+    });
+
     var app = angular.module('tesApp', []);
     app.controller('tesCtrl', function($scope, $http, $window) {
         // vars input

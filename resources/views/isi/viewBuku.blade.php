@@ -112,10 +112,10 @@
 
     $(document).ready(function(){
         $('#myTable').DataTable({
-            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-            dom: 'Blfrtip',
-            buttons: ['excel','print'],
-            "lengthChange": true
+            // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            // dom: 'Blfrtip',
+            // buttons: ['excel','print'],
+            // "lengthChange": true
         });
     });
 
