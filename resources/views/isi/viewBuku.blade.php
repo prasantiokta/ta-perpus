@@ -40,7 +40,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="">Judul</label>
-                                            <input type="text" class="form-control" id="judul" ng-model="judul" name="judul">
+                                            <input type="text" class="form-control" id="judul" ng-model="judul" name="judul" required>
                                         </div>
                                     </div>
                                 </div>
@@ -48,13 +48,13 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="">Penulis</label>
-                                            <input type="text" class="form-control" id="penulis" ng-model="penulis" name="penulis">
+                                            <input type="text" class="form-control" id="penulis" ng-model="penulis" name="penulis" required>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="">Penerbit</label>
-                                            <input type="text" class="form-control" id="penerbit" ng-model="penerbit" name="penerbit">
+                                            <input type="text" class="form-control" id="penerbit" ng-model="penerbit" name="penerbit" required>
                                         </div>
                                     </div>
                                 </div>
@@ -133,6 +133,9 @@
         $scope.penerbit;
 
         $scope.simpan = function() {
+            if ($scope.judul == null || $scope.jenis_id == null || $scope.penulis == null || $scope.penerbit == null) {
+                $.growl.error({message: "Isi semua field!"});
+            } else {
             //generate kode
             var idbk = JSON.parse($scope.idny);
             $scope.idbuku = idbk + 1;
@@ -154,6 +157,7 @@
                 $.growl.notice({ message: "Data Buku sudah disimpan" });
                 $window.location.replace("viewBuku");
             });
+            }
         }
 
         $scope.hapus = function(id) {

@@ -8,6 +8,6 @@ class Anggota extends Model
 {
     //
     protected $table = 'anggota';
-    protected $primaryKey = 'id';
-    protected $fillable = ['nmangg', 'notelp', 'alamat'];
+    protected $primaryKey = 'id_angg';
+    protected $fillable = ['nmangg','kelas', 'jurusan', 'notelp', 'alamat'];
 }

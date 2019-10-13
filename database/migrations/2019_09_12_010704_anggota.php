@@ -18,6 +18,8 @@ class Anggota extends Migration
             $table->bigincrements('id_angg');
             $table->string('kodeangg');
             $table->string('nmangg');
+            $table->string('kelas');
+            $table->string('jurusan');
             $table->string('notelp');
             $table->string('alamat');
             $table->timestamps();

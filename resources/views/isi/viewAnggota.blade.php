@@ -30,13 +30,41 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="">Nama Lengkap</label>
-                                            <input type="text" class="form-control" id="nmangg" ng-model="nmangg" name="nmangg">
+                                            <input type="text" class="form-control" id="nmangg" ng-model="nmangg" name="nmangg" required>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="">No. Telp</label>
-                                            <input type="text" class="form-control" id="notelp" ng-model="notelp" name="notelp">
+                                            <input type="text" class="form-control" id="notelp" ng-model="notelp" name="notelp" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="">Kelas</label>
+                                            <select id="kelas" ng-model="kelas" name="kelas" class="form-control" required>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="">Jurusan</label>
+                                            <select id="jurusan" ng-model="jurusan" name="jurusan" class="form-control" required>
+                                                <option value="Akuntansi">Akuntansi</option>
+                                                <option value="Administrasi Perkantoran">Administrasi Perkantoran</option>
+                                                <option value="Pemasaran">Pemasaran</option>
+                                                <option value="Akomodasi Perhotelan">Akomodasi Perhotelan</option>
+                                                <option value="Pertelevisian">Pertelevisian</option> 
+                                                <option value="Desain Komunikasi Visual">Desain Komunikasi Visual</option>
+                                                <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
+                                                <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
+                                                <option value="Multimedia">Multimedia</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -44,7 +72,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="">Alamat</label>
-                                            <input type="text" class="form-control" id="alamat" ng-model="alamat" name="alamat">
+                                            <input type="text" class="form-control" id="alamat" ng-model="alamat" name="alamat" required>
                                         </div>
                                     </div>
                                 </div>
@@ -65,6 +93,8 @@
                 <th>No</th>
                 <th>Kode Anggota</th>
                 <th>Nama Lengkap</th>
+                <th>Kelas</th>
+                <th>Jurusan</th>
                 <th>No. Telp</th>
                 <th>Alamat</th>
                 <th>Action</th>
@@ -74,12 +104,14 @@
                 <td>{{$key+1}}</td>
                 <td>{{$a->kodeangg}}</td>
                 <td>{{$a->nmangg}}</td>
+                <td>{{$a->kelas}}</td>
+                <td>{{$a->jurusan}}</td>
                 <td>{{$a->notelp}}</td>
                 <td>{{$a->alamat}}</td>
                 <td>
-                    <a href="editAnggt/{{$a->id}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
+                    <a href="editAnggt/{{$a->id_angg}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
                     </a>
-                    <button ng-click="hapus({{$a->id}})" idnya="{{$a->id}}" id="delbtn" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></button>
+                    <button ng-click="hapus({{$a->id_angg}})" idnya="{{$a->id_angg}}" id="delbtn" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></button>
                 </td>
             </tr>
             @endforeach
@@ -92,33 +124,40 @@
     var app = angular.module('tesApp', []);
     app.controller('tesCtrl', function($scope, $http, $window) {
         // vars input
-        $scope.id; //var addens kodebuku
+        $scope.id; //var add kodeangg
         $scope.kodeangg;
         $scope.nmangg = "";
+        $scope.kelas;
+        $scope.jurusan;
         $scope.notelp;
         $scope.alamat;
 
         $scope.simpan = function() {
-            //generate kode
-            var id = JSON.parse($scope.idny);
-            $scope.id = id + 1;
-            //nmcat
-            $scope.nmangg = allb.options[allb.selectedIndex].getAttribute("nmangg");
-            //saving
-            $http.post('{{url("inserAgt")}}', {
-                kodeangg: $scope.kodeangg,
-                nmangg: $scope.nmangg,
-                notelp: $scope.notelp,
-                alamat: $scope.alamat,
-                _token: '{{csrf_token()}}'
+            // validate
+            if ($scope.nmangg == null || $scope.kelas == null || $scope.jurusan == null || $scope.notelp == null || $scope.alamat == null) {
+                $.growl.error({message: "Isi semua field!"});
+            } else {
+                //generate kode
+                var id = JSON.parse($scope.idny);
+                console.log(id);
+                $scope.id = id + 1;
+                $scope.kodeangg = $scope.nmangg.substring(0, 4).toUpperCase() + "-" + $scope.id;
+                //saving
+                $http.post('{{url("inserAgt")}}', {
+                    kodeangg: $scope.kodeangg,
+                    nmangg: $scope.nmangg,
+                    kelas: $scope.kelas,
+                    jurusan: $scope.jurusan,
+                    notelp: $scope.notelp,
+                    alamat: $scope.alamat,
+                    _token: '{{csrf_token()}}'
 
-            }).then(function(reply) {
-                //alert("Data Buku sudah disimpan");
-                $.growl.notice({
-                    message: "Anggota berhasil ditambahkan!"
+                }).then(function(reply) {
+                    //alert("Data Buku sudah disimpan");
+                    $.growl.notice({message: "Anggota berhasil ditambahkan!"});
+                    $window.location.replace("viewAnggota");
                 });
-                $window.location.replace("viewAnggota");
-            });
+            }
         }
 
         $scope.hapus = function(id) {

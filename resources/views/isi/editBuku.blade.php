@@ -14,7 +14,9 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Kategori</label>
-                                <select id="opt" name="jenis_id" class="form-control" required>
+                                <select id="opt" name="jenis_id" class="form-control">
+                                    <option value="{{$result->jenis_id}}">{{$result->nmcat}}</option>
+                                    <option disabled="">-----------------------------------</option>
                                     @foreach($cat as $c)
                                     <option value="{{$c->id_category}}" nama="{{$c->category}}">{{$c->category}}</option>
                                     @endforeach
