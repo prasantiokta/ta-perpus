@@ -29,7 +29,7 @@ Route::get('/viewBuku', 'bukuController@index')->name('viewBuku');
 
 Route::post('/inserBuku', 'bukuController@insert')->name('inserBuku');        //tetep dipake http.post
 
-Route::post('/deleteBuku', 'bukuController@delete');
+Route::post('/deleteBuku', 'bukuController@delete')->name('deleteBuku');;
 
 Route::get('/editBuku/{id}', 'bukuController@editBuku')->name('editBuku');
 
@@ -39,8 +39,13 @@ Route::get('/viewAnggota', 'anggotaController@index')->name('viewAnggota');
 
 Route::post('/inserAgt', 'anggotaController@insert')->name('inserAgt');
 
-Route::post('/deleteAgt', 'anggotaController@delete');
+Route::post('/deleteAgt', 'anggotaController@delete')->name('deleteAgt');;
 
 Route::get('/editAnggt/{id}', 'anggotaController@editAnggt')->name('editAnggt');
 
 Route::post('/updAgt/{id}', 'anggotaController@update')->name('updAgt');
+
+Route::get('/vPeminjaman', 'pinjamController@index')->name('vPeminjaman');
+
+Route::get('/addPeminjaman', 'pinjamController@field')->name('addPeminjaman');
+

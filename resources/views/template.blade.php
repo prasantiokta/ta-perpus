@@ -96,10 +96,10 @@
 						<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-wrench"></i>&nbsp;Transaksi</a>
 						<ul class="collapse list-unstyled" id="pageSubmenu">
 							<li>
-								<a href="{{ url('/vPinjam') }}">Peminjaman</a>
+								<a href="{{ url('/vPeminjaman') }}">Peminjaman</a>
 							</li>
 							<li>
-								<a href="{{ url('/vKembali') }}">Pengembalian</a>
+								<a href="{{ url('/vPengembalian') }}">Pengembalian</a>
 							</li>
 							<!-- <li>
 								<a href="{{ url('/viewBuku') }}">Denda</a>
