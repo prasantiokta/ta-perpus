@@ -3,9 +3,9 @@
 @section('title','Koleksi Buku')
 @section('page')
 <div ng-app="tesApp" ng-controller="tesCtrl" class="container shadow-lg">
-    <br><br>
+    <br>
     <div ng-init="idny='{{$idnya}}'" style="padding: 8px;">
-        <h4 class="mt-3">Koleksi Buku</h4>
+        <h3 class="mt-3">Koleksi Buku</h3>
 
         <!-- Trigger the modal with a button -->
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modalinsert"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;Tambah</button>
@@ -40,7 +40,7 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="">Judul</label>
-                                            <input type="text" class="form-control" id="judul" ng-model="judul" name="judul">
+                                            <input type="text" class="form-control" id="judul" ng-model="judul" name="judul" required>
                                         </div>
                                     </div>
                                 </div>
@@ -48,13 +48,13 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="">Penulis</label>
-                                            <input type="text" class="form-control" id="penulis" ng-model="penulis" name="penulis">
+                                            <input type="text" class="form-control" id="penulis" ng-model="penulis" name="penulis" required>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="">Penerbit</label>
-                                            <input type="text" class="form-control" id="penerbit" ng-model="penerbit" name="penerbit">
+                                            <input type="text" class="form-control" id="penerbit" ng-model="penerbit" name="penerbit" required>
                                         </div>
                                     </div>
                                 </div>
@@ -69,6 +69,7 @@
 
             </div>
         </div>
+        <br><br><br>
         <table class="table table-striped mt-5" id="myTable">
             <thead>
                 <tr>
@@ -91,12 +92,13 @@
                     <td>{{$b->judul}}</td>
                     <td>{{$b->penerbit}}</td>
                     <td>{{$b->penulis}}</td>
-                    <td>{{$b->status}}</td>
+                    <td ng-if="{{$b->status == 0}}">Tersedia</td>
+                    <td ng-if="{{$b->status == 1}}">Dipinjam</td>
                     <td>
-                        <a href="editBuku/{{$b->id}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
+                        <a href="editBuku/{{$b->id_buku}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
                         </a>
                            
-                        <a href="delete/{{$b->id}}" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></a>
+                        <button ng-click="hapus({{$b->id_buku}})" idnya="{{$b->id_buku}}" id="delbtn" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></button><!-- href="delete/{{$b->id_buku}}" -->
                     </td>
                 </tr>
             @endforeach
@@ -109,13 +111,19 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
-        $('#myTable').DataTable({});
+        $('#myTable').DataTable({
+            // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            // dom: 'Blfrtip',
+            // buttons: ['excel','print'],
+            // "lengthChange": true
+        });
     });
 
     var app = angular.module('tesApp', []);
     app.controller('tesCtrl', function($scope, $http, $window) {
         //vars 
         var allb = document.getElementById("jenis_id");
+        var delbtn = document.getElementById("delbtn");
 
         // vars input
         $scope.idbuku; //var addens kodebuku
@@ -125,16 +133,17 @@
         $scope.penerbit;
 
         $scope.simpan = function() {
+            if ($scope.judul == null || $scope.jenis_id == null || $scope.penulis == null || $scope.penerbit == null) {
+                $.growl.error({message: "Isi semua field!"});
+            } else {
             //generate kode
             var idbk = JSON.parse($scope.idny);
             $scope.idbuku = idbk + 1;
             $scope.kode = $scope.judul.substring(0, 4).toUpperCase() + "-" + $scope.idbuku;
-            console.log($scope.idny);
             //nmcat
             $scope.nmcat = allb.options[allb.selectedIndex].getAttribute("nama");
             //saving
-            $http.post('{{url('
-                inserBuku ')}}', {
+            $http.post('{{url("inserBuku")}}', {
                     kode: $scope.kode,
                     jenis_id: $scope.jenis_id,
                     judul: $scope.judul,
@@ -144,8 +153,22 @@
                     _token: '{{csrf_token()}}'
 
                 }).then(function(reply) {
-                alert("Data Buku sudah disimpan");
-                //$.growl.notice({title: "[INFO]", message: "Data Buku Berhasil Disimpan"});
+                //alert("Data Buku sudah disimpan");
+                $.growl.notice({ message: "Data Buku sudah disimpan" });
+                $window.location.replace("viewBuku");
+            });
+            }
+        }
+
+        $scope.hapus = function(id) {
+            $scope.delid = id;
+            console.log(id);
+            //deleting
+            $http.post('{{url("deleteBuku")}}', {
+                    id: $scope.delid
+                }).then(function(reply) {
+                //alert("Data Buku sudah disimpan");
+                $.growl.notice({ message: "Data Buku sudah dihapus" });
                 $window.location.replace("viewBuku");
             });
         }

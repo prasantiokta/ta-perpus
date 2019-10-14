@@ -5,136 +5,193 @@
 <div ng-app="tesApp" ng-controller="tesCtrl" class="container shadow-lg">
     <br><br>
     <div ng-init="idny='{{$idnya}}'" style="padding: 8px;">
-    <h4 class="mt-3">Daftar Anggota</h4>
+        <h4 class="mt-3">Daftar Anggota</h4>
 
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;Tambah</button>
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;Tambah</button>
 
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>
-                        Tambah Anggota
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        @csrf
-                        <div class="wrap">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="">Kategori</label>
-                                        <select id="jenis_id" ng-model="jenis_id" name="jenis_id" class="form-control" required>
-                                            @foreach($category as $c)
-                                                <option value="{{$c->id}}">{{$c->category}}</option>
-                                            @endforeach
-                                        </select>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>
+                            Tambah Anggota
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            @csrf
+                            <div class="wrap">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="">Nama Lengkap</label>
+                                            <input type="text" class="form-control" id="nmangg" ng-model="nmangg" name="nmangg" required>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="">No. Telp</label>
+                                            <input type="text" class="form-control" id="notelp" ng-model="notelp" name="notelp" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" required>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="">Judul</label>
-                                        <input type="text" class="form-control" id="judul"  ng-model="judul" name="judul">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="">Kelas</label>
+                                            <select id="kelas" ng-model="kelas" name="kelas" class="form-control" required>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="">Jurusan</label>
+                                            <select id="jurusan" ng-model="jurusan" name="jurusan" class="form-control" required>
+                                                <option value="Akuntansi">Akuntansi</option>
+                                                <option value="Administrasi Perkantoran">Administrasi Perkantoran</option>
+                                                <option value="Pemasaran">Pemasaran</option>
+                                                <option value="Akomodasi Perhotelan">Akomodasi Perhotelan</option>
+                                                <option value="Pertelevisian">Pertelevisian</option> 
+                                                <option value="Desain Komunikasi Visual">Desain Komunikasi Visual</option>
+                                                <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
+                                                <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
+                                                <option value="Multimedia">Multimedia</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="">Alamat</label>
+                                            <input type="text" class="form-control" id="alamat" ng-model="alamat" name="alamat" required>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="">Penulis</label>
-                                        <input type="text" class="form-control" id="penulis" ng-model="penulis" name="penulis">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                     <div class="form-group">
-                                        <label for="">Penerbit</label>
-                                        <input type="text" class="form-control" id="penerbit" ng-model="penerbit" name="penerbit">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn btn-success" ng-click="simpan()">Simpan</button>
-                    </form>
+                            <button class="btn btn-success" ng-click="simpan()">Simpan</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                </div>
+
             </div>
-
         </div>
-    </div>
-
-    <table class="table table-striped mt-5">
-        <tr>
-            <th>No</th>
-            <th>Kategori</th>
-            <th>Kode Buku</th>
-            <th>Judul</th>
-            <th>Penerbit</th>
-            <th>Penulis</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-        @foreach($bukux as $key => $b)
-        <tr>
-            <td>{{$key+1}}</td>
-            <td>{{$b->category}}</td>
-            <td>{{$b->kodebuku}}</td>
-            <td>{{$b->judul}}</td>
-            <td>{{$b->penerbit}}</td>
-            <td>{{$b->penulis}}</td>
-            <td>{{$b->status}}</td>
-            <td>
-                <a href="" class="btn btn-primary">Edit</a>
-                <a href="" class="btn btn-danger">Hapus</a>
-            </td>
-        </tr>
-        @endforeach
-    </table>
+        <br><br><br>
+        <table class="table table-striped mt-5" id="myTable">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Kode Anggota</th>
+                    <th>Nama Lengkap</th>
+                    <th>Kelas</th>
+                    <th>Jurusan</th>
+                    <th>No. Telp</th>
+                    <th>Alamat</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($agt as $key => $a)
+            <tr>
+                <td>{{$key+1}}</td>
+                <td>{{$a->kodeangg}}</td>
+                <td>{{$a->nmangg}}</td>
+                <td>{{$a->kelas}}</td>
+                <td>{{$a->jurusan}}</td>
+                <td>{{$a->notelp}}</td>
+                <td>{{$a->alamat}}</td>
+                <td>
+                    <a href="editAnggt/{{$a->id_angg}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
+                    </a>
+                    <button ng-click="hapus({{$a->id_angg}})" idnya="{{$a->id_angg}}" id="delbtn" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></button>
+                </td>
+            </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
     <br><br>
 </div>
 <!-- App ctrl angular -->
-    <script type="text/javascript">
-        var app = angular.module('tesApp',[]);
-        app.controller('tesCtrl', function($scope, $http, $window) {
-            // vars input
-            $scope.idbuku;      //var addens kodebuku
-            $scope.kode;        
-            $scope.judul = "";       
-            $scope.penulis;     
-            $scope.penerbit;    
+<script type="text/javascript">
 
-            $scope.simpan = function(){
+    $(document).ready(function(){
+        $('#myTable').DataTable({
+            // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            // dom: 'Blfrtip',
+            // buttons: ['excel','print'],
+            // "lengthChange": true
+        });
+    });
+
+    var app = angular.module('tesApp', []);
+    app.controller('tesCtrl', function($scope, $http, $window) {
+        // vars input
+        $scope.id; //var add kodeangg
+        $scope.kodeangg;
+        $scope.nmangg = "";
+        $scope.kelas;
+        $scope.jurusan;
+        $scope.notelp;
+        $scope.alamat;
+
+        $scope.simpan = function() {
+            // validate
+            if ($scope.nmangg == null || $scope.kelas == null || $scope.jurusan == null || $scope.notelp == null || $scope.alamat == null) {
+                $.growl.error({message: "Isi semua field!"});
+            } else {
                 //generate kode
-                var idbk = JSON.parse($scope.idny);
-                $scope.idbuku = idbk+1;
-                $scope.kode = $scope.judul.substring(0,4).toUpperCase() + "-" + $scope.idbuku;  
-                console.log($scope.idny);
+                var id = JSON.parse($scope.idny);
+                console.log(id);
+                $scope.id = id + 1;
+                $scope.kodeangg = $scope.nmangg.substring(0, 4).toUpperCase() + "-" + $scope.id;
                 //saving
-                $http.post('{{route('inserBuku')}}',{
-                    kode : $scope.kode,
-                    jenis_id: $scope.jenis_id,
-                    judul: $scope.judul,
-                    penulis: $scope.penulis,
-                    penerbit: $scope.penerbit,
-                    _token:'{{csrf_token()}}'
+                $http.post('{{url("inserAgt")}}', {
+                    kodeangg: $scope.kodeangg,
+                    nmangg: $scope.nmangg,
+                    kelas: $scope.kelas,
+                    jurusan: $scope.jurusan,
+                    notelp: $scope.notelp,
+                    alamat: $scope.alamat,
+                    _token: '{{csrf_token()}}'
 
-                }).then(function (reply){
-                    alert("Data Buku sudah disimpan");
-                    //$.growl.notice({title: "[INFO]", message: "Data Buku Berhasil Disimpan"});
-                    $window.location.replace("viewBuku");
+                }).then(function(reply) {
+                    //alert("Data Buku sudah disimpan");
+                    $.growl.notice({message: "Anggota berhasil ditambahkan!"});
+                    $window.location.replace("viewAnggota");
                 });
             }
+        }
 
-            //
+        $scope.hapus = function(id) {
+            $scope.delid = id;
+            console.log(id);
+            //deleting
+            $http.post('{{url("deleteAgt")}}', {
+                id: $scope.delid
+            }).then(function(reply) {
+                //alert("Data Buku sudah disimpan");
+                $.growl.notice({
+                    message: "Anggota berhasil dihapus!"
+                });
+                $window.location.replace("viewAnggota");
+            });
+        }
 
-        });
-    </script>
+
+        //
+
+    });
+</script>
 @endsection
