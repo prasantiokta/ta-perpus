@@ -35,7 +35,6 @@
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="{{ asset('addens/fontawesome/all.min.css') }}">
 	<script type="text/javascript" src="{{ asset('addens/fontawesome/all.min.js') }}"></script>
-	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- jquery growl -->
 	<link rel="stylesheet" href="{{ asset('addens/growl/jquery.growl.css') }}">
 	<script type="text/javascript" src="{{ asset('addens/growl/jquery.growl.js') }}"></script>
