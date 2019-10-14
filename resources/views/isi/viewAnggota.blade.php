@@ -102,22 +102,21 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach($agt as $key => $a)
-            <tr>
-                <td>{{$key+1}}</td>
-                <td>{{$a->kodeangg}}</td>
-                <td>{{$a->nmangg}}</td>
-                <td>{{$a->kelas}}</td>
-                <td>{{$a->jurusan}}</td>
-                <td>{{$a->notelp}}</td>
-                <td>{{$a->alamat}}</td>
-                <td>
-                    <a href="editAnggt/{{$a->id_angg}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
-                    </a>
-                    <button ng-click="hapus({{$a->id_angg}})" idnya="{{$a->id_angg}}" id="delbtn" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></button>
-                </td>
-            </tr>
-            @endforeach
+                @foreach($agt as $key => $a)
+                <tr>
+                    <td>{{$key+1}}</td>
+                    <td>{{$a->kodeangg}}</td>
+                    <td>{{$a->nmangg}}</td>
+                    <td>{{$a->kelas}}</td>
+                    <td>{{$a->jurusan}}</td>
+                    <td>{{$a->notelp}}</td>
+                    <td>{{$a->alamat}}</td>
+                    <td>
+                        <a href="editAnggt/{{$a->id_angg}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i></a>
+                        <button ng-click="hapus({{$a->id_angg}})" idnya="{{$a->id_angg}}" id="delbtn" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></button>
+                    </td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
