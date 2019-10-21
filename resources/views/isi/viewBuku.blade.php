@@ -97,11 +97,11 @@
                     <td>
                         <a href="editBuku/{{$b->id_buku}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
                         </a>
-                           
+
                         <button ng-click="hapus({{$b->id_buku}})" idnya="{{$b->id_buku}}" id="delbtn" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></button><!-- href="delete/{{$b->id_buku}}" -->
                     </td>
                 </tr>
-            @endforeach
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -109,8 +109,7 @@
 </div>
 <!-- App ctrl angular -->
 <script type="text/javascript">
-
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('#myTable').DataTable({
             // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
             // dom: 'Blfrtip',
@@ -134,16 +133,18 @@
 
         $scope.simpan = function() {
             if ($scope.judul == null || $scope.jenis_id == null || $scope.penulis == null || $scope.penerbit == null) {
-                $.growl.error({message: "Isi semua field!"});
+                $.growl.error({
+                    message: "Isi semua field!"
+                });
             } else {
-            //generate kode
-            var idbk = JSON.parse($scope.idny);
-            $scope.idbuku = idbk + 1;
-            $scope.kode = $scope.judul.substring(0, 4).toUpperCase() + "-" + $scope.idbuku;
-            //nmcat
-            $scope.nmcat = allb.options[allb.selectedIndex].getAttribute("nama");
-            //saving
-            $http.post('{{url("inserBuku")}}', {
+                //generate kode
+                var idbk = JSON.parse($scope.idny);
+                $scope.idbuku = idbk + 1;
+                $scope.kode = $scope.judul.substring(0, 4).toUpperCase() + "-" + $scope.idbuku;
+                //nmcat
+                $scope.nmcat = allb.options[allb.selectedIndex].getAttribute("nama");
+                //saving
+                $http.post('{{url("inserBuku")}}', {
                     kode: $scope.kode,
                     jenis_id: $scope.jenis_id,
                     judul: $scope.judul,
@@ -153,10 +154,12 @@
                     _token: '{{csrf_token()}}'
 
                 }).then(function(reply) {
-                //alert("Data Buku sudah disimpan");
-                $.growl.notice({ message: "Data Buku sudah disimpan" });
-                $window.location.replace("viewBuku");
-            });
+                    //alert("Data Buku sudah disimpan");
+                    $.growl.notice({
+                        message: "Data Buku sudah disimpan"
+                    });
+                    $window.location.replace("viewBuku");
+                });
             }
         }
 
@@ -165,10 +168,12 @@
             console.log(id);
             //deleting
             $http.post('{{url("deleteBuku")}}', {
-                    id: $scope.delid
-                }).then(function(reply) {
+                id: $scope.delid
+            }).then(function(reply) {
                 //alert("Data Buku sudah disimpan");
-                $.growl.notice({ message: "Data Buku sudah dihapus" });
+                $.growl.notice({
+                    message: "Data Buku sudah dihapus"
+                });
                 $window.location.replace("viewBuku");
             });
         }

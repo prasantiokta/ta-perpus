@@ -82,9 +82,9 @@
 							<li>
 								<a href="{{ url('/viewBuku') }}">Koleksi Buku</a>
 							</li>
-							<!-- <li>
-								<a href="#">Pustakawan</a>
-							</li> -->
+							<li>
+								<a href="{{ url('/viewKategori') }}">Kategori</a>
+							</li>
 							<li>
 								<a href="{{ url('/viewAnggota') }}">Anggota</a>
 							</li>

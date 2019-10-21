@@ -44,3 +44,11 @@ Route::post('/deleteAgt', 'anggotaController@delete');
 Route::get('/editAnggt/{id}', 'anggotaController@editAnggt')->name('editAnggt');
 
 Route::post('/updAgt/{id}', 'anggotaController@update')->name('updAgt');
+
+Route::get('/viewKategori', 'kategoriController@index')->name('viewKategori');
+
+Route::post('/inserKategori', 'kategoriController@insert')->name('inserKategori');
+
+Route::post('/delKategori', 'kategoriController@delete');
+
+Route::get('/vPinjam', 'pinjamController@index')->name('vPinjam');
