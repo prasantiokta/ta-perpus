@@ -11,6 +11,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
 	<!-- uwu -->
+
 	<!-- jquery -->
 	<script type="text/javascript" src="{{ asset('addens/jquery.min.js') }}"></script>
 	<!-- angular -->
@@ -35,7 +36,6 @@
 	<script type="text/javascript" src="{{ asset('addens/select2/select2.min.js') }}"></script>
 	<!-- momentjs -->
 	<script type="text/javascript" src="{{ asset('addens/momentjs/momentjs.min.js') }}"></script>
-
 
 	<!-- uwu -->
 

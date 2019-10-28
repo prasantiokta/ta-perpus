@@ -58,20 +58,17 @@ class bukuController extends Controller
 
     public function update(Request $request, $id_buku)
     {
-        # js
-        // $updatenya = array(
-        //     'kodebuku' => $param['master']['kode'],
-        //     'jenis_id' => $param['master']['jenis_id'],
-        //     'judul' => $param['master']['judul'],
-        //     'penulis' => $param['master']['penulis'],
-        //     'penerbit' => $param['master']['penerbit'],
-        //     'nmcat' => $param['master']['nmcat']
-        // );
-        // dd($updatenya);
-        // DB::table('tb_karyawan')->where('id_karyawan','=',$param['master']['id'])->update($updatenya);
-        #
 
-        # php
+        // $message = [
+        //     'required' => ':attribute tidak boleh kosong'
+        // ];
+        // request()->validate([
+        //     'jenis_id' => 'required',
+        //     'judul' => 'required',
+        //     'penulis' => 'required',
+        //     'penerbit' => 'required'
+        // ], $message);
+
         //kode & nmcat generate
         $nmc = DB::table('kategori')->where('id_category',$request->jenis_id)->value('category');
         $kode = substr($request->judul, 0, 4);

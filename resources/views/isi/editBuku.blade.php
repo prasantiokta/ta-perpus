@@ -14,7 +14,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Kategori</label>
-                                <select id="opt" name="jenis_id" class="form-control">
+                                <select id="opt" name="jenis_id" class="form-control" required>
                                     <option value="{{$result->jenis_id}}">{{$result->nmcat}}</option>
                                     <option disabled="">-----------------------------------</option>
                                     @foreach($cat as $c)
@@ -26,7 +26,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Judul</label>
-                                <input type="text" class="form-control" id="judul" name="judul" value="{{$result->judul}}">
+                                <input type="text" class="form-control" id="judul" name="judul" value="{{$result->judul}}" required>
                             </div>
                         </div>
                     </div>
@@ -34,13 +34,13 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Penulis</label>
-                                <input type="text" class="form-control" id="penulis"  name="penulis" value="{{$result->penulis}}">
+                                <input type="text" class="form-control" id="penulis"  name="penulis" value="{{$result->penulis}}" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Penerbit</label>
-                                <input type="text" class="form-control" id="penerbit" name="penerbit" value="{{$result->penerbit}}">
+                                <input type="text" class="form-control" id="penerbit" name="penerbit" value="{{$result->penerbit}}" required>
                             </div>
                         </div>
                     </div>
@@ -58,11 +58,10 @@
     var app = angular.module('tesApp', []);
     app.controller('tesCtrl', function($scope, $http, $window) {
 
-        $scope.simpan = function() {
-            $.growl.notice({ message: "Data Buku sudah diedit" });
-        }
+        // $scope.simpan = function() {
+        //     $.growl.notice({ message: "Data Buku sudah diedit" });
+        // }
 
-        //
 
     });
 </script>

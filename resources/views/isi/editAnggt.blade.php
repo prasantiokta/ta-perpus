@@ -81,11 +81,11 @@
     var app = angular.module('tesApp', []);
     app.controller('tesCtrl', function($scope, $http, $window) {
 
-        $scope.simpan = function() {
-            $.growl.notice({
-                message: "Data Anggota sudah diedit"
-            });
-        }
+        // $scope.simpan = function() {
+        //     $.growl.notice({
+        //         message: "Data Anggota sudah diedit"
+        //     });
+        // }
 
         //
 

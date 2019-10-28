@@ -8,7 +8,7 @@
         <h3 class="mt-3">List Peminjaman</h3>
 
         <!-- Button tambah peminjaman -->
-        <a href="{{ route('addPeminjaman') }}" class="btn btn-info mt-3"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;Tambah</a>
+        <a href="{{ route('addPeminjaman') }}" class="btn btn-info mt-3"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;Tambah</a><br><br>
     
         <table class="table table-striped mt-5" id="myTable">
             <thead>
@@ -42,6 +42,15 @@
 </div>
 <!-- App ctrl angular -->
 <script type="text/javascript">
+
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            // dom: 'Blfrtip',
+            // buttons: ['excel','print'],
+            // "lengthChange": true
+        });
+    });
 
     var app = angular.module('tesApp', []);
     app.controller('tesCtrl', function($scope, $http, $window) {
