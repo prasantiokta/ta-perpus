@@ -8,7 +8,7 @@
         <h4 class="mt-3">Daftar Anggota</h4>
 
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;Tambah</button>
+        <button type="button" class="btn btn-info mt-3" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;Tambah</button>
 
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
@@ -17,9 +17,9 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4>
+                        <h5>
                             Tambah Anggota
-                        </h4>
+                        </h5>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -59,7 +59,7 @@
                                                 <option value="Administrasi Perkantoran">Administrasi Perkantoran</option>
                                                 <option value="Pemasaran">Pemasaran</option>
                                                 <option value="Akomodasi Perhotelan">Akomodasi Perhotelan</option>
-                                                <option value="Pertelevisian">Pertelevisian</option> 
+                                                <option value="Pertelevisian">Pertelevisian</option>
                                                 <option value="Desain Komunikasi Visual">Desain Komunikasi Visual</option>
                                                 <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
                                                 <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
@@ -87,7 +87,7 @@
 
             </div>
         </div>
-        <br><br><br>
+        <br><br>
         <table class="table table-striped mt-5" id="myTable">
             <thead>
                 <tr>
@@ -124,8 +124,7 @@
 </div>
 <!-- App ctrl angular -->
 <script type="text/javascript">
-
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('#myTable').DataTable({
             // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
             // dom: 'Blfrtip',
@@ -148,7 +147,9 @@
         $scope.simpan = function() {
             // validate
             if ($scope.nmangg == null || $scope.kelas == null || $scope.jurusan == null || $scope.notelp == null || $scope.alamat == null) {
-                $.growl.error({message: "Isi semua field!"});
+                $.growl.error({
+                    message: "Isi semua field!"
+                });
             } else {
                 //generate kode
                 var id = JSON.parse($scope.idny);
@@ -167,7 +168,9 @@
 
                 }).then(function(reply) {
                     //alert("Data Buku sudah disimpan");
-                    $.growl.notice({message: "Anggota berhasil ditambahkan!"});
+                    $.growl.notice({
+                        message: "Anggota berhasil ditambahkan!"
+                    });
                     $window.location.replace("viewAnggota");
                 });
             }

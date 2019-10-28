@@ -8,7 +8,7 @@
         <h3 class="mt-3">Koleksi Buku</h3>
 
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modalinsert"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;Tambah</button>
+        <button type="button" class="btn btn-info mt-3" data-toggle="modal" data-target="#Modalinsert"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;Tambah</button>
 
         <!-- modal insert -->
         <div id="Modalinsert" class="modal fade" role="dialog">
@@ -17,9 +17,9 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4>
+                        <h5>
                             Tambah Koleksi
-                        </h4>
+                        </h5>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
@@ -69,7 +69,7 @@
 
             </div>
         </div>
-        <br><br><br>
+        <br><br>
         <table class="table table-striped mt-5" id="myTable">
             <thead>
                 <tr>

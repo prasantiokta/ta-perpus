@@ -52,3 +52,7 @@ Route::post('/inserKategori', 'kategoriController@insert')->name('inserKategori'
 Route::post('/delKategori', 'kategoriController@delete');
 
 Route::get('/vPinjam', 'pinjamController@index')->name('vPinjam');
+
+Route::get('/viewUser', 'userController@index')->name('viewUser');
+
+Route::post('/deleteUser', 'userController@delete');

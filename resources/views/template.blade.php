@@ -86,6 +86,9 @@
 								<a href="{{ url('/viewKategori') }}">Kategori</a>
 							</li>
 							<li>
+								<a href="{{ url('/viewUser') }}">Pustakawan</a>
+							</li>
+							<li>
 								<a href="{{ url('/viewAnggota') }}">Anggota</a>
 							</li>
 						</ul>
