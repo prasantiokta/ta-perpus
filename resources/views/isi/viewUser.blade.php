@@ -3,12 +3,11 @@
 @section('title','Daftar Pustakawan')
 @section('page')
 <div ng-app="tesApp" ng-controller="tesCtrl" class="container shadow-lg">
-    <br>
     <div ng-init="idny='{{$idnya}}'" style="padding: 8px;">
-        <h4 class="mt-3">Daftar Pustakawan</h4>
-
+        <h3 class="mt-3 text-center">Daftar Pustakawan</h3>
+        <hr width="40%">
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info mt-3" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;Tambah</button>
+        <button type="button" class="btn btn-info mt-3" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</button>
 
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
@@ -26,7 +25,7 @@
                             @csrf
                             <div class="wrap">
                                 <div class="row">
-                                    <div class="col-md-10">
+                                    <div class="col">
                                         <div class="form-group">
                                             <label for="name">Nama Lengkap</label>
                                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -39,9 +38,7 @@
 
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-10">
+                                    <div class="col">
                                         <label for="email">Email</label>
                                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
@@ -53,32 +50,44 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-10">
+                                    <div class="col">
                                         <label for="password">Password</label>
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                        <div class="input-group mb-3">
+                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-eye"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <label for="password-confirm">Confirm Password</label>
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <div class="col">
+                                        <label for="password">Confirm Password</label>
+                                        <div class="input-group mb-3">
+                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-eye"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-success" type="submit">Simpan</button>
+                            <br>
+                            <button class="btn btn-success" type="submit"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;&nbsp;Simpan</button>
                         </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</button>
                     </div>
                 </div>
             </div>

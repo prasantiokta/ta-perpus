@@ -3,12 +3,11 @@
 @section('title','Daftar Anggota')
 @section('page')
 <div ng-app="tesApp" ng-controller="tesCtrl" class="container shadow-lg">
-    <br><br>
     <div ng-init="idny='{{$idnya}}'" style="padding: 8px;">
-        <h4 class="mt-3">Daftar Anggota</h4>
-
+        <h3 class="mt-3 text-center">Daftar Anggota</h3>
+        <hr width="40%">
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info mt-3" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;Tambah</button>
+        <button type="button" class="btn btn-info mt-3" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</button>
 
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
@@ -77,11 +76,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-success" ng-click="simpan()">Simpan</button>
+                            <button class="btn btn-success" ng-click="simpan()" ng-disabled="saving == true"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;&nbsp;Simpan</button>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</button>
                     </div>
                 </div>
 
@@ -113,7 +112,7 @@
                     <td>{{$a->alamat}}</td>
                     <td>
                         <a href="editAnggt/{{$a->id_angg}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i></a>
-                        <button ng-click="hapus({{$a->id_angg}})" idnya="{{$a->id_angg}}" id="delbtn" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></button>
+                        <button ng-click="hapus({{$a->id_angg}})" idnya="{{$a->id_angg}}" id="delbtn" class="btn btn-danger" ng-disabled="deleting == true"><i class="fas fa-trash fa-fw"></i></button>
                     </td>
                 </tr>
                 @endforeach
@@ -144,6 +143,10 @@
         $scope.notelp;
         $scope.alamat;
 
+        // addens
+        $scope.saving = false;
+        $scope.deleting = false;
+
         $scope.simpan = function() {
             // validate
             if ($scope.nmangg == null || $scope.kelas == null || $scope.jurusan == null || $scope.notelp == null || $scope.alamat == null) {
@@ -153,10 +156,10 @@
             } else {
                 //generate kode
                 var id = JSON.parse($scope.idny);
-                console.log(id);
-                $scope.id = id + 1;
+                $scope.id = id;
                 $scope.kodeangg = $scope.nmangg.substring(0, 4).toUpperCase() + "-" + $scope.id;
                 //saving
+                $scope.saving = true;
                 $http.post('{{url("inserAgt")}}', {
                     kodeangg: $scope.kodeangg,
                     nmangg: $scope.nmangg,
@@ -180,6 +183,7 @@
             $scope.delid = id;
             console.log(id);
             //deleting
+            $scope.deleting = true;
             $http.post('{{url("deleteAgt")}}', {
                 id: $scope.delid
             }).then(function(reply) {

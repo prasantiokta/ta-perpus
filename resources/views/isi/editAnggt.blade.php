@@ -68,11 +68,11 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-success" ng-click="simpan()">Simpan</button>
+                <button class="btn btn-success" ng-click="simpan()"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;&nbsp;Simpan</button>
             </form>
         </div>
         <div class="modal-footer">
-            <a href="{{route('viewAnggota')}}" class="btn btn-secondary">Batal</a>
+            <a href="{{route('viewAnggota')}}" class="btn btn-secondary"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</a>
         </div>
     </div>
 </div>

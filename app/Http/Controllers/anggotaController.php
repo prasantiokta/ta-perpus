@@ -24,6 +24,7 @@ class anggotaController extends Controller
             $idnya = 1;
         } else {
             $idnya = DB::table('anggota')->orderBy('id_angg', 'desc')->value('id_angg');
+            $idnya = $idnya + 1;
         }
         //dd($idnya);
         return view('isi.viewAnggota', compact('agt', 'idnya'));

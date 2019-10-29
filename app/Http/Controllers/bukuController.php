@@ -28,6 +28,7 @@ class bukuController extends Controller
             $idnya = 1;
         } else {
             $idnya = DB::table('buku')->orderBy('id_buku', 'desc')->value('id_buku');
+            $idnya = $idnya + 1;
         }
         //dd($idnya);
         return view('isi.viewBuku', compact('bukux', 'category', 'idnya'));

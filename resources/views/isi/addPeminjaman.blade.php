@@ -90,7 +90,7 @@
                     </tbody>
                 </table>
                 <br>
-                <button class="btn btn-success" ng-click="addPinjam()"><i class="fa fa-check"></i>&nbsp;Simpan</button>
+                <button class="btn btn-success" ng-click="addPinjam()"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;&nbsp;Simpan</button>
             </div>
         </div>
     </div>

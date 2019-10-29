@@ -3,12 +3,11 @@
 @section('title','Peminjaman')
 @section('page')
 <div ng-app="tesApp" ng-controller="tesCtrl" class="container shadow-lg">
-    <br>
     <div style="padding: 8px;">
-        <h3 class="mt-3">List Peminjaman</h3>
-
+        <h3 class="mt-3 text-center">List Peminjaman</h3>
+        <hr width="40%">
         <!-- Button tambah peminjaman -->
-        <a href="{{ route('addPeminjaman') }}" class="btn btn-info mt-3"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;Tambah</a><br><br>
+        <a href="{{ route('addPeminjaman') }}" class="btn btn-info mt-3"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</a><br><br>
     
         <table class="table table-striped mt-5" id="myTable">
             <thead>

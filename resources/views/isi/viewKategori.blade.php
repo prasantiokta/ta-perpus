@@ -3,12 +3,11 @@
 @section('title','Tambah Kategori')
 @section('page')
 <div ng-app="tesApp" ng-controller="tesCtrl" class="container shadow-lg">
-    <br>
     <div ng-init="idny='{{$idnya}}'" style="padding: 8px;">
-        <h3 class="mt-3">Kategori</h3>
-
+        <h3 class="mt-3 text-center">Kategori</h3>
+        <hr width="40%">
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info mt-3" data-toggle="modal" data-target="#Modalinsert"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;Tambah</button>
+        <button type="button" class="btn btn-info mt-3" data-toggle="modal" data-target="#Modalinsert"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</button>
 
         <!-- modal insert -->
         <div id="Modalinsert" class="modal fade" role="dialog">
@@ -35,11 +34,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-success" ng-click="simpan()">Simpan</button>
+                            <button class="btn btn-success" ng-click="simpan()"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;&nbsp;Simpan</button>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</button>
                     </div>
                 </div>
 

@@ -3,12 +3,12 @@
 @section('title','Koleksi Buku')
 @section('page')
 <div ng-app="tesApp" ng-controller="tesCtrl" class="container shadow-lg">
-    <br>
     <div ng-init="idny='{{$idnya}}'" style="padding: 8px;">
-        <h3 class="mt-3">Koleksi Buku</h3>
+        <h3 class="mt-3 text-center">Koleksi Buku</h3>
+        <hr width="40%">
 
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info mt-3" data-toggle="modal" data-target="#Modalinsert"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;Tambah</button>
+        <button type="button" class="btn btn-info mt-3" data-toggle="modal" data-target="#Modalinsert"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</button>
 
         <!-- modal insert -->
         <div id="Modalinsert" class="modal fade" role="dialog">
@@ -59,11 +59,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-success" ng-click="simpan()">Simpan</button>
+                            <button class="btn btn-success" ng-click="simpan()" ng-disabled="saving == true"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;&nbsp;Simpan</button>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</button>
                     </div>
                 </div>
 
@@ -98,7 +98,7 @@
                         <a href="editBuku/{{$b->id_buku}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
                         </a>
 
-                        <button ng-click="hapus({{$b->id_buku}})" idnya="{{$b->id_buku}}" id="delbtn" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></button><!-- href="delete/{{$b->id_buku}}" -->
+                        <button ng-click="hapus({{$b->id_buku}})" idnya="{{$b->id_buku}}" id="delbtn" class="btn btn-danger" ng-disabled="deleting == true"><i class="fas fa-trash fa-fw"></i></button><!-- href="delete/{{$b->id_buku}}" -->
                     </td>
                 </tr>
                 @endforeach
@@ -125,11 +125,15 @@
         var delbtn = document.getElementById("delbtn");
 
         // vars input
-        $scope.idbuku; //var addens kodebuku
+        $scope.idbuku; //var add kodebuku
         $scope.kode;
         $scope.judul = "";
         $scope.penulis;
         $scope.penerbit;
+
+        // addens
+        $scope.saving = false;
+        $scope.deleting = false;
 
         $scope.simpan = function() {
             if ($scope.judul == null || $scope.jenis_id == null || $scope.penulis == null || $scope.penerbit == null) {
@@ -139,11 +143,12 @@
             } else {
                 //generate kode
                 var idbk = JSON.parse($scope.idny);
-                $scope.idbuku = idbk + 1;
+                $scope.idbuku = idbk;
                 $scope.kode = $scope.judul.substring(0, 4).toUpperCase() + "-" + $scope.idbuku;
                 //nmcat
                 $scope.nmcat = allb.options[allb.selectedIndex].getAttribute("nama");
                 //saving
+                $scope.saving = true;
                 $http.post('{{url("inserBuku")}}', {
                     kode: $scope.kode,
                     jenis_id: $scope.jenis_id,
@@ -167,6 +172,7 @@
             $scope.delid = id;
             console.log(id);
             //deleting
+            $scope.deleting = true;
             $http.post('{{url("deleteBuku")}}', {
                 id: $scope.delid
             }).then(function(reply) {
