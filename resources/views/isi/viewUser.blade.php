@@ -21,7 +21,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form action="POST">
+                        <form action="">
                             @csrf
                             <div class="wrap">
                                 <div class="row">

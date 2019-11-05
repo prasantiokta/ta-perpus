@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Peminjaman;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Pinjam;
@@ -17,7 +18,7 @@ class pinjamController extends Controller
     public function index()
     {
         $list = DB::table('peminjaman')->orderBy('id')->get();
-        
+
         $last = DB::table('peminjaman')->get()->count();
         $idnya = 0;
         if ($last == 0) {
@@ -32,8 +33,8 @@ class pinjamController extends Controller
 
     public function field()
     {
-    	$agt = DB::table('anggota')->get();
-    	$bukue = DB::table('buku')->where('status','=',0)->get();
+        $agt = DB::table('anggota')->get();
+        $bukue = DB::table('buku')->where('status', '=', 0)->get();
         $last = DB::table('peminjaman')->get()->count();
         $idnya = 0;
         if ($last == 0) {
@@ -42,9 +43,9 @@ class pinjamController extends Controller
         } else {
             $idnya = DB::table('peminjaman')->orderBy('id', 'desc')->value('id');
         }
-        
+
         //return response()->json($idnya);
-        return view('isi.addPeminjaman', compact('idnya','agt','bukue'));
+        return view('isi.addPeminjaman', compact('idnya', 'agt', 'bukue'));
     }
 
     public function insert()
@@ -67,7 +68,7 @@ class pinjamController extends Controller
         if ($result) {
             # code...
             $sukses = 1;
-            for ($i=0; $i <count($detail); $i++) { 
+            for ($i = 0; $i < count($detail); $i++) {
                 # code...
                 $inputDetail[$i]['pinjam_id'] = $result;
                 $inputDetail[$i]['buku_id'] = $detail[$i]['no'];
@@ -80,15 +81,15 @@ class pinjamController extends Controller
         }
 
         if ($result2) {
-        	$input = array(
-            	'kodepinjam' => $param['kode'],
-            	'anggota_id' => $param['anggota_id'],
-            	'pustakawan_id' => $param['pustakawan_id'],
-            	'tgl_pinjam' => $param['tglpinjam'],
-            	'tgl_kembali' => $param['tglkembali'],
-            	'nmangg' => $param['nmangg'],
-            	'nmpust' => $param['nmpust'],
-        	);
+            $input = array(
+                'kodepinjam' => $param['kode'],
+                'anggota_id' => $param['anggota_id'],
+                'pustakawan_id' => $param['pustakawan_id'],
+                'tgl_pinjam' => $param['tglpinjam'],
+                'tgl_kembali' => $param['tglkembali'],
+                'nmangg' => $param['nmangg'],
+                'nmpust' => $param['nmpust'],
+            );
         }
 
         //     return response()->json($data);
@@ -96,9 +97,13 @@ class pinjamController extends Controller
 
     public function getDetails($id)
     {
-        $mainList = DB::table('peminjaman')->where('id','=', $id)->get();
-        $List = DB::table('details')->where('id','=', $id)->get();
+        $mainList = Peminjaman::find($id);
+        // $mainList = DB::table('peminjaman')->where('id', '=', $id)->get();
+        // $List = DB::table('details')->where('id', '=', $id)->get();
         //print_r($mainList);
+        //$result = Buku::find($id);
+        //$cat = DB::table('kategori')->get();
+
 
         return view('isi.vDetail', compact('mainList'));
     }
@@ -108,11 +113,11 @@ class pinjamController extends Controller
     //     $param =  json_decode(request()->getContent(), true);
 
     //     $list = $param['detail'];
-        
+
     //     for ($i=0; $i < count($list) ; $i++) { 
     //         # code...
     //         $data = DB::table('buku')->where('id','=', $list[$i]['id'] )->get();
     //     }
-    
+
     // }
 }

@@ -8,7 +8,7 @@
         <hr width="40%">
         <!-- Button tambah peminjaman -->
         <a href="{{ route('addPeminjaman') }}" class="btn btn-success mt-3"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</a><br><br>
-    
+
         <table class="table table-stripped table-striped table-bordered mt-5" id="myTable">
             <thead>
                 <tr>
@@ -31,17 +31,16 @@
                     <td>{{$b->tgl_pinjam}}</td>
                     <td>{{$b->tgl_kembali}}</td>
                     <td class="text-center">
-                        <a href="showDetail/{{$b->id}}" id="detail" class="btn btn-info"><i class="fas fa-eye fa-fw"></i>&nbsp;&nbsp;&nbsp;Detail</a>
+                        <a href="vDetail/{{$b->id}}" id="detail" class="btn btn-info"><i class="fas fa-eye fa-fw"></i>&nbsp;&nbsp;&nbsp;Detail</a>
                     </td>
                 </tr>
-            @endforeach
+                @endforeach
             </tbody>
         </table>
     </div>
 </div>
 <!-- App ctrl angular -->
 <script type="text/javascript">
-
     $(document).ready(function() {
         $('#myTable').DataTable({
             // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -54,10 +53,12 @@
     var app = angular.module('tesApp', []);
     app.controller('tesCtrl', function($scope, $http, $window) {
         //vars 
-        
+
         $scope.detail = function() {
             // body...
-            $.growl.warning({ message: "Tunggu . . ." });
+            $.growl.warning({
+                message: "Tunggu . . ."
+            });
         }
 
     });

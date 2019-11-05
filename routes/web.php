@@ -55,6 +55,8 @@ Route::get('/vPinjam', 'pinjamController@index')->name('vPinjam');
 
 Route::get('/viewUser', 'userController@index')->name('viewUser');
 
+Route::post('/inserUser', 'userController@create')->name('inserUser');
+
 Route::post('/deleteUser', 'userController@delete');
 
 Route::get('/vPeminjaman', 'pinjamController@index')->name('vPeminjaman');
@@ -63,4 +65,4 @@ Route::get('/addPeminjaman', 'pinjamController@field')->name('addPeminjaman');
 
 Route::post('/inserPinjam', 'pinjamController@insert')->name('inserPinjam');
 
-Route::get('/showData/{id}', 'pinjamController@getDetails')->name('showData');
+Route::get('/vDetail/{id}', 'pinjamController@getDetails')->name('vDetail');
