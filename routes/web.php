@@ -62,3 +62,5 @@ Route::get('/vPeminjaman', 'pinjamController@index')->name('vPeminjaman');
 Route::get('/addPeminjaman', 'pinjamController@field')->name('addPeminjaman');
 
 Route::post('/inserPinjam', 'pinjamController@insert')->name('inserPinjam');
+
+Route::get('/showData/{id}', 'pinjamController@getDetails')->name('showData');

@@ -87,7 +87,7 @@
             </div>
         </div>
         <br><br>
-        <table class="table table-striped mt-5" id="myTable">
+        <table class="table table-stripped table-striped table-bordered mt-5" id="myTable">
             <thead>
                 <tr>
                     <th>No</th>

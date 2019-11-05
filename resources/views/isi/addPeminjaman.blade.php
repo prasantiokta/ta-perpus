@@ -44,57 +44,95 @@
         		</div>
         	</div>
         </div>
-        <div class="row">
-        	<div class="col-md-5">
-        		<div class="form-group">
-        			<label>Pilih Buku</label>
-                    <select id="bukunekuy" ng-model="databuku" class="bukune custom-select" ng-disabled="@{{$scope.data.length >= 3}}">
-                        @foreach($bukue as $i)
-                        <option value="{{$i->id_buku}}" kode="{{$i->kodebuku}}" judul="{{$i->judul}}" penulis="{{$i->penulis}}" penerbit="{{$i->penerbit}}">{{$i->judul}}</option>
-                        @endforeach
-                    </select>
-
-        		</div>
-        	</div>
-        	<div class="col">
-        		
-        	</div>
-        </div>
-        <div class="row">
-            <div class="col-md-5">
-                <button type="button" class="btn btn-info" id="addBtn" ng-click="add()" data-target="#added"><i class="fas fa-plus-circle fa-fw"></i></button>
-            </div>
-        </div>
-        <div class="row added" id="added" ng-show="filled == true" ng-hide="filled == false">
+        <br>
+        <div class="box">
+            <br>
             <div class="col">
-                <table class="table table-stripped table-striped table-bordered mt-5">
+                <table id="bukuTb" class="table table-stripped table-striped table-bordered mt-5">
                     <thead>
                         <tr>
                             <td width="20px">No.</td>
+                            <td hidden>ID</td>
+                            <td class="text-center">Kategori</td>
                             <td class="text-center">Kode Buku</td>
                             <td class="text-center">Judul Buku</td>
-                            <td class="text-center">Penerbit</td>
                             <td class="text-center">Penulis</td>
-                            <td class="text-center">Action</td>
+                            <td class="text-center">Penerbit</td>
+                            <td width="20px">Pilih</td>
                         </tr>
                     </thead>
-                    <tbody ng-repeat="d in data">
+                    <tbody>
+                        @foreach($bukue as $key => $b)
                         <tr>
-                            <td width="20px">@{{$index + 1}}.</td>
-                            <td class="text-center">@{{d.kodebuku}}</td>
-                            <td class="text-center">@{{d.judul}}</td>
-                            <td class="text-center">@{{d.penulis}}</td>
-                            <td class="text-center">@{{d.penerbit}}</td>
-                            <td class="text-center"><button class="btn btn-danger" ng-click="del($index)"><i class="fa fa-trash"></i></button></td>
+                            <td>{{$key+1}}</td>
+                            <td hidden>{{$b->id_buku}}</td>
+                            <td>{{$b->nmcat}}</td>
+                            <td>{{$b->kodebuku}}</td>
+                            <td>{{$b->judul}}({{$key}})</td>
+                            <td>{{$b->penulis}}</td>
+                            <td>{{$b->penerbit}}</td>
+                            <td class="text-center"><input type="checkbox" name="selectedRow[]" value="{{$key}}"></td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <br>
-                <button class="btn btn-success" ng-click="addPinjam()"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;&nbsp;Simpan</button>
+                <button class="btn btn-secondary" id="addBuku" ><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;&nbsp;Tambah ke list</button>
+                <button hidden class="btn btn-info" ng-click="showList()" data-toggle="modal" data-target="#ModalList"><i class="fas fa-list"></i>&nbsp;&nbsp;&nbsp;Lihat List</button>
+            </div>
+            <br>
+        </div>
+        <div id="ModalList" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5>
+                            List buku
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <table id="list" class="table table-stripped table-striped table-bordered mt-5">
+                                    <thead>
+                                        <tr>
+                                            <td class="text-center">Kategori</td>
+                                            <td class="text-center">Kode Buku</td>
+                                            <td class="text-center">Judul Buku</td>
+                                            <td class="text-center">Penulis</td>
+                                            <td class="text-center">Penerbit</td>
+                                            <td>Aksi</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="b in data">
+                                            <td>@{{b.kategori}}</td>
+                                            <td>@{{b.kodebuku}}</td>
+                                            <td>@{{b.judul}}</td>
+                                            <td>@{{b.penulis}}</td>
+                                            <td>@{{b.penerbit}}</td>
+                                            <td><button class="btn btn-info" ng-click="del($index)"><i class="fas fa-trash"></i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        p
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-success" ng-click="addPinjam()"><i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;Simpan Peminjaman</button>
+            </div>
+        </div>
+        <br>
     </div>
-    <br><br><br>
+    <br>
 </div>
 <!-- App ctrl angular -->
 <script type="text/javascript">
@@ -102,22 +140,8 @@
     var app = angular.module('tesApp', []);
     app.controller('tesCtrl', function($scope, $filter, $http, $window) {
 
-        //autocomplete select2
-        $(document).ready(function() {
-            $('.bukune').select2();
-        });
-
-        $(document).ready(function() {
-            $('.wonge').select2();
-        });
-
-        $("#addBtn").click(function() {
-            $(window).animate({scrollTop: $(document).height() + $(".added").height()});
-        });
-
         //vars
-        var bukuny = document.getElementById("bukunekuy");
-        var agtny = document.getElementById("anggota_id");
+        var bukuny = document.getElementById("bukuTb");
         var angg = document.getElementById("anggota");
 
         $scope.data = [];   //tampungan list
@@ -139,62 +163,85 @@
         $scope.day = dateNow.substring(8,10);
         $scope.today = $scope.year + "-" + $scope.month + "-" + $scope.day;
 
+        // jquery
+
+        $(document).ready(function() {
+
+            $('.wonge').select2();
+
+            var table = $('#bukuTb').DataTable({
+                // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                // dom: 'Blfrtip',
+                // buttons: ['excel','print'],
+                // "lengthChange": true
+                columns: [
+                    { data: "no" },
+                    { data: "id" },
+                    { data: "kategori" },
+                    { data: "kodebuku" },
+                    { data: "judul" },
+                    { data: "penulis" },
+                    { data: "penerbit" },
+                    {   
+                        data: "selected",
+                        defaultContent: ''
+                    }
+                ]
+            });
+
+            $("#addBuku").click(function(){
+
+                var listnya = [];
+                var checked = $('input[name="selectedRow[]"]:checked').length;
+
+                if (checked<=3) {
+
+                    $.each($("input[name='selectedRow[]']:checked"), function(){
+
+                        listnya.push(table.row($(this).val()).data());
+                        $scope.data = listnya;
+
+                    });
+
+                    $scope.filled = true;
+                    $.growl.notice({ message: "Masuk ke list" });
+
+                } else {
+
+                    $.growl.error({ message: "Tidak boleh meminjam lebih dari 3 buku" });
+
+                }
+
+                console.log($scope.data);
+            });
+
+        });
+
         // function
         $scope.init = function() {
-            $http.get('{{url("addPeminjaman")}}', {
-                }).then(function(reply) {
-                    var idny = reply.idnya;
-                    $scope.idny = idny;
-                });
-        }
 
-        $scope.checkLength = function() {
-            if ($scope.data.length > 0) {
-                $scope.filled = true;
-            } else if ($scope.data.length == 0) {
-                $scope.filled = false;
-            }
+            // $http.get('{{url("addPeminjaman")}}', {
+            //     }).then(function(reply) {
+            //         var idny = reply.idnya;
+            //         $scope.idny = idny;
+            //     });
+
         }
 
         //list
-        $scope.add = function() {
-            if ($scope.databuku == null) {
-                $.growl.warning({message: "Masukkan buku yang akan dipinjam"});
-            } else if ($scope.data.length >= 3){
-                $.growl.warning({message: "Hanya boleh meminjam 3 buku"});
-                $scope.btnMaxVal = true;
-            } else {
-                $scope.btnAdd = true;
 
-                //buku
-                $scope.kodebuku = bukuny.options[bukuny.selectedIndex].getAttribute("kode");
-                $scope.judul = bukuny.options[bukuny.selectedIndex].getAttribute("judul");
-                $scope.penulis = bukuny.options[bukuny.selectedIndex].getAttribute("penulis");
-                $scope.penerbit = bukuny.options[bukuny.selectedIndex].getAttribute("penerbit");
-
-                //insert to list
-                $scope.form = {
-                    id: $scope.databuku,
-                    kodebuku: $scope.kodebuku,
-                    judul: $scope.judul,
-                    penulis: $scope.penulis,
-                    penerbit: $scope.penerbit
-                }
-
-                $.growl.notice({message: "Buku ditambahkan ke list"});
-                $scope.data.push($scope.form);
-            }
-
-            $scope.checkLength(1);
-            
-        }
 
         $scope.del = function(idx) {
+
             $.growl.warning({message: "Buku dihapus dari list"});
             var del = $scope.data[idx];
             $scope.data.splice(idx, 1);
+            $.each($("input[name='selectedRow[]']:checked"), function(){
 
-            $scope.checkLength(1);
+                var deleted = $("input[name='selectedRow[]']:unchecked");
+
+            });
+
         }
 
         //end list
@@ -214,9 +261,7 @@
                 $scope.idpust = pust.getAttribute("idelo");
                 $scope.nmpust = pust.getAttribute("value");
                 //tglkmbl
-                // var day = $scope.tglkembali.tostring();
                 $scope.tglk = moment($scope.tglkembali).format('YYYY-MM-DD');
-                console.log($scope.tglk);
 
                 $http.post('{{url("inserPinjam")}}', {
                     kode: $scope.kodepinjam,
