@@ -18,6 +18,7 @@ class DetailPinjam extends Migration
             $table->bigincrements('id');
             $table->unsignedbigInteger('pinjam_id');
             $table->unsignedbigInteger('buku_id');
+            $table->string('nmcat');
             $table->string('kodebuku');
             $table->string('judul');
             $table->string('penerbit');

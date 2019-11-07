@@ -64,7 +64,9 @@ class pinjamController extends Controller
 
         $detail = $param['detail'];
 
-        $result = DB::table('peminjaman')->insertGetId($input);
+        $result = DB::table('peminjaman')->insertGetId($input); //save peminjaman
+
+        //save details
         if ($result) {
             # code...
             $sukses = 1;
@@ -72,6 +74,7 @@ class pinjamController extends Controller
                 # code...
                 $inputDetail[$i]['pinjam_id'] = $result;
                 $inputDetail[$i]['buku_id'] = $detail[$i]['no'];
+                $inputDetail[$i]['nmcat'] = $detail[$i]['kategori'];
                 $inputDetail[$i]['kodebuku'] = $detail[$i]['kodebuku'];
                 $inputDetail[$i]['judul'] = $detail[$i]['judul'];
                 $inputDetail[$i]['penulis'] = $detail[$i]['penulis'];
@@ -80,17 +83,17 @@ class pinjamController extends Controller
             }
         }
 
-        if ($result2) {
-            $input = array(
-                'kodepinjam' => $param['kode'],
-                'anggota_id' => $param['anggota_id'],
-                'pustakawan_id' => $param['pustakawan_id'],
-                'tgl_pinjam' => $param['tglpinjam'],
-                'tgl_kembali' => $param['tglkembali'],
-                'nmangg' => $param['nmangg'],
-                'nmpust' => $param['nmpust'],
-            );
-        }
+        $kembali = array(
+            'pinjam_id' => $result,
+            'kodepinjam' => $param['kode'],
+            'tgl_pinjam' => $param['tglpinjam'],
+            'tgl_kembali' => $param['tglkembali'],
+            'nmangg' => $param['nmangg'],
+            'nmpust' => $param['nmpust'],
+            'denda' => 0,
+        );
+
+        $result3 = DB::table('pengembalian')->insert($kembali);
 
         //     return response()->json($data);
     }
@@ -98,14 +101,9 @@ class pinjamController extends Controller
     public function getDetails($id)
     {
         $mainList = Peminjaman::find($id);
-        // $mainList = DB::table('peminjaman')->where('id', '=', $id)->get();
-        // $List = DB::table('details')->where('id', '=', $id)->get();
-        //print_r($mainList);
-        //$result = Buku::find($id);
-        //$cat = DB::table('kategori')->get();
+        $list = DB::table('details')->where('pinjam_id','=',$id)->get();
 
-
-        return view('isi.vDetail', compact('mainList'));
+        return view('isi.vDetail', compact('mainList','list'));
     }
 
     // public function find(Request $request){

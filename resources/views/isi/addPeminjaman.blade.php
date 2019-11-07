@@ -68,7 +68,7 @@
                             <td hidden>{{$b->id_buku}}</td>
                             <td>{{$b->nmcat}}</td>
                             <td>{{$b->kodebuku}}</td>
-                            <td>{{$b->judul}}({{$key}})</td>
+                            <td>{{$b->judul}}</td>
                             <td>{{$b->penulis}}</td>
                             <td>{{$b->penerbit}}</td>
                             <td class="text-center"><input type="checkbox" name="selectedRow[]" value="{{$key}}"></td>
