@@ -21,7 +21,6 @@ class Pengembalian extends Migration
             $table->date('tgl_kembali');
             $table->string('nmangg');
             $table->string('nmpust');
-            $table->integer('denda');
             $table->boolean('dikembalikan')->default(0);
             $table->timestamps();
             $table->foreign('pinjam_id')->references('id')->on('peminjaman')->onDelete('cascade')->onUpdate('cascade');
