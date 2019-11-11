@@ -7,7 +7,7 @@
         <h3 class="mt-3 text-center">Daftar Anggota</h3>
         <hr width="40%">
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info mt-3" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</button>
+        <button type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</button>
 
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
@@ -80,7 +80,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</button>
+                        <button type="button" class="btn btn-secondary-outline" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</button>
                     </div>
                 </div>
 
@@ -90,27 +90,27 @@
         <table class="table table-stripped table-striped table-bordered mt-5" id="myTable">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Kode Anggota</th>
-                    <th>Nama Lengkap</th>
-                    <th>Kelas</th>
-                    <th>Jurusan</th>
-                    <th>No. Telp</th>
-                    <th>Alamat</th>
-                    <th>Action</th>
+                    <th width="20px" class="text-center">No</th>
+                    <th class="text-center">Kode Anggota</th>
+                    <th class="text-center">Nama Lengkap</th>
+                    <th class="text-center">Kelas</th>
+                    <th class="text-center">Jurusan</th>
+                    <th class="text-center">No. Telp</th>
+                    <th class="text-center">Alamat</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($agt as $key => $a)
                 <tr>
-                    <td>{{$key+1}}</td>
+                    <td>{{$key+1}}.</td>
                     <td>{{$a->kodeangg}}</td>
                     <td>{{$a->nmangg}}</td>
                     <td>{{$a->kelas}}</td>
                     <td>{{$a->jurusan}}</td>
                     <td>{{$a->notelp}}</td>
                     <td>{{$a->alamat}}</td>
-                    <td>
+                    <td class="text-center">
                         <a href="editAnggt/{{$a->id_angg}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i></a>
                         <button ng-click="hapus({{$a->id_angg}})" idnya="{{$a->id_angg}}" id="delbtn" class="btn btn-danger" ng-disabled="deleting == true"><i class="fas fa-trash fa-fw"></i></button>
                     </td>

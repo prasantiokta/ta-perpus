@@ -51,7 +51,7 @@
                 <table id="bukuTb" class="table table-stripped table-striped table-bordered mt-5">
                     <thead>
                         <tr>
-                            <td width="20px">No.</td>
+                            <td width="20px" class="text-center">No.</td>
                             <td hidden>ID</td>
                             <td class="text-center">Kategori</td>
                             <td class="text-center">Kode Buku</td>
@@ -64,7 +64,7 @@
                     <tbody>
                         @foreach($bukue as $key => $b)
                         <tr>
-                            <td>{{$key+1}}</td>
+                            <td>{{$key+1}}.</td>
                             <td hidden>{{$b->id_buku}}</td>
                             <td>{{$b->nmcat}}</td>
                             <td>{{$b->kodebuku}}</td>
@@ -112,7 +112,7 @@
                                             <td>@{{b.judul}}</td>
                                             <td>@{{b.penulis}}</td>
                                             <td>@{{b.penerbit}}</td>
-                                            <td><button class="btn btn-info" ng-click="del($index)"><i class="fas fa-trash"></i></button></td>
+                                            <td><button class="btn btn-info" ng-click="del($index)" title="Hapus"><i class="fas fa-trash"></i></button></td>
                                         </tr>
                                     </tbody>
                                 </table>

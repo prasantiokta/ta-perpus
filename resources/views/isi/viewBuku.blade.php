@@ -8,7 +8,7 @@
         <hr width="40%">
 
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info mt-3" data-toggle="modal" data-target="#Modalinsert"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</button>
+        <button type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#Modalinsert"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</button>
 
         <!-- modal insert -->
         <div id="Modalinsert" class="modal fade" role="dialog">
@@ -63,7 +63,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</button>
+                        <button type="button" class="btn btn-secondary-outline" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</button>
                     </div>
                 </div>
 
@@ -73,20 +73,20 @@
         <table class="table table-stripped table-striped table-bordered mt-5" id="myTable">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Kategori</th>
-                    <th>Kode Buku</th>
-                    <th>Judul</th>
-                    <th>Penerbit</th>
-                    <th>Penulis</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th width="20px" class="text-center">No</th>
+                    <th class="text-center">Kategori</th>
+                    <th class="text-center">Kode Buku</th>
+                    <th class="text-center">Judul</th>
+                    <th class="text-center">Penerbit</th>
+                    <th class="text-center">Penulis</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($bukux as $key => $b)
                 <tr>
-                    <td>{{$key+1}}</td>
+                    <td>{{$key+1}}.</td>
                     <td>{{$b->category}}</td>
                     <td>{{$b->kodebuku}}</td>
                     <td>{{$b->judul}}</td>
@@ -94,11 +94,11 @@
                     <td>{{$b->penulis}}</td>
                     <td ng-if="{{$b->status == 0}}">Tersedia</td>
                     <td ng-if="{{$b->status == 1}}">Dipinjam</td>
-                    <td>
-                        <a href="editBuku/{{$b->id_buku}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i>
+                    <td class="text-center">
+                        <a href="editBuku/{{$b->id_buku}}" class="btn btn-primary" title="Edit"><i class="fas fa-pencil-alt fa-fw"></i>
                         </a>
 
-                        <button ng-click="hapus({{$b->id_buku}})" idnya="{{$b->id_buku}}" id="delbtn" class="btn btn-danger" ng-disabled="deleting == true"><i class="fas fa-trash fa-fw"></i></button><!-- href="delete/{{$b->id_buku}}" -->
+                        <button ng-click="hapus({{$b->id_buku}})" idnya="{{$b->id_buku}}" id="delbtn" class="btn btn-danger" ng-disabled="deleting == true" title="Hapus"><i class="fas fa-trash fa-fw"></i></button><!-- href="delete/{{$b->id_buku}}" -->
                     </td>
                 </tr>
                 @endforeach

@@ -10,6 +10,9 @@
                     @csrf
                     <div class="wrap">
                     	<div class="row">
+                            <div class="col-md-1">
+                                <a href="{{url()->previous()}}" class="btn btn-secondary-outline btn-lg" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i></a>
+                            </div>
                     		<div class="col">
                     			<table class="table table-stripped">
                                     <tr>
@@ -44,9 +47,6 @@
                                     </tr>         
                                 </table>
                     		</div>
-                            <div class="col-md-1">
-                                
-                            </div>
                             <div class="col">
                                 
                             </div>

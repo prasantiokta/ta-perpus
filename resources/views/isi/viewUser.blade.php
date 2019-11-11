@@ -7,7 +7,7 @@
         <h3 class="mt-3 text-center">Daftar Pustakawan</h3>
         <hr width="40%">
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info mt-3" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</button>
+        <button type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</button>
 
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
@@ -61,7 +61,7 @@
                                             </span>
                                             @enderror
                                             <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-eye"></i></button>
+                                                <button class="btn btn-outline-info" type="button" id="button-addon2"><i class="fas fa-eye"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -76,7 +76,7 @@
                                             </span>
                                             @enderror
                                             <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-eye"></i></button>
+                                                <button class="btn btn-outline-info" type="button" id="button-addon2"><i class="fas fa-eye"></i></button>
                                             </div>
                                         </div>
                                     </div>
@@ -96,22 +96,22 @@
         <table class="table table-stripped table-striped table-bordered mt-5" id="myTable">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Nama Lengkap</th>
-                    <th>Email</th>
-                    <th>Action</th>
+                    <th width="20px" class="text-center" >No</th>
+                    <th class="text-center" >Nama Lengkap</th>
+                    <th class="text-center" >Email</th>
+                    <th width="30px" class="text-center" >Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($userx as $key => $u)
                 <tr>
-                    <td>{{$key+1}}</td>
+                    <td>{{$key+1}}.</td>
                     <td>{{$u->name}}</td>
                     <td>{{$u->email}}</td>
 
-                    <td>
-                        <a href="" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i></a>
-                        <button ng-click="hapus({{$u->id}})" idnya="{{$u->id}}" id="delbtn" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></button>
+                    <td class="text-center"> 
+                        <a href="" class="btn btn-primary" title="Edit"><i class="fas fa-pencil-alt fa-fw"></i></a>
+                        <button ng-click="hapus({{$u->id}})" idnya="{{$u->id}}" id="delbtn" class="btn btn-danger" title="Hapus"><i class="fas fa-trash fa-fw"></i></button>
                     </td>
                 </tr>
                 @endforeach

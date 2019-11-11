@@ -12,26 +12,26 @@
         <table class="table table-stripped table-striped table-bordered mt-5" id="myTable">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Kode Pinjam</th>
-                    <th>Anggota</th>
-                    <th>Pustakawan</th>
-                    <th>Tgl. Pinjam</th>
-                    <th>Tgl. Kembali</th>
-                    <th>Aksi</th>
+                    <th width="20px" class="text-center">No</th>
+                    <th class="text-center">Kode Pinjam</th>
+                    <th class="text-center">Anggota</th>
+                    <th class="text-center">Pustakawan</th>
+                    <th class="text-center">Tgl. Pinjam</th>
+                    <th class="text-center">Tgl. Kembali</th>
+                    <th class="text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($list as $key => $b)
                 <tr>
-                    <td>{{$key+1}}</td>
+                    <td>{{$key+1}}.</td>
                     <td>{{$b->kodepinjam}}</td>
                     <td>{{$b->nmangg}}</td>
                     <td>{{$b->nmpust}}</td>
                     <td>{{$b->tgl_pinjam}}</td>
                     <td>{{$b->tgl_kembali}}</td>
                     <td class="text-center">
-                        <a href="vDetail/{{$b->id}}" id="detail" class="btn btn-info"><i class="fas fa-eye fa-fw"></i>&nbsp;&nbsp;&nbsp;Detail</a>
+                        <a href="vDetail/{{$b->id}}" id="detail" class="btn btn-info" title="Detail"><i class="fas fa-eye fa-fw"></i></a>
                     </td>
                 </tr>
                 @endforeach

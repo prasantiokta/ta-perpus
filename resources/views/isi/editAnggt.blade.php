@@ -72,7 +72,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <a href="{{route('viewAnggota')}}" class="btn btn-secondary"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</a>
+            <a href="{{route('viewAnggota')}}" class="btn btn-secondary-outline"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</a>
         </div>
     </div>
 </div>

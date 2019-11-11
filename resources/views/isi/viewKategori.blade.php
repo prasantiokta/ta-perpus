@@ -7,7 +7,7 @@
         <h3 class="mt-3 text-center">Kategori</h3>
         <hr width="40%">
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info mt-3" data-toggle="modal" data-target="#Modalinsert"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</button>
+        <button type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#Modalinsert"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</button>
 
         <!-- modal insert -->
         <div id="Modalinsert" class="modal fade" role="dialog">
@@ -38,7 +38,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</button>
+                        <button type="button" class="btn btn-secondary-outline" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</button>
                     </div>
                 </div>
 
@@ -48,18 +48,18 @@
         <table class="table table-stripped table-striped table-bordered mt-5" id="myTable">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Nama Kategori</th>
-                    <th>Action</th>
+                    <th width="20px" class="text-center">No</th>
+                    <th class="text-center">Nama Kategori</th>
+                    <th width="30px" class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($category as $key => $c)
                 <tr>
-                    <td>{{$key+1}}</td>
+                    <td>{{$key+1}}.</td>
                     <td>{{$c->category}}</td>
-                    <td>
-                        <button ng-click="hapus({{$c->id_category}})" idnya="{{$c->id_category}}" id="delbtn" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i></button>
+                    <td class="text-center">
+                        <button ng-click="hapus({{$c->id_category}})" idnya="{{$c->id_category}}" id="delbtn" class="btn btn-danger" title="Hapus"><i class="fas fa-trash fa-fw"></i></button>
                     </td>
                 </tr>
                 @endforeach
