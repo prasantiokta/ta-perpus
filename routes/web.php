@@ -51,8 +51,6 @@ Route::post('/inserKategori', 'kategoriController@insert')->name('inserKategori'
 
 Route::post('/delKategori', 'kategoriController@delete');
 
-Route::get('/vPinjam', 'pinjamController@index')->name('vPinjam');
-
 Route::get('/viewUser', 'userController@index')->name('viewUser');
 
 Route::post('/inserUser', 'userController@create')->name('inserUser');
@@ -66,3 +64,7 @@ Route::get('/addPeminjaman', 'pinjamController@field')->name('addPeminjaman');
 Route::post('/inserPinjam', 'pinjamController@insert')->name('inserPinjam');
 
 Route::get('/vDetail/{id}', 'pinjamController@getDetails')->name('vDetail');
+
+Route::get('/vPengembalian', 'kembaliController@index')->name('vPengembalian');
+
+Route::get('/kembaliBuku/{id}', 'kembaliController@kembalikan')->name('kembaliBuku');

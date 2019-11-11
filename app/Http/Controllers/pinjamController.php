@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Peminjaman;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Pinjam;
 
 class pinjamController extends Controller
 {
@@ -17,7 +16,7 @@ class pinjamController extends Controller
 
     public function index()
     {
-        $list = DB::table('peminjaman')->orderBy('id')->get();
+        $list = DB::table('peminjaman')->orderBy('id')->where('dikembalikan','=','0')->get();
 
         $last = DB::table('peminjaman')->get()->count();
         $idnya = 0;
@@ -90,7 +89,6 @@ class pinjamController extends Controller
             'tgl_kembali' => $param['tglkembali'],
             'nmangg' => $param['nmangg'],
             'nmpust' => $param['nmpust'],
-            'denda' => 0,
         );
 
         $result3 = DB::table('pengembalian')->insert($kembali);
