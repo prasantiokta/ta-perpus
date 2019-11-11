@@ -24,7 +24,7 @@ class Details extends Migration
             $table->string('penerbit');
             $table->string('penulis');
             $table->foreign('pinjam_id')->references('id')->on('peminjaman')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('buku_id')->references('id')->on('buku')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('buku_id')->references('id_buku')->on('buku')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

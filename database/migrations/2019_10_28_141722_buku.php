@@ -22,7 +22,7 @@ class Buku extends Migration
             $table->string('penulis');
             $table->boolean('status')->default(0);
             $table->timestamps();
-            $table->foreign('jenis_id')->references('id')->on('kategori')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('jenis_id')->references('id_category')->on('kategori')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

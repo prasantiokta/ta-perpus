@@ -25,7 +25,7 @@ class Peminjaman extends Migration
             $table->string('nmpust');
             $table->boolean('dikembalikan')->default(0);
             $table->timestamps();
-            $table->foreign('anggota_id')->references('id')->on('anggota')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('anggota_id')->references('id_angg')->on('anggota')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('pustakawan_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
