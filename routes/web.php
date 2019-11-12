@@ -53,7 +53,7 @@ Route::post('/delKategori', 'kategoriController@delete');
 
 Route::get('/viewUser', 'userController@index')->name('viewUser');
 
-Route::post('/inserUser', 'userController@create')->name('inserUser');
+Route::post('/inserUser', 'userController@create')->name('inseruser');
 
 Route::post('/deleteUser', 'userController@delete');
 

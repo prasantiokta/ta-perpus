@@ -21,7 +21,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form action="">
+                        <form action="{{ url('/inserUser') }}" method="post">
                             @csrf
                             <div class="wrap">
                                 <div class="row">
@@ -93,13 +93,20 @@
             </div>
         </div>
         <br><br>
+        @if (session('status'))
+        <div class="alert alert-success mt-3">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            {{ session('status') }}
+        </div>
+        @endif
+
         <table class="table table-stripped table-striped table-bordered mt-5" id="myTable">
             <thead>
                 <tr>
-                    <th width="20px" class="text-center" >No</th>
-                    <th class="text-center" >Nama Lengkap</th>
-                    <th class="text-center" >Email</th>
-                    <th width="30px" class="text-center" >Action</th>
+                    <th width="20px" class="text-center">No</th>
+                    <th class="text-center">Nama Lengkap</th>
+                    <th class="text-center">Email</th>
+                    <th width="30px" class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -109,7 +116,7 @@
                     <td>{{$u->name}}</td>
                     <td>{{$u->email}}</td>
 
-                    <td class="text-center"> 
+                    <td class="text-center">
                         <a href="" class="btn btn-primary" title="Edit"><i class="fas fa-pencil-alt fa-fw"></i></a>
                         <button ng-click="hapus({{$u->id}})" idnya="{{$u->id}}" id="delbtn" class="btn btn-danger" title="Hapus"><i class="fas fa-trash fa-fw"></i></button>
                     </td>
