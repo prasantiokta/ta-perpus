@@ -16,6 +16,7 @@ class Buku extends Migration
         Schema::create('buku', function (Blueprint $table) {
             $table->bigincrements('id_buku');
             $table->unsignedbigInteger('jenis_id');
+            $table->string('nmcat');
             $table->string('kodebuku');
             $table->string('judul');
             $table->string('penerbit');

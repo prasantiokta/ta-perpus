@@ -49,7 +49,7 @@ class pinjamController extends Controller
 
     public function insert()
     {
-
+        // saving form
         $param =  json_decode(request()->getContent(), true);
         $input = array(
             'kodepinjam' => $param['kode'],
@@ -60,12 +60,14 @@ class pinjamController extends Controller
             'nmangg' => $param['nmangg'],
             'nmpust' => $param['nmpust'],
         );
+        //
 
+        // arraynya
         $detail = $param['detail'];
 
-        $result = DB::table('peminjaman')->insertGetId($input); //save peminjaman
+        $result = DB::table('peminjaman')->insertGetId($input); //save form ambil id yang baru di save
 
-        //save details
+        //save array
         if ($result) {
             # code...
             $sukses = 1;

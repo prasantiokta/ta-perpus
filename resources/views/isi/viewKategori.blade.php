@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-success" ng-click="simpan()"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;&nbsp;Simpan</button>
+                            <button class="btn btn-success" ng-click="simpan()" ng-disabled="saving == true"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;&nbsp;Simpan</button>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -86,6 +86,7 @@
         var delbtn = document.getElementById("delbtn");
 
         // vars input
+        $scope.saving = false;
         $scope.id_category; //var addens id category
         $scope.category;
 
@@ -96,6 +97,7 @@
                 });
             } else {
                 //saving
+                $scope.saving = true;
                 $http.post('{{url("inserKategori")}}', {
                     category: $scope.category,
                     _token: '{{csrf_token()}}'

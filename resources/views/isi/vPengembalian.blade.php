@@ -30,7 +30,7 @@
                     <td>{{$b->tgl_kembali}}</td>
                     <td class="text-center">
                         <a href="vDetail/{{$b->pinjam_id}}" id="detail" class="btn btn-info" title="Detail"><i class="fas fa-eye fa-fw"></i></a>
-                        @if($b->tgl_kembali > $today)
+                        @if($b->tgl_kembali >= $today)
                         <a href="kembaliBuku/{{$b->id}}" id="kembali" class="btn btn-primary"  title="Kembalikan"><i class="fas fa-check fa-fw"></i></a>
                         @elseif($b->tgl_kembali < $today)
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalDenda" title="Denda"><i class="fas fa-list fa-fw"></i></button>
