@@ -28,14 +28,13 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Kembalian</label>
-                                            <input type="text" id="kembalinya" class="form-control" disabled>
+                                            <input type="text" id="kembalinya" class="form-control" readonly>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <button class="btn btn-success" title="Bayar" ng-click="bayar()"><i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;&nbsp;Bayar</button>
-                                        <button class="btn btn-info" title="Simpan" ng-click="simpan()"><i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;Simpan</button>
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +105,7 @@
 		                    </tbody>
 		                </table>
 		            </div><br>
-		        </div>
+		        </div><button class="btn btn-info" title="Simpan" ng-click="simpan()"><i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;Simpan</button>
 		    <br><br>
     </div>
 </div>
