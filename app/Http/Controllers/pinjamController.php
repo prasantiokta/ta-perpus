@@ -74,7 +74,7 @@ class pinjamController extends Controller
             for ($i = 0; $i < count($detail); $i++) {
                 # code...
                 $inputDetail[$i]['pinjam_id'] = $result;
-                $inputDetail[$i]['buku_id'] = $detail[$i]['no'];
+                $inputDetail[$i]['buku_id'] = $detail[$i]['id'];
                 $inputDetail[$i]['nmcat'] = $detail[$i]['kategori'];
                 $inputDetail[$i]['kodebuku'] = $detail[$i]['kodebuku'];
                 $inputDetail[$i]['judul'] = $detail[$i]['judul'];

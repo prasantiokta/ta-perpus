@@ -33,7 +33,7 @@
                         @if($b->tgl_kembali >= $today)
                         <a href="kembaliBuku/{{$b->id}}" id="kembali" class="btn btn-primary"  title="Kembalikan"><i class="fas fa-check fa-fw"></i></a>
                         @elseif($b->tgl_kembali < $today)
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalDenda" title="Denda"><i class="fas fa-list fa-fw"></i></button>
+                        <a href="byrDenda/{{$b->id}}" class="btn btn-danger"  title="Denda"><i class="fas fa-list fa-fw"></i></a>
                         @endif
                     </td>
                 </tr>

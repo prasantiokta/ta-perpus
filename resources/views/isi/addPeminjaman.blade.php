@@ -76,7 +76,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <br>
+                <br><small class="form-text text-muted text-center">Klik "Tambah ke list" setelah menambah atau mengubah buku yang dipilih</small><br>
                 <button class="btn btn-secondary" id="addBuku" ><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;&nbsp;Tambah ke list</button>
                 <button hidden class="btn btn-info" ng-click="showList()" data-toggle="modal" data-target="#ModalList"><i class="fas fa-list"></i>&nbsp;&nbsp;&nbsp;Lihat List</button>
             </div>
@@ -127,7 +127,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <button class="btn btn-success" ng-click="addPinjam()"><i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;Simpan Peminjaman</button>
+                <center><button class="btn btn-success" ng-click="addPinjam()"><i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;Simpan Peminjaman</button></center>
             </div>
         </div>
         <br>
@@ -194,7 +194,12 @@
                 var listnya = [];
                 var checked = $('input[name="selectedRow[]"]:checked').length;
 
-                if (checked<=3) {
+                if (checked==0) {
+
+                    $scope.filled = false;
+                    $.growl.error({ message: "Centang Checkbox" });
+
+                } else if (checked > 0 && checked <= 3) {
 
                     $.each($("input[name='selectedRow[]']:checked"), function(){
 
@@ -209,10 +214,11 @@
                 } else {
 
                     $.growl.error({ message: "Tidak boleh meminjam lebih dari 3 buku" });
+                    $scope.filled = false;
 
                 }
 
-                console.log($scope.data);
+                console.log($scope.filled);
             });
 
         });
@@ -249,6 +255,8 @@
         $scope.addPinjam = function() {
             if ($scope.anggota == null || $scope.tglkembali == null) {
                 $.growl.error({message: "Isi semua field!"});
+            } else if ($scope.data.length == 0) {
+                $.growl.error({message: "Centang Checkbox"});
             } else {
                 //create kodepinjam
                 var id = JSON.parse($scope.idny);

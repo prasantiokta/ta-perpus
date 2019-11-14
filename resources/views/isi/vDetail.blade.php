@@ -11,7 +11,6 @@
                     <div class="wrap">
                     	<div class="row">
                             <div class="col-md-1">
-                                <a href="{{url()->previous()}}" class="btn btn-secondary-outline btn-lg" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i></a>
                             </div>
                     		<div class="col">
                     			<table class="table table-stripped">
@@ -47,9 +46,7 @@
                                     </tr>         
                                 </table>
                     		</div>
-                            <div class="col">
-                                
-                            </div>
+                            <div class="col-md-1"></div>
                     	</div>
                         <div class="row">
                             
@@ -57,7 +54,7 @@
                     </div>
                 </form>
                 <br>
-                <div class="box">
+                <div class="box"><br>
 		            <div class="col">
 		                <table id="details" class="table table-stripped table-striped table-bordered mt-5">
 		                    <thead>
@@ -84,20 +81,21 @@
 		                    </tbody>
 		                </table>
 		            </div><br>
-		        </div>
-		    <br><br>
+		        </div><br>
+                <a href="{{url()->previous()}}" class="btn btn-secondary-outline" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Kembali</a>
+		    <br><br><br>
     </div>
 </div>
 <!-- App ctrl angular -->
 <script type="text/javascript">
-    // $(document).ready(function() {
-    //     $('#myTable').DataTable({
-    //         // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-    //         // dom: 'Blfrtip',
-    //         // buttons: ['excel','print'],
-    //         // "lengthChange": true
-    //     });
-    // });
+    $(document).ready(function() {
+        $('#details').DataTable({
+            // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            // dom: 'Blfrtip',
+            // buttons: ['excel','print'],
+            // "lengthChange": true
+        });
+    });
 
     var app = angular.module('tesApp', []);
     app.controller('tesCtrl', function($scope, $http, $window) {

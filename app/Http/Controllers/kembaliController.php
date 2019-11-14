@@ -34,4 +34,24 @@ class kembaliController extends Controller
 
         return redirect('vPengembalian');
     }
+
+    public function loadBayar($id)
+    {
+        $kembaliny = DB::table('pengembalian')->where('id','=',$id)->first();
+        $getId = $kembaliny->pinjam_id;
+
+        $mainList = DB::table('peminjaman')->where('id','=',$getId)->first();
+        $list = DB::table('details')->where('pinjam_id','=',$getId)->get();
+
+        $arr = count($list);
+        $today  = date_create(); //waktu sekarang
+        $tgl = date_create($mainList->tgl_kembali); //waktu db
+        $selisih  = date_diff($today, $tgl);
+        $jarakny = $selisih->days;
+
+        $denda = 1000 * $arr * $jarakny;
+        //dd($denda);
+
+        return view('isi.bayarDenda', compact('mainList','list','denda'));
+    }
 }
