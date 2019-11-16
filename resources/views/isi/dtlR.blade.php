@@ -1,19 +1,56 @@
 @extends('../template')
 
-@section('title','Detail Peminjaman')
+@section('title','Detail Rekapan')
 @section('page')
 <div ng-app="tesApp" ng-controller="tesCtrl" class="container shadow-lg">
     <div style="padding: 8px;">
-        <h3 class="mt-3 text-center">Detail Peminjaman</h3>
-        <hr width="40%"><br>
-        		<form action="{{route('vDetail',$mainList->id)}}" method="post">
+        <h3 class="mt-3 text-center">Detail Rekapan</h3>
+        <hr width="40%">
+        		<form action="{{route('dtlRekap',$mainList->id)}}" method="post">
                     @csrf
                     <div class="wrap">
                     	<div class="row">
-                            <div class="col">
-                                
+                            <div class="col-md-6" style="padding: 40px;">
+                                @if($dendae == 0)
+                                <br><center>Tidak dikenai denda  apapun</center><br>
+                                @elseif($dendae == 1)
+                                <table class="table table-stripped">
+                                    <tr>
+                                        <td>Total Denda</td>
+                                        <td width="20px">:</td>
+                                        <td><span>@currency($denda->dendany)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pembayaran</td>
+                                        <td width="20px">:</td>
+                                        <td><span>@currency($denda->bayar)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kembalian</td>
+                                        <td width="20px">:</td>
+                                        <td><span>@currency($denda->kembali)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal dikembalikan</td>
+                                        <td width="20px">:</td>
+                                        <td><span>{{$denda->datenow}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Selisih Hari</td>
+                                        <td width="20px">:</td>
+                                        <td><span>{{$denda->jarak}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>         
+                                </table>
+                                @else
+                                <br><center>Tidak dikenai denda  apapun</center><br>
+                                @endif
                             </div>
-                    		<div class="col-md-6" style="padding: : 40px;">
+                    		<div class="col-md-6" style="padding: 40px;">
                     			<table class="table table-stripped">
                                     <tr>
                                         <td>Kode Peminjaman</td>

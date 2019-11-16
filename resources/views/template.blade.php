@@ -99,9 +99,9 @@
 							<li>
 								<a href="{{ url('/vPengembalian') }}">Pengembalian</a>
 							</li>
-							<!-- <li>
-								<a href="{{ url('/viewBuku') }}">Denda</a>
-							</li> -->
+							<li>
+								<a href="{{ url('/vRekapan') }}">Rekapan</a>
+							</li>
 						</ul>
 					</li>
 				</ul>

@@ -32,16 +32,16 @@ class userController extends Controller
         return view('isi.viewUser', compact('userx', 'idnya'));
     }
 
-    // protected function validator(Request $request)
-    // {
-    //     Validator::make($request, [
-    //         'name' => ['required', 'string', 'max:255'],
-    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-    //         'password' => ['required', 'string', 'min:8', 'confirmed'],
-    //     ]);
+    protected function validator(Request $request)
+    {
+        Validator::make($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
 
-    //     return redirect()->route('viewUser');
-    // }
+        return redirect()->route('viewUser');
+    }
 
     protected function create(Request $request)
     {

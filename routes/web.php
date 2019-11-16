@@ -53,7 +53,7 @@ Route::post('/delKategori', 'kategoriController@delete');
 
 Route::get('/viewUser', 'userController@index')->name('viewUser');
 
-Route::post('/inserUser', 'userController@create')->name('inseruser');
+Route::post('/inserUser', 'userController@create')->name('inserUser');
 
 Route::post('/deleteUser', 'userController@delete');
 
@@ -72,3 +72,7 @@ Route::get('/kembaliBuku/{id}', 'kembaliController@kembalikan')->name('kembaliBu
 Route::get('/byrDenda/{id}', 'kembaliController@loadBayar')->name('byrDenda');
 
 Route::post('/inserDenda', 'kembaliController@insert')->name('inserDenda');
+
+Route::get('/vRekapan', 'kembaliController@indexRekap')->name('vRekapan');
+
+Route::get('/dtlRekap/{id}', 'kembaliController@dtlRekap')->name('dtlRekap');

@@ -4,11 +4,11 @@
 @section('page')
 <div ng-app="tesApp" ng-controller="tesCtrl" class="container shadow-lg">
     <div style="padding: 8px;">
-        <h3 class="mt-3 text-center">Pembayaran Dendaee</h3>
+        <h3 class="mt-3 text-center">Pembayaran Denda</h3>
         <hr width="40%"><br>
                     <div class="wrap">
                     	<div class="row">
-                            <div class="col-md-5" id="bayar">
+                            <div class="col-md-6" style="padding: 40px;">
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
@@ -37,39 +37,32 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col">
-                            </div>
-                            <div class="col-md-6" id="ket">
+                            <div class="col-md-6" style="padding: 40px;">
                     			<table class="table table-stripped">
                                     <tr>
                                         <td>Kode Peminjaman</td>
-                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td width="20px">:</td>
                                         <td><span id="kode">{{$mainList->kodepinjam}}</span></td>
                                     </tr>
                                     <tr>
                                         <td>Nama Anggota</td>
-                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td width="20px">:</td>
                                         <td><span id="nmangg">{{$mainList->nmangg}}</span></td>
                                     </tr>
                                     <tr>
                                         <td>Nama Pustakawan</td>
-                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td width="20px">:</td>
                                         <td><span id="nmpust">{{$mainList->nmpust}}</span></td>
                                     </tr>
                                     <tr>
-                                        <td>Tgl. Pinjam</td>
-                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td>Tanggal Pinjam</td>
+                                        <td width="20px">:</td>
                                         <td><span id="tglpinjam">{{$mainList->tgl_pinjam}}</span></td>
                                     </tr>
                                     <tr>
-                                        <td>Tgl. Kembali</td>
-                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td>Tanggal Kembali</td>
+                                        <td width="20px">:</td>
                                         <td><span id="tglkembali">{{$mainList->tgl_kembali}}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Terlambat</td>
-                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                        <td><span id="jarak">{{$jarakny}} hari</span></td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -79,37 +72,40 @@
                                 </table>
                     		</div>
                     	</div>
+                    	<span id="jarak" hidden>{{$jarakny}}</span>
+                    	<div class="row">
+                    		<div class="col">
+                    			<div class="container bg-white shadow-sm rounded" style="padding: 30px">
+				                    <table id="details" class="table table-stripped table-striped table-bordered">
+				                        <thead>
+				                            <tr>
+				                                <td width="20px">No.</td>
+				                                <td>Kategori</td>
+				                                <td class="text-center">Kode Buku</td>
+				                                <td class="text-center">Judul Buku</td>
+				                                <td class="text-center">Penulis</td>
+				                                <td class="text-center">Penerbit</td>
+				                            </tr>
+				                        </thead>
+				                        <tbody>
+				                            @foreach($list as $key => $b)
+				                            <tr>
+				                                <td>{{$key+1}}</td>
+				                                <td>{{$b->nmcat}}</td>
+				                                <td>{{$b->kodebuku}}</td>
+				                                <td>{{$b->judul}}</td>
+				                                <td>{{$b->penulis}}</td>
+				                                <td>{{$b->penerbit}}</td>
+				                           </tr>
+				                            @endforeach
+				                        </tbody>
+				                    </table>
+				                </div><br>
+				                <center><button class="btn btn-info" title="Simpan" ng-click="simpan()"><i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;Simpan</button></center>
+                    		</div>
+                    	</div>
                     </div>
-                <br>
-                <div class="box"><br>
-		            <div class="col">
-		                <table id="details" class="table table-stripped table-striped table-bordered mt-5">
-		                    <thead>
-		                        <tr>
-		                            <td width="20px">No.</td>
-		                            <td>Kategori</td>
-		                            <td class="text-center">Kode Buku</td>
-		                            <td class="text-center">Judul Buku</td>
-		                            <td class="text-center">Penulis</td>
-		                            <td class="text-center">Penerbit</td>
-		                        </tr>
-		                    </thead>
-		                    <tbody>
-		                        @foreach($list as $key => $b)
-		                        <tr>
-		                            <td>{{$key+1}}</td>
-		                            <td>{{$b->nmcat}}</td>
-		                            <td>{{$b->kodebuku}}</td>
-		                            <td>{{$b->judul}}</td>
-		                            <td>{{$b->penulis}}</td>
-		                            <td>{{$b->penerbit}}</td>
-		                        </tr>
-		                        @endforeach
-		                    </tbody>
-		                </table>
-		            </div><br>
-		        </div><center><button class="btn btn-info" title="Simpan" ng-click="simpan()"><i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;Simpan</button></center>
-		    <br><br>
+        <br><br><br>
     </div>
 </div>
 <!-- App ctrl angular -->

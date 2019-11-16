@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Peminjaman;
 
 class kembaliController extends Controller
 {
@@ -75,5 +76,25 @@ class kembaliController extends Controller
         DB::table('denda')->insert($input);
 
         return redirect('/vPengembalian');
+    }
+
+    public function indexRekap()
+    {
+        $list = DB::table('peminjaman')->orderBy('id')->where('dikembalikan','=','1')->get();
+
+        return view('isi.vRekapan', compact('list'));
+    }
+
+    public function dtlRekap($id)
+    {
+        $mainList = Peminjaman::find($id);
+        $list = DB::table('details')->where('pinjam_id','=',$id)->get();
+        $a = DB::table('denda')->where('kodepinjam','=',$mainList->kodepinjam)->get();
+        $denda = DB::table('denda')->where('kodepinjam','=',$mainList->kodepinjam)->first();
+
+        $dendae = count($a);
+        //dd($denda);
+
+        return view('isi.dtlR', compact('mainList','list','denda','dendae'));
     }
 }

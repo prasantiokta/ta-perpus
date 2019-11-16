@@ -7,7 +7,7 @@
         <h3 class="mt-3 text-center">Daftar Pustakawan</h3>
         <hr width="40%">
         <!-- Trigger the modal with a button -->
-        <button hidden="hidden" type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw" ></i>&nbsp;&nbsp;&nbsp;Tambah</button>
+        <button type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</button>
 
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
@@ -53,7 +53,7 @@
                                     <div class="col">
                                         <label for="password">Password</label>
                                         <div class="input-group mb-3">
-                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                            <input id="password" type="@{{passwordType}}" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                             @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -61,33 +61,33 @@
                                             </span>
                                             @enderror
                                             <div class="input-group-append">
-                                                <button class="btn btn-outline-info" type="button" id="button-addon2"><i class="fas fa-eye"></i></button>
+                                                <button class="btn btn-outline-info" id="btncheck" ng-click="btnEye()"><i class="fas fa-eye"></i></button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <label for="password">Confirm Password</label>
                                         <div class="input-group mb-3">
-                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                            <input id="password2" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" onchange="test()">
 
                                             @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                             @enderror
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-info" type="button" id="button-addon2"><i class="fas fa-eye"></i></button>
-                                            </div>
+                                            <!-- <div class="input-group-append">
+                                                <button class="btn btn-outline-info" id="btncheck2" ng-click="btnEye()"><i class="fas fa-eye"></i></button>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <br>
-                            <button class="btn btn-success" type="submit"><i class="fas fa-check-circle" ></i>&nbsp;&nbsp;&nbsp;Simpan</button>
+                            <button class="btn btn-success" id="simpan" type="submit"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;&nbsp;Simpan</button>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-arrow-circle-left" ></i>&nbsp;&nbsp;&nbsp;Batal</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</button>
                     </div>
                 </div>
             </div>
@@ -95,7 +95,6 @@
         <br><br>
         @if (session('status'))
         <div class="alert alert-success mt-3">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
             {{ session('status') }}
         </div>
         @endif
@@ -106,7 +105,7 @@
                     <th width="20px" class="text-center">No</th>
                     <th class="text-center">Nama Lengkap</th>
                     <th class="text-center">Email</th>
-                    <!-- <th width="30px" class="text-center">Action</th> -->
+                    <th width="30px" class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -116,10 +115,10 @@
                     <td>{{$u->name}}</td>
                     <td>{{$u->email}}</td>
 
-                    <!-- <td class="text-center">
-                        <a hidden="hidden" href="" class="btn btn-primary" title="Edit"><i class="fas fa-pencil-alt fa-fw"></i></a>
-                        <button hidden="hidden" ng-click="hapus({{$u->id}})" idnya="{{$u->id}}" id="delbtn" class="btn btn-danger" title="Hapus"><i class="fas fa-trash fa-fw"></i></button>
-                    </td> -->
+                    <td class="text-center">
+                        <!-- <a href="" class="btn btn-primary" title="Edit"><i class="fas fa-pencil-alt fa-fw"></i></a> -->
+                        <button ng-click="hapus({{$u->id}})" idnya="{{$u->id}}" id="delbtn" class="btn btn-danger" title="Hapus"><i class="fas fa-trash fa-fw"></i></button>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -129,6 +128,30 @@
 </div>
 <!-- App ctrl angular -->
 <script type="text/javascript">
+    function test(){
+        var pw1 = document.getElementById("password").value;
+        var pw2 = document.getElementById("password2").value;
+        if(pw1 != pw2){
+            alert("Password tidak sama");
+            document.getElementById("simpan").disabled = false;
+        }
+        else{
+            document.getElementById("simpan").disabled = false;
+        }
+    }
+
+    // $(document).ready(function(){
+    //     $('#btncheck').click(function(){
+    //         if ($('#password').attr('type','password')) {
+    //             $('#password').attr('type','text');
+    //         } else if (('#password').attr('type','text')) {
+    //             $('#password').attr('type','password');
+    //         } else {
+    //             alert("Kesalahan");
+    //         }
+    //     });
+    // });
+
     $(document).ready(function() {
         $('#myTable').DataTable({
             // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -144,12 +167,17 @@
         var allb = document.getElementById("name");
         var delbtn = document.getElementById("delbtn");
 
-        // vars input
-        // $scope.id; //var addens id users
-        // $scope.name;
-        // $scope.email;
-        // $scope.password;
+        $scope.passwordType = 'password';
 
+        $scope.btnEye = function(){
+
+            if($scope.passwordType == 'password'){
+                $scope.passwordType = 'text';
+            }
+            else{
+                $scope.passwordType = 'password';
+            }
+        }
 
         $scope.hapus = function(id) {
             $scope.delid = id;
