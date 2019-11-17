@@ -52,6 +52,26 @@ class kembaliController extends Controller
         $denda = 1000 * $arr * $jarakny;
         //dd($denda);
 
-        return view('isi.bayarDenda', compact('mainList','list','denda'));
+        return view('isi.bayarDenda', compact('mainList','list','denda','jarakny'));
+    }
+
+    public function insert()
+    {
+        $param =  json_decode(request()->getContent(), true);
+        $input = array(
+            'kodepinjam' => $param['kode'],
+            'dendany' => $param['denda'],
+            'bayar' => $param['bayare'],
+            'kembali' => $param['kembali'],
+            'tglkembali' => $param['tglkembali'],
+            'datenow' => $param['datenow'],
+            'nmangg' => $param['nmangg'],
+            'jarak' => $param['jarak'],
+        );
+
+        DB::table('peminjaman')->where('kodepinjam','=',$param['kode'])->first();
+        DB::table('pengembalian')->where('kodepinjam','=',$param['kode'])->first();
+        DB::table('denda')->insert($input);
+
     }
 }

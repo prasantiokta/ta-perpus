@@ -6,7 +6,6 @@
     <div style="padding: 8px;">
         <h3 class="mt-3 text-center">Pembayaran Denda</h3>
         <hr width="40%"><br>
-        		
                     <div class="wrap">
                     	<div class="row">
                             <div class="col-md-5" id="bayar">
@@ -21,7 +20,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label>Masukkan Pembayaran</label>
+                                            <label>Pembayaran</label>
                                             <input type="text" id="bayarnya" class="form-control">
                                         </div>
                                     </div>
@@ -45,27 +44,32 @@
                                     <tr>
                                         <td>Kode Peminjaman&nbsp;&nbsp;&nbsp;</td>
                                         <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td>
-                                        <td><span>&nbsp;&nbsp;&nbsp;{{$mainList->kodepinjam}}</span></td>
+                                        <td><span id="kode">&nbsp;&nbsp;&nbsp;{{$mainList->kodepinjam}}</span></td>
                                     </tr>
                                     <tr>
                                         <td>Nama Anggota&nbsp;&nbsp;&nbsp;</td>
                                         <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td>
-                                        <td><span>&nbsp;&nbsp;&nbsp;{{$mainList->nmangg}}</span></td>
+                                        <td><span id="nmangg">&nbsp;&nbsp;&nbsp;{{$mainList->nmangg}}</span></td>
                                     </tr>
                                     <tr>
                                         <td>Nama Pustakawan&nbsp;&nbsp;&nbsp;</td>
                                         <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td>
-                                        <td><span>&nbsp;&nbsp;&nbsp;{{$mainList->nmpust}}</span></td>
+                                        <td><span id="nmpust">&nbsp;&nbsp;&nbsp;{{$mainList->nmpust}}</span></td>
                                     </tr>
                                     <tr>
                                         <td>Tgl. Pinjam&nbsp;&nbsp;&nbsp;</td>
                                         <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td>
-                                        <td><span>&nbsp;&nbsp;&nbsp;{{$mainList->tgl_pinjam}}</span></td>
+                                        <td><span id="tglpinjam">&nbsp;&nbsp;&nbsp;{{$mainList->tgl_pinjam}}</span></td>
                                     </tr>
                                     <tr>
                                         <td>Tgl. Kembali&nbsp;&nbsp;&nbsp;</td>
-                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td>
-                                        <td><span id="tglkembali">&nbsp;&nbsp;&nbsp;{{$mainList->tgl_kembali}}</span></td>
+                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td><span id="tglkembali">{{$mainList->tgl_kembali}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Terlambat&nbsp;&nbsp;&nbsp;</td>
+                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td><span id="jarak">{{$jarakny}} hari</span></td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -76,7 +80,6 @@
                     		</div>
                     	</div>
                     </div>
-                
                 <br>
                 <div class="box"><br>
 		            <div class="col">
@@ -105,7 +108,7 @@
 		                    </tbody>
 		                </table>
 		            </div><br>
-		        </div><button class="btn btn-info" title="Simpan" ng-click="simpan()"><i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;Simpan</button>
+		        </div><center><button class="btn btn-info" title="Simpan" ng-click="simpan()"><i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;Simpan</button></center>
 		    <br><br>
     </div>
 </div>
@@ -122,7 +125,17 @@
 
     var app = angular.module('tesApp', []);
     app.controller('tesCtrl', function($scope, $filter, $http, $window) {
-        //vars 
+        //vars
+        $scope.kodepinjam;
+        $scope.nmangg; 
+        $scope.kembali;
+
+        //today date
+        var dateNow = $filter('date')(new Date(), 'yyyy-MM-dd');
+        $scope.year = dateNow.substring(0,4);
+        $scope.month = dateNow.substring(5,7);
+        $scope.day = dateNow.substring(8,10);
+        $scope.today = $scope.year + "-" + $scope.month + "-" + $scope.day;
 
         $scope.bayar = function() {
             $scope.denda = parseInt(document.getElementById("total").value);
@@ -135,12 +148,39 @@
                 var kembali = $scope.bayare-$scope.denda;
                 $.growl.notice({message: "Pembayaran denda lunas"});
                 document.getElementById("kembalinya").value = kembali;
-
             }
 
         }
 
         $scope.simpan = function () {
+
+                // ngisi var
+                $scope.kembali = document.getElementById("kembalinya").value;
+                $scope.kodepinjam = document.getElementById("kode").textContent;
+                $scope.nmangg = document.getElementById("nmangg").textContent;
+
+                //tglkmbl
+                $scope.datenow = moment($scope.today).format('YYYY-MM-DD');
+                $scope.tglkembali = document.getElementById("tglkembali").textContent;
+                $scope.jarak = parseInt(document.getElementById("jarak").textContent);
+
+                //console.log($scope.tglkembali);
+
+                $http.post('{{url("inserDenda")}}', {
+                    kode: $scope.kodepinjam,
+                    denda: $scope.denda,
+                    bayare: $scope.bayare,
+                    kembali: $scope.kembali,
+                    nmangg: $scope.nmangg,
+                    datenow: $scope.datenow,
+                    tglkembali: $scope.tglkembali,
+                    jarak: $scope.jarak,
+                    _token: '{{csrf_token()}}'
+
+                }).then(function(reply) {
+                    $.growl.notice({ message: "Buku telah dikembalikan" });
+                    $window.location.replace("vPengembalian");
+                });
             
         }
 

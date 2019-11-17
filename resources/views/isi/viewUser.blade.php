@@ -7,7 +7,7 @@
         <h3 class="mt-3 text-center">Daftar Pustakawan</h3>
         <hr width="40%">
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw"></i>&nbsp;&nbsp;&nbsp;Tambah</button>
+        <button hidden="hidden" type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus-circle fa-fw" ></i>&nbsp;&nbsp;&nbsp;Tambah</button>
 
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
@@ -83,11 +83,11 @@
                                 </div>
                             </div>
                             <br>
-                            <button class="btn btn-success" type="submit"><i class="fas fa-check-circle"></i>&nbsp;&nbsp;&nbsp;Simpan</button>
+                            <button class="btn btn-success" type="submit"><i class="fas fa-check-circle" ></i>&nbsp;&nbsp;&nbsp;Simpan</button>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-arrow-circle-left" ></i>&nbsp;&nbsp;&nbsp;Batal</button>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@
                     <th width="20px" class="text-center">No</th>
                     <th class="text-center">Nama Lengkap</th>
                     <th class="text-center">Email</th>
-                    <th width="30px" class="text-center">Action</th>
+                    <!-- <th width="30px" class="text-center">Action</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -116,10 +116,10 @@
                     <td>{{$u->name}}</td>
                     <td>{{$u->email}}</td>
 
-                    <td class="text-center">
-                        <a href="" class="btn btn-primary" title="Edit"><i class="fas fa-pencil-alt fa-fw"></i></a>
-                        <button ng-click="hapus({{$u->id}})" idnya="{{$u->id}}" id="delbtn" class="btn btn-danger" title="Hapus"><i class="fas fa-trash fa-fw"></i></button>
-                    </td>
+                    <!-- <td class="text-center">
+                        <a hidden="hidden" href="" class="btn btn-primary" title="Edit"><i class="fas fa-pencil-alt fa-fw"></i></a>
+                        <button hidden="hidden" ng-click="hapus({{$u->id}})" idnya="{{$u->id}}" id="delbtn" class="btn btn-danger" title="Hapus"><i class="fas fa-trash fa-fw"></i></button>
+                    </td> -->
                 </tr>
                 @endforeach
             </tbody>

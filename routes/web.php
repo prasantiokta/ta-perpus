@@ -70,3 +70,5 @@ Route::get('/vPengembalian', 'kembaliController@index')->name('vPengembalian');
 Route::get('/kembaliBuku/{id}', 'kembaliController@kembalikan')->name('kembaliBuku');
 
 Route::get('/byrDenda/{id}', 'kembaliController@loadBayar')->name('byrDenda');
+
+Route::post('/inserDenda', 'kembaliController@insert')->name('inserDenda');
