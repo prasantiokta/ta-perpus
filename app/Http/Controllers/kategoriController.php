@@ -40,6 +40,22 @@ class kategoriController extends Controller
         $result = DB::table('kategori')->insert($input);
     }
 
+    public function editKtg($id)
+    {
+        $result = Kategori::find($id);
+
+        return view('isi.editKtg', compact('result'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        DB::table('kategori')->where('id_category', $id)->update([
+            'category' => $request->category
+        ]);
+
+        return redirect('viewKategori');
+    }
+
     public function delete()
     {
         $param =  json_decode(request()->getContent(), true);

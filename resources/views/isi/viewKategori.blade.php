@@ -59,6 +59,9 @@
                     <td>{{$key+1}}.</td>
                     <td>{{$c->category}}</td>
                     <td class="text-center">
+                        <a href="editKtg/{{$c->id_category}}" class="btn btn-primary" title="Edit"><i class="fas fa-pencil-alt fa-fw"></i>
+                        </a>
+
                         <button ng-click="hapus({{$c->id_category}})" idnya="{{$c->id_category}}" id="delbtn" class="btn btn-danger" title="Hapus"><i class="fas fa-trash fa-fw"></i></button>
                     </td>
                 </tr>

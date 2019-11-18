@@ -51,6 +51,10 @@ Route::get('/viewKategori', 'kategoriController@index')->name('viewKategori');
 
 Route::post('/inserKategori', 'kategoriController@insert')->name('inserKategori');
 
+Route::get('/editKtg/{id}', 'kategoriController@editKtg')->name('editKtg');
+
+Route::post('/updKtg/{id}', 'kategoriController@update')->name('updKtg');
+
 Route::post('/delKategori', 'kategoriController@delete');
 
 Route::get('/viewUser', 'userController@index')->name('viewUser');
