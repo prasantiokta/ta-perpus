@@ -58,20 +58,20 @@
 				<ul class="list-unstyled">
 					<div class="sidebar-header">
 
-						<h3 class="mt-3"><i class="fas fa-school fa-fw"></i>&nbsp;<span>E - Library</span></h3>
+						<h4 class="mt-3"><b><i class="fas fa-school fa-fw"></i>&nbsp;&nbsp;&nbsp;<span>E - Library</span></b></h4>
 
 					</div>
 					<li>
 						<br>
 					</li>
 					<li class="active">
-						<a href="{{ url('/home') }}"><i class="fas fa-home fa-fw"></i>&nbsp;Dashboard</a>
+						<a href="{{ url('/home') }}"><i class="fas fa-home fa-fw"></i>&nbsp;&nbsp;&nbsp;Dashboard</a>
 					</li>
 					<li>
 						<br>
 					</li>
 					<li class="list-unstyled components">
-						<a href="#subMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-table"></i>&nbsp;Master</a>
+						<a href="#subMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-table"></i>&nbsp;&nbsp;&nbsp;Master</a>
 						<ul class="collapse list-unstyled" id="subMenu">
 							<li>
 								<a href="{{ url('/viewKategori') }}">Kategori</a>
@@ -91,7 +91,7 @@
 						<br>
 					</li>
 					<li>
-						<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-wrench"></i>&nbsp;Transaksi</a>
+						<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-wrench"></i>&nbsp;&nbsp;&nbsp;Transaksi</a>
 						<ul class="collapse list-unstyled" id="pageSubmenu">
 							<li>
 								<a href="{{ url('/vPeminjaman') }}">Peminjaman</a>

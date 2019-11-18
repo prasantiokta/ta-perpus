@@ -127,7 +127,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <center><button class="btn btn-success" ng-click="addPinjam()"><i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;Simpan Peminjaman</button></center>
+                <center><button ng-disabled="filled == true" class="btn btn-success" ng-click="addPinjam()"><i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;Simpan Peminjaman</button></center>
             </div>
         </div>
         <br>
@@ -196,7 +196,7 @@
 
                 if (checked==0) {
 
-                    $scope.filled = false;
+                    $scope.btnMaxVal = false;
                     $.growl.error({ message: "Centang Checkbox" });
 
                 } else if (checked > 0 && checked <= 3) {
@@ -208,13 +208,13 @@
 
                     });
 
-                    $scope.filled = true;
+                    $scope.btnMaxVal = true;
                     $.growl.notice({ message: "Masuk ke list" });
 
                 } else {
 
                     $.growl.error({ message: "Tidak boleh meminjam lebih dari 3 buku" });
-                    $scope.filled = false;
+                    $scope.btnMaxVal = false;
 
                 }
 
@@ -260,7 +260,7 @@
             } else {
                 //create kodepinjam
                 var id = JSON.parse($scope.idny);
-                $scope.id = id + 1;
+                $scope.id = id;
                 $scope.kodepinjam = $scope.year + $scope.month + $scope.day + "-" + $scope.id;
                 // get angg
                 $scope.nmangg = angg.options[angg.selectedIndex].getAttribute("nama");
@@ -270,7 +270,7 @@
                 $scope.nmpust = pust.getAttribute("value");
                 //tglkmbl
                 $scope.tglk = moment($scope.tglkembali).format('YYYY-MM-DD');
-
+                $scope.filled = true;
                 $http.post('{{url("inserPinjam")}}', {
                     kode: $scope.kodepinjam,
                     anggota_id: $scope.anggota,

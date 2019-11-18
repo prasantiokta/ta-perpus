@@ -41,6 +41,7 @@ class pinjamController extends Controller
             $idnya = 1;
         } else {
             $idnya = DB::table('peminjaman')->orderBy('id', 'desc')->value('id');
+            $idnya = $idnya + 1;
         }
 
         //return response()->json($idnya);

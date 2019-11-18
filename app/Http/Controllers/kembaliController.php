@@ -39,6 +39,7 @@ class kembaliController extends Controller
     {
         $kembaliny = DB::table('pengembalian')->where('id','=',$id)->first();
         $getId = $kembaliny->pinjam_id;
+        // dd($getId);
 
         $mainList = DB::table('peminjaman')->where('id','=',$getId)->first();
         $list = DB::table('details')->where('pinjam_id','=',$getId)->get();
@@ -52,7 +53,7 @@ class kembaliController extends Controller
         $denda = 1000 * $arr * $jarakny;
         //dd($denda);
 
-        return view('isi.bayarDenda', compact('mainList','list','denda','jarakny'));
+        return view('isi.bayareDenda', compact('mainList','list','denda','jarakny'));
     }
 
     public function insert()
@@ -69,9 +70,10 @@ class kembaliController extends Controller
             'jarak' => $param['jarak'],
         );
 
-        DB::table('peminjaman')->where('kodepinjam','=',$param['kode'])->first();
-        DB::table('pengembalian')->where('kodepinjam','=',$param['kode'])->first();
+        DB::table('peminjaman')->where('kodepinjam','=',$param['kode'])->update(['dikembalikan' => 1]);
+        DB::table('pengembalian')->where('kodepinjam','=',$param['kode'])->update(['dikembalikan' => 1]);
         DB::table('denda')->insert($input);
 
+        return redirect('/vPengembalian');
     }
 }

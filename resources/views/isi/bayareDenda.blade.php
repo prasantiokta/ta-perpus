@@ -4,7 +4,7 @@
 @section('page')
 <div ng-app="tesApp" ng-controller="tesCtrl" class="container shadow-lg">
     <div style="padding: 8px;">
-        <h3 class="mt-3 text-center">Pembayaran Denda</h3>
+        <h3 class="mt-3 text-center">Pembayaran Dendaee</h3>
         <hr width="40%"><br>
                     <div class="wrap">
                     	<div class="row">
@@ -42,32 +42,32 @@
                             <div class="col-md-6" id="ket">
                     			<table class="table table-stripped">
                                     <tr>
-                                        <td>Kode Peminjaman&nbsp;&nbsp;&nbsp;</td>
-                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td>
-                                        <td><span id="kode">&nbsp;&nbsp;&nbsp;{{$mainList->kodepinjam}}</span></td>
+                                        <td>Kode Peminjaman</td>
+                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td><span id="kode">{{$mainList->kodepinjam}}</span></td>
                                     </tr>
                                     <tr>
-                                        <td>Nama Anggota&nbsp;&nbsp;&nbsp;</td>
-                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td>
-                                        <td><span id="nmangg">&nbsp;&nbsp;&nbsp;{{$mainList->nmangg}}</span></td>
+                                        <td>Nama Anggota</td>
+                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td><span id="nmangg">{{$mainList->nmangg}}</span></td>
                                     </tr>
                                     <tr>
-                                        <td>Nama Pustakawan&nbsp;&nbsp;&nbsp;</td>
-                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td>
-                                        <td><span id="nmpust">&nbsp;&nbsp;&nbsp;{{$mainList->nmpust}}</span></td>
+                                        <td>Nama Pustakawan</td>
+                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td><span id="nmpust">{{$mainList->nmpust}}</span></td>
                                     </tr>
                                     <tr>
-                                        <td>Tgl. Pinjam&nbsp;&nbsp;&nbsp;</td>
-                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td>
-                                        <td><span id="tglpinjam">&nbsp;&nbsp;&nbsp;{{$mainList->tgl_pinjam}}</span></td>
+                                        <td>Tgl. Pinjam</td>
+                                        <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td><span id="tglpinjam">{{$mainList->tgl_pinjam}}</span></td>
                                     </tr>
                                     <tr>
-                                        <td>Tgl. Kembali&nbsp;&nbsp;&nbsp;</td>
+                                        <td>Tgl. Kembali</td>
                                         <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         <td><span id="tglkembali">{{$mainList->tgl_kembali}}</span></td>
                                     </tr>
                                     <tr>
-                                        <td>Terlambat&nbsp;&nbsp;&nbsp;</td>
+                                        <td>Terlambat</td>
                                         <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                         <td><span id="jarak">{{$jarakny}} hari</span></td>
                                     </tr>
@@ -174,12 +174,11 @@
                     nmangg: $scope.nmangg,
                     datenow: $scope.datenow,
                     tglkembali: $scope.tglkembali,
-                    jarak: $scope.jarak,
-                    _token: '{{csrf_token()}}'
+                    jarak: $scope.jarak
 
                 }).then(function(reply) {
                     $.growl.notice({ message: "Buku telah dikembalikan" });
-                    $window.location.replace("vPengembalian");
+                    $window.location.replace("../vPengembalian");
                 });
             
         }
