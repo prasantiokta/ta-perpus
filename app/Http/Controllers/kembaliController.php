@@ -80,7 +80,7 @@ class kembaliController extends Controller
 
     public function indexRekap()
     {
-        $list = DB::table('peminjaman')->orderBy('id')->where('dikembalikan','=','1')->get();
+        $list = DB::table('peminjaman')->orderBy('id','desc')->get();
 
         return view('isi.vRekapan', compact('list'));
     }

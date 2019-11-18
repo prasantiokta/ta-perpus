@@ -14,6 +14,9 @@
 
 	<!-- jquery -->
 	<script type="text/javascript" src="{{ asset('addens/jquery.min.js') }}"></script>
+	<!-- chart js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 	<!-- angular -->
 	<script type="text/javascript" src="{{ asset('addens/angularjs/angular.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('addens/angularjs/angular-animate.min.js') }}"></script>

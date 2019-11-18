@@ -20,7 +20,7 @@ class userController extends Controller
     public function index()
     {
         # code...
-        $userx = DB::table('users')->orderBy('id')->get();
+        $userx = DB::table('users')->orderBy('id','desc')->get();
         $last = DB::table('users')->get()->count();
         $idnya = 0;
         if ($last == 0) {

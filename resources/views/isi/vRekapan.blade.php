@@ -16,6 +16,7 @@
                     <th class="text-center">Pustakawan</th>
                     <th class="text-center">Tgl. Pinjam</th>
                     <th class="text-center">Tgl. Kembali</th>
+                    <th class="text-center">Status</th>
                     <th class="text-center">Aksi</th>
                 </tr>
             </thead>
@@ -28,6 +29,8 @@
                     <td>{{$b->nmpust}}</td>
                     <td>{{$b->tgl_pinjam}}</td>
                     <td>{{$b->tgl_kembali}}</td>
+                    <td ng-if="{{$b->dikembalikan == 0}}">Belum dikembalikan</td>
+                    <td ng-if="{{$b->dikembalikan == 1}}">Sudah dikembalikan</td>
                     <td class="text-center">
                         <a href="dtlRekap/{{$b->id}}" id="detail" class="btn btn-info" title="Detail"><i class="fas fa-eye fa-fw"></i></a>
                     </td>

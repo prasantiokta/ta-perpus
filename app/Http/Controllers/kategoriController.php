@@ -17,7 +17,7 @@ class kategoriController extends Controller
 
     public function index()
     {
-        $category = DB::table('kategori')->get();
+        $category = DB::table('kategori')->orderBy('id_category', 'desc')->get();
         $last = DB::table('kategori')->get()->count();
         $idnya = 0;
         if ($last == 0) {

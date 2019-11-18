@@ -101,7 +101,7 @@
 				                        </tbody>
 				                    </table>
 				                </div><br>
-				                <center><button class="btn btn-info" title="Simpan" ng-click="simpan()"><i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;Simpan</button></center>
+				                <center><button class="btn btn-info" title="Simpan" ng-click="simpan()" ng-if="lanjut == true"><i class="fas fa-check"></i>&nbsp;&nbsp;&nbsp;Simpan</button></center>
                     		</div>
                     	</div>
                     </div>
@@ -122,6 +122,9 @@
     var app = angular.module('tesApp', []);
     app.controller('tesCtrl', function($scope, $filter, $http, $window) {
         //vars
+        $scope.lanjut = false;
+
+        //var input
         $scope.kodepinjam;
         $scope.nmangg; 
         $scope.kembali;
@@ -140,10 +143,12 @@
             if ($scope.bayare == 0 || $scope.bayare < $scope.denda) {
                 $.growl.error({message: "Pembayaran Kurang"});
                 document.getElementById("kembalinya").value = null;
+                $scope.lanjut = false;
             } else {
                 var kembali = $scope.bayare-$scope.denda;
                 $.growl.notice({message: "Pembayaran denda lunas"});
                 document.getElementById("kembalinya").value = kembali;
+                $scope.lanjut = true;
             }
 
         }

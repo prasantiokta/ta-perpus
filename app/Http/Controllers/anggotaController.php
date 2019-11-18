@@ -16,7 +16,7 @@ class anggotaController extends Controller
 
     public function index()
     {
-        $agt = DB::table('anggota')->orderBy('id_angg')->get();
+        $agt = DB::table('anggota')->orderBy('id_angg','desc')->get();
         $last = DB::table('anggota')->get()->count();
         $idnya = 0;
         if ($last == 0) {

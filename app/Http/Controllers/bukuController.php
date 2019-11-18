@@ -17,7 +17,7 @@ class bukuController extends Controller
 
     public function index()
     {
-        $bukux = DB::table('buku')->orderBy('judul')
+        $bukux = DB::table('buku')->orderBy('id_buku','desc')
             ->join('kategori', 'kategori.id_category', '=', 'buku.jenis_id')
             ->get();
         $category = DB::table('kategori')->get();
