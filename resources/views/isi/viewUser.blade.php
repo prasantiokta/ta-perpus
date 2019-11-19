@@ -116,7 +116,9 @@
                     <td>{{$u->email}}</td>
 
                     <td class="text-center">
-                        <!-- <a href="" class="btn btn-primary" title="Edit"><i class="fas fa-pencil-alt fa-fw"></i></a> -->
+                    <a href="editUser/{{$u->id}}" class="btn btn-primary" title="Edit"><i class="fas fa-pencil-alt fa-fw"></i>
+                        </a>
+                        
                         <button ng-click="hapus({{$u->id}})" idnya="{{$u->id}}" id="delbtn" class="btn btn-danger" title="Hapus"><i class="fas fa-trash fa-fw"></i></button>
                     </td>
                 </tr>

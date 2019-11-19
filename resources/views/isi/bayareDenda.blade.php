@@ -21,13 +21,13 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Pembayaran</label>
-                                            <input type="text" id="bayarnya" class="form-control">
+                                            <input type="text" id="bayarnya" class="form-control" onkeyup="pay()">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label>Kembalian</label>
-                                            <input type="text" id="kembalinya" class="form-control" readonly>
+                                            <input type="text" id="kembalinya" class="form-control" onkeyup="pay()" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +117,18 @@
             // buttons: ['excel','print'],
             // "lengthChange": true
         });
+
     });
+
+    function pay() {
+            var text1 = document.getElementById("bayarnya").value;
+            var text2 = document.getElementById("total").value;
+            var result = parseInt(text1) - parseInt(text2);
+
+            if (!isNaN(result)) {
+                document.getElementById("kembalinya").value = result;
+            }
+    }
 
     var app = angular.module('tesApp', []);
     app.controller('tesCtrl', function($scope, $filter, $http, $window) {
@@ -183,7 +194,7 @@
                 });
             
         }
-
+        
     });
 </script>
 @endsection

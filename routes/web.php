@@ -59,6 +59,10 @@ Route::post('/delKategori', 'kategoriController@delete');
 
 Route::get('/viewUser', 'userController@index')->name('viewUser');
 
+Route::get('/editUser/{id}', 'userController@editUser')->name('editUser');
+
+Route::post('/updUser/{id}', 'userController@update')->name('updUser');
+
 Route::post('/inserUser', 'userController@create')->name('inserUser');
 
 Route::post('/deleteUser', 'userController@delete');

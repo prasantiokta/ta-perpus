@@ -20,7 +20,7 @@ class userController extends Controller
     public function index()
     {
         # code...
-        $userx = DB::table('users')->orderBy('id','desc')->get();
+        $userx = DB::table('users')->orderBy('id', 'desc')->get();
         $last = DB::table('users')->get()->count();
         $idnya = 0;
         if ($last == 0) {
@@ -51,6 +51,25 @@ class userController extends Controller
             'password' => Hash::make($request['password']),
         ]);
         return redirect()->route('viewUser')->with('status', 'Pustakawan Berhasil Ditambahkan!');
+    }
+
+    public function editUser($id)
+    {
+        $userx = User::find($id);
+
+        return view('isi.editUser', compact('userx'));
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        DB::table('users')->where('id', $id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request['password']),
+        ]);
+
+        return redirect('viewUser');
     }
 
     public function delete()
