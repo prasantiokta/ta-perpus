@@ -22,6 +22,7 @@ class Anggota extends Migration
             $table->string('jurusan');
             $table->string('notelp');
             $table->string('alamat');
+            $table->boolean('status')->default(0);  //0 = tdk aktif
             $table->timestamps();
         });
     }

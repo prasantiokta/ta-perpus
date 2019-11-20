@@ -21,7 +21,7 @@ class Buku extends Migration
             $table->string('judul');
             $table->string('penerbit');
             $table->string('penulis');
-            $table->boolean('status')->default(0);
+            $table->boolean('status')->default(0);  //0 = tersedia, 1 = dipinjam, 2 = rusak, 3 = hilang
             $table->timestamps();
             $table->foreign('jenis_id')->references('id_category')->on('kategori')->onDelete('cascade')->onUpdate('cascade');
         });

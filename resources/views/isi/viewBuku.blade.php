@@ -92,8 +92,10 @@
                     <td>{{$b->judul}}</td>
                     <td>{{$b->penerbit}}</td>
                     <td>{{$b->penulis}}</td>
-                    <td ng-if="{{$b->status == 0}}">Tersedia</td>
-                    <td ng-if="{{$b->status == 1}}">Dipinjam</td>
+                    <td ng-if="{{$b->status == 0}}" style="color: green;"><b>Tersedia</b></td>
+                    <td ng-if="{{$b->status == 1}}" style="color: blue;"><b>Dipinjam</b></td>
+                    <td ng-if="{{$b->status == 2}}" style="color: orange;"><b>Rusak</b></td>
+                    <td ng-if="{{$b->status == 3}}" style="color: red;"><b>Hilang</b></td>
                     <td class="text-center">
                         <a href="editBuku/{{$b->id_buku}}" class="btn btn-primary" title="Edit"><i class="fas fa-pencil-alt fa-fw"></i>
                         </a>

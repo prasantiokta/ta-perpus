@@ -32,8 +32,8 @@ class pinjamController extends Controller
 
     public function field()
     {
-        $agt = DB::table('anggota')->get();
-        $bukue = DB::table('buku')->where('status', '=', 0)->get();
+        $agt = DB::table('anggota')->where('status', '=', 1)->get();
+        $bukue = DB::table('buku')->where('status', '=', 0)->orWhere('status', '=', 2)->get();
         $last = DB::table('peminjaman')->get()->count();
         $idnya = 0;
         if ($last == 0) {
@@ -85,17 +85,6 @@ class pinjamController extends Controller
             }
         }
 
-        $kembali = array(
-            'pinjam_id' => $result,
-            'kodepinjam' => $param['kode'],
-            'tgl_pinjam' => $param['tglpinjam'],
-            'tgl_kembali' => $param['tglkembali'],
-            'nmangg' => $param['nmangg'],
-            'nmpust' => $param['nmpust'],
-        );
-
-        $result3 = DB::table('pengembalian')->insert($kembali);
-
         //     return response()->json($data);
     }
 
@@ -106,17 +95,4 @@ class pinjamController extends Controller
 
         return view('isi.vDetail', compact('mainList','list'));
     }
-
-    // public function find(Request $request){
-
-    //     $param =  json_decode(request()->getContent(), true);
-
-    //     $list = $param['detail'];
-
-    //     for ($i=0; $i < count($list) ; $i++) { 
-    //         # code...
-    //         $data = DB::table('buku')->where('id','=', $list[$i]['id'] )->get();
-    //     }
-
-    // }
 }

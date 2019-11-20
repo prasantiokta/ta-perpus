@@ -23,7 +23,7 @@ class Peminjaman extends Migration
             $table->date('tgl_kembali');
             $table->string('nmangg');
             $table->string('nmpust');
-            $table->boolean('dikembalikan')->default(0);
+            $table->boolean('dikembalikan')->default(0);    //0 = belum kembali
             $table->timestamps();
             $table->foreign('anggota_id')->references('id_angg')->on('anggota')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('pustakawan_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

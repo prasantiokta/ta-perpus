@@ -23,6 +23,7 @@ class Details extends Migration
             $table->string('judul');
             $table->string('penerbit');
             $table->string('penulis');
+            $table->boolean('status')->default(0);    //0 = belum dikembalikan, 1 = dikembalikan, 2 = kembali rusak, 3 = hilang
             $table->foreign('pinjam_id')->references('id')->on('peminjaman')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('buku_id')->references('id_buku')->on('buku')->onDelete('cascade')->onUpdate('cascade');
         });

@@ -17,8 +17,8 @@ class Denda extends Migration
             $table->bigincrements('id');
             $table->string('kodepinjam');
             $table->integer('dendany');
-            $table->integer('bayar');
-            $table->integer('kembali');
+            $table->integer('bayarny');
+            $table->integer('kembaliny');
             $table->date('datenow');
             $table->date('tglkembali');
             $table->string('nmangg');
