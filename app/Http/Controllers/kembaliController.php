@@ -17,7 +17,7 @@ class kembaliController extends Controller
 
     public function index()
     {
-        $list = DB::table('pengembalian')->orderBy('id')->where('dikembalikan','=','0')->get();
+        $list = DB::table('peminjaman')->orderBy('id','desc')->where('dikembalikan','=','0')->get();
         $today = Carbon::today()->toDateString();
         //dd($today);
         return view('isi.vPengembalian', compact('list','today'));
@@ -25,56 +25,70 @@ class kembaliController extends Controller
 
     public function kembalikan($id)
     {
-        $kodeny = DB::table('pengembalian')->where('id',$id)->first();
-        $kode = $kodeny->kodepinjam;
-        //dd($kode);
-        $upd = DB::table('peminjaman')->where('kodepinjam','=',$kode)->update(['dikembalikan' => 1]);
-        if ($upd) {
-        	DB::table('pengembalian')->where('id','=',$id)->update(['dikembalikan' => 1]);
-        }
+        $mainList = DB::table('peminjaman')->where('id','=',$id)->first();
+        $matchThese = ['pinjam_id' => $id, 'status' => 0];
+        $list = DB::table('details')->where($matchThese)->get();
 
-        return redirect('vPengembalian');
+        return view('isi.prosesKembali', compact('mainList','list'));
     }
 
-    public function loadBayar($id)
-    {
-        $kembaliny = DB::table('pengembalian')->where('id','=',$id)->first();
-        $getId = $kembaliny->pinjam_id;
-        // dd($getId);
-
-        $mainList = DB::table('peminjaman')->where('id','=',$getId)->first();
-        $list = DB::table('details')->where('pinjam_id','=',$getId)->get();
-
-        $arr = count($list);
-        $today  = date_create(); //waktu sekarang
-        $tgl = date_create($mainList->tgl_kembali); //waktu db
-        $selisih  = date_diff($today, $tgl);
-        $jarakny = $selisih->days;
-
-        $denda = 1000 * $arr * $jarakny;
-        //dd($denda);
-
-        return view('isi.bayareDenda', compact('mainList','list','denda','jarakny'));
-    }
-
-    public function insert()
+    public function dikembalikan()
     {
         $param =  json_decode(request()->getContent(), true);
+        $detail = $param['detail'];
+        
+        for ($b=0; $b < count($detail); $b++) { 
+            $gantiSts2[$b]['status'] = 1;
+            $gantiny2 =  DB::table('details')->where('kodebuku','=', $detail[$b]['kodebuku'])->update($gantiSts2[$b]);
+        }
+        if ($gantiny2) {
+            for ($a=0; $a < count($detail); $a++) { 
+                $gantiSts1[$a]['status'] = 0;
+                $gantiny1 =  DB::table('buku')->where('id_buku','=', $detail[$a]['id'])->update($gantiSts1[$a]);
+            }
+        }
+
+        $matchThese = ['pinjam_id' => $param['id'], 'status' => 0];
+        $jumlahBuku = count(DB::table('details')->where($matchThese)->get());
+        if ($jumlahBuku == 0) {
+            DB::table('peminjaman')->where('id','=', $param['id'])->update(['dikembalikan' => 1]);
+        }
+        return redirect('/vPengembalian');
+
+    }
+
+    public function inserDenda()
+    {
+        $param =  json_decode(request()->getContent(), true);
+        $detail = $param['detail'];
+
         $input = array(
-            'kodepinjam' => $param['kode'],
-            'dendany' => $param['denda'],
-            'bayar' => $param['bayare'],
-            'kembali' => $param['kembali'],
-            'tglkembali' => $param['tglkembali'],
-            'datenow' => $param['datenow'],
-            'nmangg' => $param['nmangg'],
-            'jarak' => $param['jarak'],
+            'pinjam_id' => $param['id'],
+            'tgl_dikembalikan' => $param['tgl'],
+            'hari' => $param['hari'],
+            'ttl_denda' => $param['denda'],
+            'ttl_bayar' => $param['bayar'],
+            'ttl_kembalian' => $param['kembali'],
         );
 
-        DB::table('peminjaman')->where('kodepinjam','=',$param['kode'])->update(['dikembalikan' => 1]);
-        DB::table('pengembalian')->where('kodepinjam','=',$param['kode'])->update(['dikembalikan' => 1]);
         DB::table('denda')->insert($input);
+        
+        for ($b=0; $b < count($detail); $b++) { 
+            $gantiSts2[$b]['status'] = 1;
+            $gantiny2 =  DB::table('details')->where('kodebuku','=', $detail[$b]['kodebuku'])->update($gantiSts2[$b]);
+        }
+        if ($gantiny2) {
+            for ($a=0; $a < count($detail); $a++) { 
+                $gantiSts1[$a]['status'] = 0;
+                $gantiny1 =  DB::table('buku')->where('id_buku','=', $detail[$a]['id'])->update($gantiSts1[$a]);
+            }
+        }
 
+        $matchThese = ['pinjam_id' => $param['id'], 'status' => 0];
+        $jumlahBuku = count(DB::table('details')->where($matchThese)->get());
+        if ($jumlahBuku == 0) {
+            DB::table('peminjaman')->where('id','=', $param['id'])->update(['dikembalikan' => 1]);
+        }
         return redirect('/vPengembalian');
     }
 
@@ -89,12 +103,16 @@ class kembaliController extends Controller
     {
         $mainList = Peminjaman::find($id);
         $list = DB::table('details')->where('pinjam_id','=',$id)->get();
-        $a = DB::table('denda')->where('kodepinjam','=',$mainList->kodepinjam)->get();
-        $denda = DB::table('denda')->where('kodepinjam','=',$mainList->kodepinjam)->first();
+        $denda = DB::table('denda')->where('pinjam_id','=',$id)->orderBy('id','desc')->get();
 
-        $dendae = count($a);
+        $td = $denda->sum('ttl_denda');
+        $tb = $denda->sum('ttl_bayar');
+        $tk = $denda->sum('ttl_kembalian');
+
+        $length = count(DB::table('denda')->where('pinjam_id','=',$id)->get());
+
         //dd($denda);
 
-        return view('isi.dtlR', compact('mainList','list','denda','dendae'));
+        return view('isi.dtlR', compact('mainList','list','denda','td','tb','tk','length'));
     }
 }

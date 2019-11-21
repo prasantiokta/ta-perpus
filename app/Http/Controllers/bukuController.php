@@ -59,17 +59,6 @@ class bukuController extends Controller
 
     public function update(Request $request, $id_buku)
     {
-
-        // $message = [
-        //     'required' => ':attribute tidak boleh kosong'
-        // ];
-        // request()->validate([
-        //     'jenis_id' => 'required',
-        //     'judul' => 'required',
-        //     'penulis' => 'required',
-        //     'penerbit' => 'required'
-        // ], $message);
-
         //kode & nmcat generate
         $nmc = DB::table('kategori')->where('id_category',$request->jenis_id)->value('category');
         $kode = substr($request->judul, 0, 4);

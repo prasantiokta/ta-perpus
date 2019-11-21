@@ -97,6 +97,7 @@
                     <th class="text-center">Jurusan</th>
                     <th class="text-center">No. Telp</th>
                     <th class="text-center">Alamat</th>
+                    <th class="text-center">Status</th>
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
@@ -110,9 +111,13 @@
                     <td>{{$a->jurusan}}</td>
                     <td>{{$a->notelp}}</td>
                     <td>{{$a->alamat}}</td>
+                    <td ng-if="{{$a->status == 0}}" style="color: red;"><b>Tdk Aktif</b></td>
+                    <td ng-if="{{$a->status == 1}}" style="color: green;"><b>Aktif</b></td>
                     <td class="text-center">
-                        <a href="editAnggt/{{$a->id_angg}}" class="btn btn-primary"><i class="fas fa-pencil-alt fa-fw"></i></a>
-                        <button ng-click="hapus({{$a->id_angg}})" idnya="{{$a->id_angg}}" id="delbtn" class="btn btn-danger" ng-disabled="deleting == true"><i class="fas fa-trash fa-fw"></i></button>
+                        <a href="aktifkan/{{$a->id_angg}}" ng-if="{{$a->status == 0}}" class="btn btn-success" title="Aktifkan"><i class="fas fa-check fa-fw"></i></a>
+                        <a href="nonaktifkan/{{$a->id_angg}}" ng-if="{{$a->status == 1}}" class="btn btn-warning" title="Nonaktifkan"><i class="fas fa-times fa-fw"></i></a>
+                        <a href="editAnggt/{{$a->id_angg}}" class="btn btn-primary" title="Edit"><i class="fas fa-pencil-alt fa-fw"></i></a>
+                        <button ng-click="hapus({{$a->id_angg}})" idnya="{{$a->id_angg}}" id="delbtn" class="btn btn-danger" ng-disabled="deleting == true" title="Hapus"><i class="fas fa-trash fa-fw"></i></button>
                     </td>
                 </tr>
                 @endforeach

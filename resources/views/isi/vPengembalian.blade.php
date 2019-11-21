@@ -29,39 +29,13 @@
                     <td>{{$b->tgl_pinjam}}</td>
                     <td>{{$b->tgl_kembali}}</td>
                     <td class="text-center">
-                        <a href="vDetail/{{$b->pinjam_id}}" id="detail" class="btn btn-info" title="Detail"><i class="fas fa-eye fa-fw"></i></a>
-                        @if($b->tgl_kembali >= $today)
+                        <a href="vDetail/{{$b->id}}" id="detail" class="btn btn-info" title="Detail"><i class="fas fa-eye fa-fw"></i></a>
                         <a href="kembaliBuku/{{$b->id}}" id="kembali" class="btn btn-primary"  title="Kembalikan"><i class="fas fa-check fa-fw"></i></a>
-                        @elseif($b->tgl_kembali < $today)
-                        <a href="byrDenda/{{$b->id}}" class="btn btn-danger"  title="Denda"><i class="fas fa-list fa-fw"></i></a>
-                        @endif
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-
-        <div id="ModalDenda" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5>
-                            Denda
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-arrow-circle-left"></i>&nbsp;&nbsp;&nbsp;Batal</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
     </div>
 </div>
 <!-- App ctrl angular -->
@@ -80,12 +54,6 @@
     app.controller('tesCtrl', function($scope, $http, $window) {
         //vars 
 
-        //today date
-        var dateNow = $filter('date')(new Date(), 'yyyy-MM-dd');
-        $scope.year = dateNow.substring(0,4);
-        $scope.month = dateNow.substring(5,7);
-        $scope.day = dateNow.substring(8,10);
-        $scope.today = $scope.year + "-" + $scope.month + "-" + $scope.day;
 
     });
 </script>

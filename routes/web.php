@@ -45,6 +45,10 @@ Route::post('/deleteAgt', 'anggotaController@delete');
 
 Route::get('/editAnggt/{id}', 'anggotaController@editAnggt')->name('editAnggt');
 
+Route::get('/aktifkan/{id}', 'anggotaController@aktifkan');
+
+Route::get('/nonaktifkan/{id}', 'anggotaController@nonaktifkan');
+
 Route::post('/updAgt/{id}', 'anggotaController@update')->name('updAgt');
 
 Route::get('/viewKategori', 'kategoriController@index')->name('viewKategori');
@@ -79,9 +83,9 @@ Route::get('/vPengembalian', 'kembaliController@index')->name('vPengembalian');
 
 Route::get('/kembaliBuku/{id}', 'kembaliController@kembalikan')->name('kembaliBuku');
 
-Route::get('/byrDenda/{id}', 'kembaliController@loadBayar')->name('byrDenda');
+Route::post('/kembalikan', 'kembaliController@dikembalikan')->name('kembalikan');
 
-Route::post('/inserDenda', 'kembaliController@insert')->name('inserDenda');
+Route::post('/inserDenda', 'kembaliController@inserDenda')->name('inserDenda');
 
 Route::get('/vRekapan', 'kembaliController@indexRekap')->name('vRekapan');
 

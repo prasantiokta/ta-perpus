@@ -15,15 +15,13 @@ class Denda extends Migration
     {
         Schema::create('denda', function (Blueprint $table) {
             $table->bigincrements('id');
-            $table->string('kodepinjam');
-            $table->integer('dendany');
-            $table->integer('bayarny');
-            $table->integer('kembaliny');
-            $table->date('datenow');
-            $table->date('tglkembali');
-            $table->string('nmangg');
-            $table->integer('jarak');
-            $table->timestamps();
+            $table->unsignedbigInteger('pinjam_id');
+            $table->date('tgl_dikembalikan');
+            $table->integer('hari');
+            $table->integer('ttl_denda');
+            $table->integer('ttl_bayar');
+            $table->integer('ttl_kembalian');
+            $table->foreign('pinjam_id')->references('id')->on('peminjaman')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

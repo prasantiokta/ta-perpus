@@ -13,7 +13,7 @@
                             <div class="col">
                                 
                             </div>
-                    		<div class="col-md-6" style="padding: : 40px;">
+                    		<div class="col-md-6" style="padding: 40px;">
                     			<table class="table table-stripped">
                                     <tr>
                                         <td>Kode Peminjaman</td>

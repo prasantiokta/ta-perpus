@@ -16,7 +16,7 @@ class pinjamController extends Controller
 
     public function index()
     {
-        $list = DB::table('peminjaman')->orderBy('id')->where('dikembalikan','=','0')->get();
+        $list = DB::table('peminjaman')->orderBy('id','desc')->where('dikembalikan','=','0')->get();
 
         $last = DB::table('peminjaman')->get()->count();
         $idnya = 0;
@@ -33,7 +33,7 @@ class pinjamController extends Controller
     public function field()
     {
         $agt = DB::table('anggota')->where('status', '=', 1)->get();
-        $bukue = DB::table('buku')->where('status', '=', 0)->orWhere('status', '=', 2)->get();
+        $bukue = DB::table('buku')->where('status', '=', 0)->get();
         $last = DB::table('peminjaman')->get()->count();
         $idnya = 0;
         if ($last == 0) {
@@ -82,6 +82,13 @@ class pinjamController extends Controller
                 $inputDetail[$i]['penulis'] = $detail[$i]['penulis'];
                 $inputDetail[$i]['penerbit'] = $detail[$i]['penerbit'];
                 $result2 = DB::table('details')->insert($inputDetail[$i]);
+            }
+        }
+
+        if ($sukses=1) {
+            for ($a=0; $a < count($detail); $a++) { 
+                $gantiSts[$a]['status'] = 1;
+                $gantiny =  DB::table('buku')->where('id_buku','=', $detail[$a]['id'])->update($gantiSts[$a]);
             }
         }
 

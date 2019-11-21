@@ -77,6 +77,22 @@ class anggotaController extends Controller
         return redirect('viewAnggota');
     }
 
+    public function aktifkan($id)
+    {
+        DB::table('anggota')->where('id_angg',$id)->update([
+            'status' => 1
+        ]);
+        return redirect('viewAnggota');
+    }
+
+    public function nonaktifkan($id)
+    {
+        DB::table('anggota')->where('id_angg',$id)->update([
+            'status' => 0
+        ]);
+        return redirect('viewAnggota');
+    }
+
     public function delete()
     {
         $param =  json_decode(request()->getContent(), true);

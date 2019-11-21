@@ -58,6 +58,7 @@
                             <td class="text-center">Judul Buku</td>
                             <td class="text-center">Penulis</td>
                             <td class="text-center">Penerbit</td>
+                            <td class="text-center">Status</td>
                             <td width="20px">Pilih</td>
                         </tr>
                     </thead>
@@ -71,6 +72,10 @@
                             <td>{{$b->judul}}</td>
                             <td>{{$b->penulis}}</td>
                             <td>{{$b->penerbit}}</td>
+                            <td ng-if="{{$b->status == 0}}" style="color: green;"><b>Tersedia</b></td>
+                            <td ng-if="{{$b->status == 1}}" style="color: blue;"><b>Dipinjam</b></td>
+                            <td ng-if="{{$b->status == 2}}" style="color: orange;"><b>Rusak</b></td>
+                            <td ng-if="{{$b->status == 3}}" style="color: red;"><b>Hilang</b></td>
                             <td class="text-center"><input type="checkbox" name="selectedRow[]" value="{{$key}}"></td>
                         </tr>
                         @endforeach
@@ -182,6 +187,7 @@
                     { data: "judul" },
                     { data: "penulis" },
                     { data: "penerbit" },
+                    { data: "status" },
                     {   
                         data: "selected",
                         defaultContent: ''

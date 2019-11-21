@@ -14,34 +14,34 @@
                                 @if($mainList->dikembalikan == 0)
                                 <br><center>Peminjaman ini belum dikembalikan</center><br>
                                 @else
-                                    @if($dendae == 0)
+                                    @if($length == 0)
                                     <br><center>Tidak dikenai denda  apapun</center><br>
-                                    @elseif($dendae == 1)
+                                    @else
                                     <table class="table table-stripped">
                                         <tr>
                                             <td>Total Denda</td>
                                             <td width="20px">:</td>
-                                            <td><span>@currency($denda->dendany)</span></td>
+                                            <td><span>@currency($td)</span></td>
                                         </tr>
                                         <tr>
                                             <td>Pembayaran</td>
                                             <td width="20px">:</td>
-                                            <td><span>@currency($denda->bayar)</span></td>
+                                            <td><span>@currency($tb)</span></td>
                                         </tr>
                                         <tr>
                                             <td>Kembalian</td>
                                             <td width="20px">:</td>
-                                            <td><span>@currency($denda->kembali)</span></td>
+                                            <td><span>@currency($tk)</span></td>
                                         </tr>
                                         <tr>
                                             <td>Tanggal dikembalikan</td>
                                             <td width="20px">:</td>
-                                            <td><span>{{$denda->datenow}}</span></td>
+                                            <td><span>{{$denda[0]->tgl_dikembalikan}}</span></td>
                                         </tr>
                                         <tr>
                                             <td>Selisih Hari</td>
                                             <td width="20px">:</td>
-                                            <td><span>{{$denda->jarak}}</span></td>
+                                            <td><span>{{$denda[0]->hari}}</span></td>
                                         </tr>
                                         <tr>
                                             <td></td>
@@ -49,8 +49,6 @@
                                             <td></td>
                                         </tr>         
                                     </table>
-                                    @else
-                                    <br><center>Tidak dikenai denda  apapun</center><br>
                                     @endif
                                 @endif
                             </div>
