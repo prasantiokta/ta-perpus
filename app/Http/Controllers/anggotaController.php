@@ -8,15 +8,10 @@ use App\Anggota;
 
 class anggotaController extends Controller
 {
-    public function __construct()
-    {
-        # code...
-        $this->middleware('auth');
-    }
 
     public function index()
     {
-        $agt = DB::table('anggota')->orderBy('id_angg','desc')->get();
+        $agt = DB::table('anggota')->orderBy('id_angg', 'desc')->get();
         $last = DB::table('anggota')->get()->count();
         $idnya = 0;
         if ($last == 0) {
@@ -28,6 +23,22 @@ class anggotaController extends Controller
         }
         //dd($idnya);
         return view('isi.viewAnggota', compact('agt', 'idnya'));
+    }
+
+    public function tampilreg()
+    {
+        $agt = DB::table('anggota')->orderBy('id_angg', 'desc')->get();
+        $last = DB::table('anggota')->get()->count();
+        $idnya = 0;
+        if ($last == 0) {
+            # code...
+            $idnya = 1;
+        } else {
+            $idnya = DB::table('anggota')->orderBy('id_angg', 'desc')->value('id_angg');
+            $idnya = $idnya + 1;
+        }
+        //dd($idnya);
+        return view('isi.addAnggota', compact('agt', 'idnya'));
     }
 
     public function insert()
@@ -57,9 +68,9 @@ class anggotaController extends Controller
 
         $kode = substr($request->nmangg, 0, 4);
         $kode = strtoupper($kode);
-        $kodenya = $kode."-".$id;
+        $kodenya = $kode . "-" . $id;
 
-        DB::table('anggota')->where('id_angg',$id)->update([
+        DB::table('anggota')->where('id_angg', $id)->update([
             'kodeangg' => $kodenya,
             'nmangg' => $request->nmangg,
             'kelas' => $request->kelas,
@@ -79,7 +90,7 @@ class anggotaController extends Controller
 
     public function aktifkan($id)
     {
-        DB::table('anggota')->where('id_angg',$id)->update([
+        DB::table('anggota')->where('id_angg', $id)->update([
             'status' => 1
         ]);
         return redirect('viewAnggota');
@@ -87,7 +98,7 @@ class anggotaController extends Controller
 
     public function nonaktifkan($id)
     {
-        DB::table('anggota')->where('id_angg',$id)->update([
+        DB::table('anggota')->where('id_angg', $id)->update([
             'status' => 0
         ]);
         return redirect('viewAnggota');

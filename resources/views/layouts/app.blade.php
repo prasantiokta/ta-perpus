@@ -21,6 +21,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- javascript -->
+    <script type="text/javascript" src="{{ asset('addens/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('addens/angularjs/angular.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('addens/angularjs/angular-animate.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('addens/growl/jquery.growl.css') }}">
+    <script type="text/javascript" src="{{ asset('addens/growl/jquery.growl.js') }}"></script>
 </head>
 
 <body>

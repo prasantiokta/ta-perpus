@@ -15,6 +15,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/addAnggota', 'anggotaController@tampilreg')->name('addAnggota'); //Register Anggota
+
+
 //
 
 Route::get('/', function () {
