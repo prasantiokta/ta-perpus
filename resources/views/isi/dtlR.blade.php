@@ -10,7 +10,7 @@
                     @csrf
                     <div class="wrap">
                     	<div class="row">
-                            <div class="col-md-6" style="padding: 40px;">
+                            <div class="col-md-6" style="padding: 20px;">
                                 @if($mainList->dikembalikan == 0)
                                 <br><center>Peminjaman ini belum dikembalikan</center><br>
                                 @else
@@ -19,28 +19,28 @@
                                     @else
                                     <table class="table table-stripped">
                                         <tr>
-                                            <td>Total Denda</td>
-                                            <td width="20px">:</td>
+                                            <td style="width: 50px!important;">Total Denda</td>
+                                            <td>:</td>
                                             <td><span>@currency($td)</span></td>
                                         </tr>
                                         <tr>
-                                            <td>Pembayaran</td>
-                                            <td width="20px">:</td>
+                                            <td style="width: 50px!important;">Pembayaran</td>
+                                            <td>:</td>
                                             <td><span>@currency($tb)</span></td>
                                         </tr>
                                         <tr>
-                                            <td>Kembalian</td>
-                                            <td width="20px">:</td>
+                                            <td style="width: 50px!important;">Kembalian</td>
+                                            <td>:</td>
                                             <td><span>@currency($tk)</span></td>
                                         </tr>
                                         <tr>
-                                            <td>Tanggal dikembalikan</td>
-                                            <td width="20px">:</td>
+                                            <td style="width: 50px!important;">Tanggal dikembalikan</td>
+                                            <td>:</td>
                                             <td><span>{{$denda[0]->tgl_dikembalikan}}</span></td>
                                         </tr>
                                         <tr>
-                                            <td>Selisih Hari</td>
-                                            <td width="20px">:</td>
+                                            <td style="width: 50px!important;">Selisih Hari</td>
+                                            <td>:</td>
                                             <td><span>{{$denda[0]->hari}}</span></td>
                                         </tr>
                                         <tr>
@@ -52,7 +52,7 @@
                                     @endif
                                 @endif
                             </div>
-                    		<div class="col-md-6" style="padding: 40px;">
+                    		<div class="col-md-6" style="padding: 20px;">
                     			<table class="table table-stripped">
                                     <tr>
                                         <td>Kode Peminjaman</td>

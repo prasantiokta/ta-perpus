@@ -303,7 +303,8 @@
                     kembali: $scope.kembaliny,
                     hari: $scope.range,
                     tgl: $scope.today,
-                    detail: $scope.data
+                    detail: $scope.data,
+                    _token: '{{csrf_token()}}'
                 }).then(function(reply) {
                     $.growl.notice({message: "Buku dikembalikan"});
                     $window.location.replace("../vPengembalian");

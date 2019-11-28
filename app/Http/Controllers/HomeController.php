@@ -26,7 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $ja = count(DB::table('anggota')->orderBy('id_angg','desc')->where('status','=','0')->get());
+        $bt = count(DB::table('buku')->orderBy('id_buku','desc')->where('status','=','0')->get());
+        return view('home', compact('ja','bt'));
     }
 
     // public function chart()
@@ -75,5 +77,13 @@ class HomeController extends Controller
         // }
           //print_r($data);
           return response()->json($data);
+      }
+
+      public function statistic()
+      {
+        $ta = count(DB::table('anggota')->orderBy('id_angg','desc')->where('status','=','0')->get());
+        $bt = count(DB::table('buku')->orderBy('id_buku','desc')->where('status','=','0')->get());
+
+        return view('home', compact('ta','bt'));
       }
 }

@@ -7,8 +7,26 @@
     <center><h3>Homepage</h3></center>
     <br>
     <div class="row">
+        <div class="col" style="padding: 40px;">
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="card-header">Anggota</div>
+                <div class="card-body">
+                    <p class="card-text" style="color: white;">Jumlah anggota nonaktif : {{$ja}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col" style="padding: 40px;">
+            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                <div class="card-header">Buku</div>
+                <div class="card-body">
+                    <p class="card-text" style="color: white;">Jumlah buku tersedia : {{$bt}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
        <div class="col" style="padding: 40px;">
-        <div class="col-md-10">
+        <div>
             <div class="panel panel-default">
                 <div class="panel-heading"><b>Data peminjaman minggu ini</b></div>
                 <div class="panel-body">

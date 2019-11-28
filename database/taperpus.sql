@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Nov 2019 pada 15.38
+-- Waktu pembuatan: 28 Nov 2019 pada 16.34
 -- Versi server: 10.1.36-MariaDB
 -- Versi PHP: 7.2.10
 
@@ -48,7 +48,10 @@ CREATE TABLE `anggota` (
 INSERT INTO `anggota` (`id_angg`, `kodeangg`, `nmangg`, `kelas`, `jurusan`, `notelp`, `alamat`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'RAFI-1', 'Rafiega Aji', '12', 'Multimedia', '123213132423', 'Jl. Simo Gunung A 11', 1, NULL, NULL),
 (2, 'PRAS-2', 'Prasanti Oktav', '11', 'Rekayasa Perangkat Lunak', '543453421312', 'Jl. Aja Dulu No. 15', 1, NULL, NULL),
-(3, 'ADRI-3', 'Adrian Ainur', '12', 'Teknik Komputer dan Jaringan', '543453421312', 'Jl. Aja Dulu No. 14', 1, NULL, NULL);
+(3, 'ADRI-3', 'Adrian Ainur', '12', 'Teknik Komputer dan Jaringan', '543453421312', 'Jl. Aja Dulu No. 14', 1, NULL, NULL),
+(4, 'ILHA-4', 'Ilham', '12', 'Desain Komunikasi Visual', '543453421312', 'Jl. Aja Dulu No. 16', 0, NULL, NULL),
+(5, 'DIND-5', 'Dinda', '10', 'Administrasi Perkantoran', '123213132423', 'Jl. Simo Gunung A 11', 0, NULL, NULL),
+(6, 'AVI-6', 'Avi', '12', 'Akomodasi Perhotelan', '543453421312', 'Jl. Simo Gunung 15', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -74,27 +77,14 @@ CREATE TABLE `buku` (
 --
 
 INSERT INTO `buku` (`id_buku`, `jenis_id`, `nmcat`, `kodebuku`, `judul`, `penerbit`, `penulis`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Nonfiksi', 'LASK-1', 'Laskar Pelangi', 'Gramedia', 'Andrea Hirata', 0, NULL, NULL),
-(2, 2, 'Fiksi', 'HYOU-2', 'Hyouka', 'Penerbit Haru', 'Honobu Yonezawa', 0, NULL, NULL),
-(3, 2, 'Fiksi', 'EREB-3', 'Erebos', 'Gramedia', 'Ursula P.', 0, NULL, NULL),
-(4, 4, 'Misteri', 'LOST-4', 'Lost Man Lane', 'Noura Books', 'Anna Katherine G.', 0, NULL, NULL),
-(5, 2, 'Fiksi', 'LE P-5', 'Le Petit Prince', 'Elexmedia', 'Antonio G.', 1, NULL, NULL),
+(1, 1, 'Nonfiksi', 'LASK-1', 'Laskar Pelangi', 'Gramedia', 'Andrea Hirata', 1, NULL, NULL),
+(3, 2, 'Fiksi', 'EREB-3', 'Erebos', 'Gramedia', 'Ursula P.', 1, NULL, NULL),
+(4, 4, 'Misteri', 'LOST-4', 'Lost Man Lane', 'Noura Books', 'Anna Katherine G.', 1, NULL, NULL),
+(5, 2, 'Fiksi', 'LE P-5', 'Le Petit Prince', 'Elexmedia', 'Antonio G.', 0, NULL, NULL),
 (6, 1, 'Nonfiksi', 'BUKU-6', 'Buku Rusak', 'Av', 'Avi', 2, NULL, NULL),
-(7, 1, 'Nonfiksi', 'BUKU-7', 'Buku Hilang', 'Av', 'Avi', 3, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `dd`
---
-
-CREATE TABLE `dd` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `denda_id` bigint(20) UNSIGNED NOT NULL,
-  `buku_id` bigint(20) UNSIGNED NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  `denda` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(7, 1, 'Nonfiksi', 'BUKU-7', 'Buku Hilang', 'Av', 'Avi', 3, NULL, NULL),
+(8, 3, 'Horror', 'BUKU-8', 'Buku Dia', 'Va', 'Ava', 0, NULL, NULL),
+(9, 2, 'Fiksi', 'BUKU-9', 'Buku Tetsu', 'Sutet', 'Tetsu', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -121,7 +111,11 @@ INSERT INTO `denda` (`id`, `pinjam_id`, `tgl_dikembalikan`, `hari`, `ttl_denda`,
 (2, 7, '2019-11-22', 1, 1000, 4000, 3000),
 (3, 6, '2019-11-22', 1, 1000, 2000, 1000),
 (4, 6, '2019-11-22', 1, 1000, 4000, 3000),
-(6, 10, '2019-11-25', 2, 4000, 10000, 6000);
+(6, 10, '2019-11-25', 2, 4000, 10000, 6000),
+(11, 9, '2019-11-21', 2, 2000, 4000, 2000),
+(12, 12, '2019-11-21', 1, 2000, 4000, 2000),
+(13, 14, '2019-11-26', 1, 1000, 10000, 9000),
+(14, 16, '2019-11-27', 1, 2000, 4000, 2000);
 
 -- --------------------------------------------------------
 
@@ -147,10 +141,8 @@ CREATE TABLE `details` (
 
 INSERT INTO `details` (`id`, `pinjam_id`, `buku_id`, `nmcat`, `kodebuku`, `judul`, `penerbit`, `penulis`, `status`) VALUES
 (1, 1, 1, 'Nonfiksi', 'LASK-1', 'Laskar Pelangi', 'Gramedia', 'Andrea Hirata', 1),
-(2, 1, 2, 'Fiksi', 'HYOU-2', 'Hyouka', 'Penerbit Haru', 'Honobu Yonezawa', 1),
 (3, 1, 3, 'Fiksi', 'EREB-3', 'Erebos', 'Gramedia', 'Ursula P.', 1),
 (4, 2, 1, 'Nonfiksi', 'LASK-1', 'Laskar Pelangi', 'Gramedia', 'Andrea Hirata', 1),
-(5, 2, 2, 'Fiksi', 'HYOU-2', 'Hyouka', 'Penerbit Haru', 'Honobu Yonezawa', 1),
 (6, 3, 3, 'Fiksi', 'EREB-3', 'Erebos', 'Gramedia', 'Ursula P.', 1),
 (7, 3, 4, 'Misteri', 'LOST-4', 'Lost Man Lane', 'Noura Books', 'Anna Katherine G.', 1),
 (8, 3, 5, 'Fiksi', 'LE P-5', 'Le Petit Prince', 'Elexmedia', 'Antonio G.', 1),
@@ -160,14 +152,22 @@ INSERT INTO `details` (`id`, `pinjam_id`, `buku_id`, `nmcat`, `kodebuku`, `judul
 (12, 5, 4, 'Misteri', 'LOST-4', 'Lost Man Lane', 'Noura Books', 'Anna Katherine G.', 1),
 (13, 5, 5, 'Fiksi', 'LE P-5', 'Le Petit Prince', 'Elexmedia', 'Antonio G.', 1),
 (14, 6, 1, 'Nonfiksi', 'LASK-1', 'Laskar Pelangi', 'Gramedia', 'Andrea Hirata', 1),
-(15, 6, 2, 'Fiksi', 'HYOU-2', 'Hyouka', 'Penerbit Haru', 'Honobu Yonezawa', 1),
 (16, 7, 3, 'Fiksi', 'EREB-3', 'Erebos', 'Gramedia', 'Ursula P.', 1),
 (17, 8, 4, 'Misteri', 'LOST-4', 'Lost Man Lane', 'Noura Books', 'Anna Katherine G.', 1),
 (18, 8, 5, 'Fiksi', 'LE P-5', 'Le Petit Prince', 'Elexmedia', 'Antonio G.', 1),
-(19, 9, 5, 'Fiksi', 'LE P-5', 'Le Petit Prince', 'Elexmedia', 'Antonio G.', 0),
-(20, 10, 2, 'Fiksi', 'HYOU-2', 'Hyouka', 'Penerbit Haru', 'Honobu Yonezawa', 1),
+(19, 9, 5, 'Fiksi', 'LE P-5', 'Le Petit Prince', 'Elexmedia', 'Antonio G.', 1),
 (21, 10, 3, 'Fiksi', 'EREB-3', 'Erebos', 'Gramedia', 'Ursula P.', 1),
-(22, 10, 4, 'Misteri', 'LOST-4', 'Lost Man Lane', 'Noura Books', 'Anna Katherine G.', 1);
+(22, 10, 4, 'Misteri', 'LOST-4', 'Lost Man Lane', 'Noura Books', 'Anna Katherine G.', 1),
+(23, 11, 1, 'Nonfiksi', 'LASK-1', 'Laskar Pelangi', 'Gramedia', 'Andrea Hirata', 1),
+(26, 12, 3, 'Fiksi', 'EREB-3', 'Erebos', 'Gramedia', 'Ursula P.', 1),
+(27, 13, 4, 'Misteri', 'LOST-4', 'Lost Man Lane', 'Noura Books', 'Anna Katherine G.', 1),
+(28, 13, 5, 'Fiksi', 'LE P-5', 'Le Petit Prince', 'Elexmedia', 'Antonio G.', 1),
+(29, 14, 3, 'Fiksi', 'EREB-3', 'Erebos', 'Gramedia', 'Ursula P.', 1),
+(30, 14, 4, 'Misteri', 'LOST-4', 'Lost Man Lane', 'Noura Books', 'Anna Katherine G.', 0),
+(31, 15, 3, 'Fiksi', 'EREB-3', 'Erebos', 'Gramedia', 'Ursula P.', 0),
+(32, 16, 1, 'Nonfiksi', 'LASK-1', 'Laskar Pelangi', 'Gramedia', 'Andrea Hirata', 0),
+(33, 16, 5, 'Fiksi', 'LE P-5', 'Le Petit Prince', 'Elexmedia', 'Antonio G.', 1),
+(34, 16, 8, 'Horror', 'BUKU-8', 'Buku Dia', 'Va', 'Ava', 1);
 
 -- --------------------------------------------------------
 
@@ -189,7 +189,7 @@ CREATE TABLE `kategori` (
 INSERT INTO `kategori` (`id_category`, `category`, `created_at`, `updated_at`) VALUES
 (1, 'Nonfiksi', NULL, NULL),
 (2, 'Fiksi', NULL, NULL),
-(3, 'Horror', NULL, NULL),
+(3, 'Drama', NULL, NULL),
 (4, 'Misteri', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -264,8 +264,14 @@ INSERT INTO `peminjaman` (`id`, `kodepinjam`, `anggota_id`, `pustakawan_id`, `tg
 (6, '20191121-6', 3, 1, '2019-11-21', '2019-11-21', 'Adrian Ainur', 'Rap', 1, NULL, NULL),
 (7, '20191121-7', 1, 1, '2019-11-21', '2019-11-21', 'Rafiega Aji', 'Rap', 1, NULL, NULL),
 (8, '20191122-8', 1, 1, '2019-11-22', '2019-11-22', 'Rafiega Aji', 'Rap', 1, NULL, NULL),
-(9, '20191122-9', 3, 1, '2019-11-22', '2019-11-22', 'Adrian Ainur', 'Rap', 0, NULL, NULL),
-(10, '20191122-10', 3, 1, '2019-11-22', '2019-11-23', 'Adrian Ainur', 'Rap', 1, NULL, NULL);
+(9, '20191122-9', 3, 1, '2019-11-19', '2019-11-19', 'Adrian Ainur', 'Rap', 1, NULL, NULL),
+(10, '20191122-10', 3, 1, '2019-11-22', '2019-11-23', 'Adrian Ainur', 'Rap', 1, NULL, NULL),
+(11, '20191121-11', 1, 1, '2019-11-21', '2019-11-21', 'Rafiega Aji', 'Rap', 1, NULL, NULL),
+(12, '20191121-12', 1, 1, '2019-11-20', '2019-11-20', 'Rafiega Aji', 'Rap', 1, NULL, NULL),
+(13, '20191125-13', 2, 2, '2019-11-25', '2019-11-25', 'Prasanti Oktav', 'Iva', 1, NULL, NULL),
+(14, '20191125-14', 1, 1, '2019-11-25', '2019-11-25', 'Rafiega Aji', 'Rap', 0, NULL, NULL),
+(15, '20191126-15', 2, 1, '2019-11-26', '2019-11-26', 'Prasanti Oktav', 'Rap', 0, NULL, NULL),
+(16, '20191126-16', 3, 1, '2019-11-26', '2019-11-26', 'Adrian Ainur', 'Rap', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -289,7 +295,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Rap', 'animox@email.com', NULL, '$2y$10$gIfNq3JhpMK43FxgFWzvt.iHrtMI9Xeqqs/26igA97YNMEb3DgKqW', NULL, '2019-11-21 05:32:12', '2019-11-21 05:32:12');
+(1, 'Rap', 'animox@email.com', NULL, '$2y$10$gIfNq3JhpMK43FxgFWzvt.iHrtMI9Xeqqs/26igA97YNMEb3DgKqW', NULL, '2019-11-21 05:32:12', '2019-11-21 05:32:12'),
+(2, 'Iva', 'avi@gmail.com', NULL, '$2y$10$yWFSbsaY4PWf4ltbWFbbkutUA4CxqFD2sdCx4C/LauxBOa3H3BGuq', NULL, '2019-11-24 18:27:44', '2019-11-24 18:27:44');
 
 --
 -- Indexes for dumped tables
@@ -307,14 +314,6 @@ ALTER TABLE `anggota`
 ALTER TABLE `buku`
   ADD PRIMARY KEY (`id_buku`),
   ADD KEY `buku_jenis_id_foreign` (`jenis_id`);
-
---
--- Indeks untuk tabel `dd`
---
-ALTER TABLE `dd`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `dd_denda_id_foreign` (`denda_id`),
-  ADD KEY `dd_buku_id_foreign` (`buku_id`);
 
 --
 -- Indeks untuk tabel `denda`
@@ -372,37 +371,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_angg` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_angg` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id_buku` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT untuk tabel `dd`
---
-ALTER TABLE `dd`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_buku` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `denda`
 --
 ALTER TABLE `denda`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `details`
 --
 ALTER TABLE `details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_category` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_category` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
@@ -414,13 +407,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -431,13 +424,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `buku`
   ADD CONSTRAINT `buku_jenis_id_foreign` FOREIGN KEY (`jenis_id`) REFERENCES `kategori` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ketidakleluasaan untuk tabel `dd`
---
-ALTER TABLE `dd`
-  ADD CONSTRAINT `dd_buku_id_foreign` FOREIGN KEY (`buku_id`) REFERENCES `details` (`buku_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `dd_denda_id_foreign` FOREIGN KEY (`denda_id`) REFERENCES `denda` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `denda`
